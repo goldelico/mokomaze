@@ -15,13 +15,13 @@
 		EEA3D33F208B25A9004CB227 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D310208B25A9004CB227 /* COPYING */; };
 		EEA3D340208B25A9004CB227 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D313208B25A9004CB227 /* config.json */; };
 		EEA3D341208B25A9004CB227 /* main.levelpack.json in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D314208B25A9004CB227 /* main.levelpack.json */; };
-		EEA3D342208B25A9004CB227 /* form.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D315208B25A9004CB227 /* form.cpp */; };
+		EEA3D342208B25A9004CB227 /* form.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D315208B25A9004CB227 /* form.m */; };
 		EEA3D343208B25A9004CB227 /* formbase.ui in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D317208B25A9004CB227 /* formbase.ui */; };
-		EEA3D344208B25A9004CB227 /* gamefield.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D318208B25A9004CB227 /* gamefield.cpp */; };
+		EEA3D344208B25A9004CB227 /* gamefield.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D318208B25A9004CB227 /* gamefield.m */; };
 		EEA3D345208B25A9004CB227 /* qtmaze.html in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D31C208B25A9004CB227 /* qtmaze.html */; };
 		EEA3D346208B25A9004CB227 /* json.c in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D31D208B25A9004CB227 /* json.c */; };
-		EEA3D347208B25A9004CB227 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D31F208B25A9004CB227 /* main.cpp */; };
-		EEA3D348208B25A9004CB227 /* paramsloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D320208B25A9004CB227 /* paramsloader.cpp */; };
+		EEA3D347208B25A9004CB227 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D31F208B25A9004CB227 /* main.m */; };
+		EEA3D348208B25A9004CB227 /* paramsloader.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D320208B25A9004CB227 /* paramsloader.m */; };
 		EEA3D349208B25A9004CB227 /* ball-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D324208B25A9004CB227 /* ball-shadow.png */; };
 		EEA3D34A208B25A9004CB227 /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D325208B25A9004CB227 /* ball.png */; };
 		EEA3D34B208B25A9004CB227 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D326208B25A9004CB227 /* close.png */; };
@@ -43,9 +43,9 @@
 		EEA3D35B208B25A9004CB227 /* qtmaze.desktop in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D336208B25A9004CB227 /* qtmaze.desktop */; };
 		EEA3D35C208B25AA004CB227 /* qtmaze.pro in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D337208B25A9004CB227 /* qtmaze.pro */; };
 		EEA3D35D208B25AA004CB227 /* README in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D338208B25A9004CB227 /* README */; };
-		EEA3D35E208B25AA004CB227 /* renderarea.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D339208B25A9004CB227 /* renderarea.cpp */; };
+		EEA3D35E208B25AA004CB227 /* renderarea.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D339208B25A9004CB227 /* renderarea.m */; };
 		EEA3D35F208B25AA004CB227 /* resources.qrc in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D33B208B25A9004CB227 /* resources.qrc */; };
-		EEA3D360208B25AA004CB227 /* vibro.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D33D208B25A9004CB227 /* vibro.cpp */; };
+		EEA3D360208B25AA004CB227 /* vibro.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D33D208B25A9004CB227 /* vibro.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,16 +60,16 @@
 		EEA3D310208B25A9004CB227 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = COPYING; path = src/COPYING; sourceTree = "<group>"; };
 		EEA3D313208B25A9004CB227 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		EEA3D314208B25A9004CB227 /* main.levelpack.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = main.levelpack.json; sourceTree = "<group>"; };
-		EEA3D315208B25A9004CB227 /* form.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = form.cpp; path = src/form.cpp; sourceTree = "<group>"; };
+		EEA3D315208B25A9004CB227 /* form.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = form.m; path = src/form.m; sourceTree = "<group>"; };
 		EEA3D316208B25A9004CB227 /* form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = form.h; path = src/form.h; sourceTree = "<group>"; };
 		EEA3D317208B25A9004CB227 /* formbase.ui */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = formbase.ui; path = src/formbase.ui; sourceTree = "<group>"; };
-		EEA3D318208B25A9004CB227 /* gamefield.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = gamefield.cpp; path = src/gamefield.cpp; sourceTree = "<group>"; };
+		EEA3D318208B25A9004CB227 /* gamefield.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = gamefield.m; path = src/gamefield.m; sourceTree = "<group>"; };
 		EEA3D319208B25A9004CB227 /* gamefield.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gamefield.h; path = src/gamefield.h; sourceTree = "<group>"; };
 		EEA3D31C208B25A9004CB227 /* qtmaze.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = qtmaze.html; sourceTree = "<group>"; };
 		EEA3D31D208B25A9004CB227 /* json.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = json.c; path = src/json.c; sourceTree = "<group>"; };
 		EEA3D31E208B25A9004CB227 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = json.h; path = src/json.h; sourceTree = "<group>"; };
-		EEA3D31F208B25A9004CB227 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = "<group>"; };
-		EEA3D320208B25A9004CB227 /* paramsloader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = paramsloader.cpp; path = src/paramsloader.cpp; sourceTree = "<group>"; };
+		EEA3D31F208B25A9004CB227 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = src/main.m; sourceTree = "<group>"; };
+		EEA3D320208B25A9004CB227 /* paramsloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = paramsloader.m; path = src/paramsloader.m; sourceTree = "<group>"; };
 		EEA3D321208B25A9004CB227 /* paramsloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = paramsloader.h; path = src/paramsloader.h; sourceTree = "<group>"; };
 		EEA3D324208B25A9004CB227 /* ball-shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ball-shadow.png"; sourceTree = "<group>"; };
 		EEA3D325208B25A9004CB227 /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
@@ -92,11 +92,11 @@
 		EEA3D336208B25A9004CB227 /* qtmaze.desktop */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = qtmaze.desktop; path = src/qtmaze.desktop; sourceTree = "<group>"; };
 		EEA3D337208B25A9004CB227 /* qtmaze.pro */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = qtmaze.pro; path = src/qtmaze.pro; sourceTree = "<group>"; };
 		EEA3D338208B25A9004CB227 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README; path = src/README; sourceTree = "<group>"; };
-		EEA3D339208B25A9004CB227 /* renderarea.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = renderarea.cpp; path = src/renderarea.cpp; sourceTree = "<group>"; };
+		EEA3D339208B25A9004CB227 /* renderarea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = renderarea.m; path = src/renderarea.m; sourceTree = "<group>"; };
 		EEA3D33A208B25A9004CB227 /* renderarea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = renderarea.h; path = src/renderarea.h; sourceTree = "<group>"; };
 		EEA3D33B208B25A9004CB227 /* resources.qrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = resources.qrc; path = src/resources.qrc; sourceTree = "<group>"; };
 		EEA3D33C208B25A9004CB227 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = types.h; path = src/types.h; sourceTree = "<group>"; };
-		EEA3D33D208B25A9004CB227 /* vibro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vibro.cpp; path = src/vibro.cpp; sourceTree = "<group>"; };
+		EEA3D33D208B25A9004CB227 /* vibro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = vibro.m; path = src/vibro.m; sourceTree = "<group>"; };
 		EEA3D33E208B25A9004CB227 /* vibro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vibro.h; path = src/vibro.h; sourceTree = "<group>"; };
 		EEA6A096174BDE7900F4FBFA /* mySTEP.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mySTEP.make; path = ../../../Frameworks/mySTEP.make; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -119,18 +119,18 @@
 			children = (
 				EEA3D310208B25A9004CB227 /* COPYING */,
 				EEA3D338208B25A9004CB227 /* README */,
-				EEA3D315208B25A9004CB227 /* form.cpp */,
 				EEA3D316208B25A9004CB227 /* form.h */,
-				EEA3D318208B25A9004CB227 /* gamefield.cpp */,
+				EEA3D315208B25A9004CB227 /* form.m */,
 				EEA3D319208B25A9004CB227 /* gamefield.h */,
-				EEA3D31F208B25A9004CB227 /* main.cpp */,
-				EEA3D320208B25A9004CB227 /* paramsloader.cpp */,
+				EEA3D318208B25A9004CB227 /* gamefield.m */,
+				EEA3D31F208B25A9004CB227 /* main.m */,
 				EEA3D321208B25A9004CB227 /* paramsloader.h */,
-				EEA3D339208B25A9004CB227 /* renderarea.cpp */,
+				EEA3D320208B25A9004CB227 /* paramsloader.m */,
 				EEA3D33A208B25A9004CB227 /* renderarea.h */,
+				EEA3D339208B25A9004CB227 /* renderarea.m */,
 				EEA3D33C208B25A9004CB227 /* types.h */,
-				EEA3D33D208B25A9004CB227 /* vibro.cpp */,
 				EEA3D33E208B25A9004CB227 /* vibro.h */,
+				EEA3D33D208B25A9004CB227 /* vibro.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -355,12 +355,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEA3D35E208B25AA004CB227 /* renderarea.cpp in Sources */,
-				EEA3D344208B25A9004CB227 /* gamefield.cpp in Sources */,
-				EEA3D342208B25A9004CB227 /* form.cpp in Sources */,
-				EEA3D348208B25A9004CB227 /* paramsloader.cpp in Sources */,
-				EEA3D347208B25A9004CB227 /* main.cpp in Sources */,
-				EEA3D360208B25AA004CB227 /* vibro.cpp in Sources */,
+				EEA3D35E208B25AA004CB227 /* renderarea.m in Sources */,
+				EEA3D344208B25A9004CB227 /* gamefield.m in Sources */,
+				EEA3D342208B25A9004CB227 /* form.m in Sources */,
+				EEA3D348208B25A9004CB227 /* paramsloader.m in Sources */,
+				EEA3D347208B25A9004CB227 /* main.m in Sources */,
+				EEA3D360208B25AA004CB227 /* vibro.m in Sources */,
 				EEA3D346208B25A9004CB227 /* json.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,7 +398,7 @@
 		149C297A08902C52008A9EFC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -406,7 +406,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MokoMaze_Prefix.pch;
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = MokoMaze;
@@ -418,12 +418,12 @@
 		149C297B08902C52008A9EFC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MokoMaze_Prefix.pch;
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = MokoMaze;
@@ -437,7 +437,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -447,7 +447,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};

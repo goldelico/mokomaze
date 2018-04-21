@@ -42,30 +42,30 @@ int timer_set=0;
 
 int init_vibro()
 {
-    QVibrateAccessory vib;
+	QVibrateAccessory vib;
 }
 
 void* callback(void *data)
 {
-    timer_set = 1;
-    usleep(VIBRATION_TIME*1000);
-    vib.setVibrateNow(false);
-    timer_set = 0;
-    return NULL;
+	timer_set = 1;
+	usleep(VIBRATION_TIME*1000);
+	vib.setVibrateNow(false);
+	timer_set = 0;
+	return NULL;
 }
 
 int set_vibro(BYTE level)
 {
-    if (!timer_set)
-    {
-        vib.setVibrateNow(true);
-        pthread_create( &vibro_timer, NULL, callback, NULL);
-    }
-    return 0;
+	if (!timer_set)
+		{
+		vib.setVibrateNow(true);
+		pthread_create( &vibro_timer, NULL, callback, NULL);
+		}
+	return 0;
 }
 
 int close_vibro()
 {
-    if (timer_set) pthread_join(vibro_timer, NULL);
-    return 0;
+	if (timer_set) pthread_join(vibro_timer, NULL);
+	return 0;
 }

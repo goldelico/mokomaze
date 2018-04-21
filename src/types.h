@@ -23,23 +23,20 @@
 #ifndef TYPES_H
 #define TYPES_H
 
+#import <Cocoa/Cocoa.h>
+
 #define BYTE unsigned char
 
 //----------------------------------
 
 typedef enum {
 	ACCEL_UNKNOWN,
-        ACCEL_FREERUNNER	/* Openmoko Neo Freerunner */
+	ACCEL_FREERUNNER	/* Openmoko Neo Freerunner */
 } AccelType;
 
 //----------------------------------
 
-typedef struct {
-
-	double		x;
-	double		y;
-
-} DPoint;
+typedef NSPoint DPoint;
 
 typedef struct {
 
@@ -67,13 +64,13 @@ typedef struct {
 	int		hole_r;
 
 	int		f_delay;
-        int             fullscreen;
-        
+	int		fullscreen;
+
 } Config;
 
 typedef struct {
 
-	char		levelpack[128];
+	char	levelpack[128];
 	int		level;
 
 } User;
@@ -90,15 +87,15 @@ typedef struct {
 typedef struct {
 
 	int		boxes_count;
-	Box*		boxes;
+	Box*	boxes;
 
 	int		holes_count;
-	Point*		holes;
+	Point*	holes;
 
-        int		fins_count;
-	Point*		fins;
+	int		fins_count;
+	Point*	fins;
 
-	Point		init;
+	Point	init;
 
 } Level;
 
