@@ -20,6 +20,8 @@
  *  along with QtMaze.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <Cocoa/Cocoa.h>
+
 #ifndef PARAMSLOADER_H
 #define PARAMSLOADER_H
 

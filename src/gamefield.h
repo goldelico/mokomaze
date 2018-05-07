@@ -41,6 +41,21 @@
  **
  ****************************************************************************/
 
+#import <Cocoa/Cocoa.h>
+
+@interface GameField : NSView
+{
+	int currentAngle;
+}
+
+- (int) angle;
+- (void) setAngle:(int) angle;
+- (void) drawRect:(NSRect) rect;
+
+@end
+
+#define GAMEFIELD_H
+
 #ifndef GAMEFIELD_H
 #define GAMEFIELD_H
 

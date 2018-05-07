@@ -20,6 +20,49 @@
  *  along with QtMaze.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <Cocoa/Cocoa.h>
+
+#include "renderarea.h"
+
+@interface Form : NSView
+{
+	NSTimer *timer;
+	RenderArea *renderArea;
+	NSImage *prev_pixmap, *prev_p_pixmap, *prev_i_pixmap;
+	NSImage *next_pixmap, *next_p_pixmap, *next_i_pixmap;
+	NSImage *reset_pixmap, *reset_p_pixmap, *reset_i_pixmap;
+	NSImage *close_pixmap;
+}
+
+- (void) drawRect:(NSRect) rect;
+- (void) checkLoadedPictures;
+- (void) disableScreenSaver;
+- (void) enableScreenSaver;
+- (void) setMenuVis:(BOOL) x;
+- (void) SetLevelNo();
+- (void) MoveBall:(double) x :(double) y;
+- (void) InitState:(BOOL) redraw;
+// int line(double x0, double y0, double x1, double y1,    double vx0,double vy0, double vx1,double vy1);
+- (void) ZeroAnim;
+- (void) ProcessGameState;
+- (int) testbump:(NSPoint) pnt :(NSPoint) mm_v;
+- (int) edgebump(NSPoint) t :(NSPoint) pnt :(NSPoint) mm_v;
+- (void) tout:(NSPoint) pnt;
+- (void) apply_temp_phys_res;
+- (void) post_temp_phys_res:(NSPoint) pnt :(NSPoint) mm_v;
+- (void) post_phys_res:(NSPoint) pnt :(NSPoint) mm_v;
+- (void) BumpVibrate:(double) speed;
+- (void) setButtonsPics;
+- (void) acc_timerAction(double) acx :(double) acy;
+// FIXME: + (void) accel_callback(void *closure, double acx, double acy, double acz);
+- (void) timerAction;
+- (void) ScreenTouchedPause;
+- (void) ScreenTouchedContinue;
+
+@end
+
+#define EXAMPLE_H
+
 #ifndef EXAMPLE_H
 #define EXAMPLE_H
 #include "ui_formbase.h"

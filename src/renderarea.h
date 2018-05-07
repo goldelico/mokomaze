@@ -23,20 +23,22 @@
  *  along with QtMaze.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@interface RenderArea : NSWindow
+#import <Cocoa/Cocoa.h>
+
+@interface RenderArea : NSView
 {
-	QPixmap hole_pixmap;
-	QPixmap fin_pixmap;
-	QPixmap desk_pixmap;
-	QPixmap wall_pixmap;
-	QPixmap *lvl_pixmap;
+	NSImage *hole_pixmap;
+	NSImage *fin_pixmap;
+	NSImage *desk_pixmap;
+	NSImage *wall_pixmap;
+	NSImage *lvl_pixmap;
 }
 
-- (QSize) minimumSizeHint;
-- (QSize) sizeHint;
+// - (NSSize) minimumSizeHint;
+// - (NSSize) sizeHint;
 - (void) setAntialiased(bool antialiased);
 - (void) setLevel(int lvl_no);
-- (void) paintEvent(QPaintEvent *event);
+- (void) drawRect:(NSRect) rect;
 - (void) renderWallShadow(int bx1, int by1, int bx2, int by2);
 - (BOOL) antialiased;
 
