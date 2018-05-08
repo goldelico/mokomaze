@@ -20,6 +20,17 @@
  *  along with QtMaze.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// #import "accelerometers.h"
+#import "paramsloader.h"
+#import "vibro.h"
+#import "types.h"
+#import "form.h"
+
+@implementation Form
+@end
+
+#if OLD
+
 #include <qtimer.h>
 #include <QMouseEvent>
 #include <stdio.h>
@@ -881,3 +892,5 @@ void Form::accel_callback(void *closure, double acx, double acy, double acz)
 	Form *form = (Form *)closure;
 	form->acc_timerAction(acx, acy);
 }
+
+#endif

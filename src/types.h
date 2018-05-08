@@ -23,6 +23,8 @@
 #ifndef TYPES_H
 #define TYPES_H
 
+#define Point MacPoint	// includes some Mac header which typedefs "Point"
+
 #import <Cocoa/Cocoa.h>
 
 #define BYTE unsigned char

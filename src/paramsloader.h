@@ -21,6 +21,25 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import "types.h"
+
+@interface ParamsLoader : NSApplication
+
+- (int) load_params;
+- (Config) GetGameConfig;
+- (Level*) GetGameLevels;
+- (User) GetUserSettings;
+- (int) GetGameLevelsCount;
+- (int) GetVibroEnabled;
+- (Prompt) GetArguments;
+- (char*) GetExecInit;
+- (char*) GetExecFinal;
+
+- (void) SaveLevel:(int) n;
+
+@end
+
+#define PARAMSLOADER_H
 
 #ifndef PARAMSLOADER_H
 #define PARAMSLOADER_H

@@ -24,6 +24,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import "types.h"
 
 @interface RenderArea : NSView
 {
@@ -36,10 +37,10 @@
 
 // - (NSSize) minimumSizeHint;
 // - (NSSize) sizeHint;
-- (void) setAntialiased(bool antialiased);
-- (void) setLevel(int lvl_no);
+- (void) setAntialiased:(bool) antialiased;
+- (void) setLevel:(int) lvl_no;
 - (void) drawRect:(NSRect) rect;
-- (void) renderWallShadow(int bx1, int by1, int bx2, int by2);
+- (void) renderWallShadow:(int) bx1 :(int) by1 :(int) bx2 :(int) by2;
 - (BOOL) antialiased;
 
 @end

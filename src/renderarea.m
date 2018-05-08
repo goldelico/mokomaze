@@ -35,7 +35,7 @@ int re_cur_level;
 
 - (id) initWithFrame:(NSRect) frame
 {
-	if((super=[self initWithFrame:frame]))
+	if((self=[super initWithFrame:frame]))
 		{
 		lvl_pixmap = new QPixmap(QSize(w,h));
 

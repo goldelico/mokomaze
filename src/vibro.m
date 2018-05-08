@@ -20,6 +20,17 @@
  *  along with QtMaze.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// #import "accelerometers.h"
+#import "paramsloader.h"
+#import "vibro.h"
+#import "types.h"
+#import "form.h"
+
+@implementation Vibro
+@end
+
+#if OLD
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -69,3 +80,4 @@ int close_vibro()
 	if (timer_set) pthread_join(vibro_timer, NULL);
 	return 0;
 }
+#endif

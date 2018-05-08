@@ -41,6 +41,17 @@
  **
  ****************************************************************************/
 
+// #import "accelerometers.h"
+#import "paramsloader.h"
+#import "vibro.h"
+#import "types.h"
+#import "form.h"
+
+@implementation GameField
+@end
+
+#if 0
+
 #include <QPainter>
 
 #include "gamefield.h"
@@ -72,3 +83,5 @@ void GameField::paintEvent(QPaintEvent * /* event */)
 	painter.drawText(20, 20,
 					 tr("Angle = ") + QString::number(currentAngle));
 }
+
+#endif

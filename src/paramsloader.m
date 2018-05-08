@@ -20,6 +20,18 @@
  *  along with QtMaze.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// #import "accelerometers.h"
+#import "paramsloader.h"
+#import "vibro.h"
+#import "types.h"
+#import "form.h"
+
+@implementation ParamsLoader
+@end
+
+
+#if OLD
+
 #include <stdlib.h>
 #include <stdarg.h>
 #include <stdio.h>
@@ -436,3 +448,5 @@ char* GetExecFinal()
 {
 	return exec_final;
 }
+
+#endif

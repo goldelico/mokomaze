@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		834B13820795DD1F00E4BF6C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 834B13810795DD1F00E4BF6C /* WebKit.framework */; };
 		834B13D30795DE5200E4BF6C /* MyDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 834B13D20795DE5200E4BF6C /* MyDocument.nib */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
@@ -19,7 +18,6 @@
 		EEA3D343208B25A9004CB227 /* formbase.ui in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D317208B25A9004CB227 /* formbase.ui */; };
 		EEA3D344208B25A9004CB227 /* gamefield.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D318208B25A9004CB227 /* gamefield.m */; };
 		EEA3D345208B25A9004CB227 /* qtmaze.html in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D31C208B25A9004CB227 /* qtmaze.html */; };
-		EEA3D346208B25A9004CB227 /* json.c in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D31D208B25A9004CB227 /* json.c */; };
 		EEA3D347208B25A9004CB227 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D31F208B25A9004CB227 /* main.m */; };
 		EEA3D348208B25A9004CB227 /* paramsloader.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D320208B25A9004CB227 /* paramsloader.m */; };
 		EEA3D349208B25A9004CB227 /* ball-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D324208B25A9004CB227 /* ball-shadow.png */; };
@@ -107,7 +105,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				834B13820795DD1F00E4BF6C /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,7 +344,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ./MiniBrowser.qcodeproj;
+			shellScript = ./MokoMaze.qcodeproj;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -356,13 +353,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEA3D35E208B25AA004CB227 /* renderarea.m in Sources */,
-				EEA3D344208B25A9004CB227 /* gamefield.m in Sources */,
 				EEA3D342208B25A9004CB227 /* form.m in Sources */,
-				EEA3D348208B25A9004CB227 /* paramsloader.m in Sources */,
+				EEA3D344208B25A9004CB227 /* gamefield.m in Sources */,
 				EEA3D347208B25A9004CB227 /* main.m in Sources */,
+				EEA3D348208B25A9004CB227 /* paramsloader.m in Sources */,
+				EEA3D35E208B25AA004CB227 /* renderarea.m in Sources */,
 				EEA3D360208B25AA004CB227 /* vibro.m in Sources */,
-				EEA3D346208B25A9004CB227 /* json.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,7 +401,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = MokoMaze_Prefix.pch;
+				GCC_PREFIX_HEADER = "";
 				GCC_VERSION = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -422,7 +418,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = MokoMaze_Prefix.pch;
+				GCC_PREFIX_HEADER = "";
 				GCC_VERSION = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";

@@ -20,6 +20,19 @@
  *  along with QtMaze.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#import <Cocoa/Cocoa.h>
+#import "types.h"
+
+@interface Vibro : NSObject
+
++ (int) init_vibro;
++ (int) set_vibro:(BYTE) level;
++ (int) close_vibro;
+
+@end
+
+#define VIBRO_H
+
 #ifndef VIBRO_H
 #define VIBRO_H
 
