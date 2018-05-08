@@ -37,6 +37,7 @@ int re_cur_level;
 {
 	if((self=[super initWithFrame:frame]))
 		{
+#if 0
 		lvl_pixmap = new QPixmap(QSize(w,h));
 
 		hole_pixmap.load(QCoreApplication::applicationDirPath() + "/pics/qtmaze/hole.png");
@@ -46,12 +47,14 @@ int re_cur_level;
 
 		setBackgroundRole(QPalette::Base);
 		setAutoFillBackground(true);
-		antialiased = false;
+#endif
 
-		re_game_config = GetGameConfig();
-		re_game_levels = GetGameLevels();
-		re_game_levels_count = GetGameLevelsCount();
-		re_cur_level = GetUserSettings().level - 1;
+		_antialiased = false;
+
+		re_game_config = [(ParamsLoader *) NSApp GetGameConfig];
+		re_game_levels = [(ParamsLoader *) NSApp GetGameLevels];
+		re_game_levels_count = [(ParamsLoader *) NSApp GetGameLevelsCount];
+		re_cur_level = [(ParamsLoader *) NSApp GetUserSettings].level - 1;
 		}
 	return self;
 }
@@ -64,18 +67,57 @@ int re_cur_level;
 
 - (BOOL) antialiased;
 {
-	return antialiased;
+	return _antialiased;
 }
 
-- (void) setAntialiased(bool antialiased);
+- (void) setAntialiased:(BOOL) antialiased;
 {
-
+	_antialiased=antialiased;
 }
 
-- (void) setLevel(int lvl_no);
-{
+- (void) setLevel:(int) lvl_no;
+{ // prepare background pixmap for given game level
 	re_cur_level = lvl_no;
 
+	[lvl_pixmap lockFocus];
+
+	[desk_pixmap draw];
+
+	Level *lvl = &re_game_levels[re_cur_level];
+
+	int bcount = lvl->boxes_count;
+	Box *boxes = lvl->boxes;
+	for (int i=0; i<bcount; i++)
+		{
+		Box *box = &boxes[i];
+		[self renderWallShadow:box->x1 :box->y1 :box->x2 :box->y2];
+		}
+
+	for (int i=0; i<bcount; i++)
+		{
+		Box *box = &boxes[i];
+		NSRect rect=NSMakeRect(box->x1, box->y1,
+				   box->x2 - box->x1, box->y2 - box->y1);
+		[wall_pixmap drawInRect:rect];
+		}
+
+	for (int i=0; i<lvl->holes_count; i++)
+		{
+		Point *hole = &lvl->holes[i];
+		NSPoint point=NSMakePoint(hole->x - re_game_config.hole_r,
+							   hole->y - re_game_config.hole_r);
+
+		[hole_pixmap drawAtPoint:point];
+		}
+
+	Point *fin = &lvl->fins[0];
+	NSPoint point=NSMakePoint(fin->x - re_game_config.hole_r,
+						   fin->y - re_game_config.hole_r);
+	[fin_pixmap drawAtPoint:point];
+
+	[lvl_pixmap unlockFocus];
+
+#if OLD
 	QPainter painter(lvl_pixmap);
 
 	if (antialiased)
@@ -101,7 +143,6 @@ int re_cur_level;
 				   box->x1, box->y1,
 				   box->x2 - box->x1, box->y2 - box->y1
 				   );
-		//painter.drawRect(rect);
 		painter.drawPixmap(rect, wall_pixmap, rect);
 		}
 
@@ -117,17 +158,27 @@ int re_cur_level;
 	painter.drawPixmap( fin->x - re_game_config.hole_r,
 					   fin->y - re_game_config.hole_r,
 					   fin_pixmap);
+#endif
 
 }
 
-- (void) renderWallShadow(int bx1, int by1, int bx2, int by2);
+- (void) renderWallShadow:(int) bx1 :(int) by1 :(int) bx2 :(int) by2;
 {
-	{
 	bx2--;
 	by2--;
 
-	NSColor *col = [NSColor alloc];
 	int initalpha = 90;
+	[[NSColor colorWithRed: 0 green:0 blue:0 alpha:initalpha] set];
+
+	[NSBezierPath setDefaultLineWidth:1.0];
+	[NSBezierPath strokeLineFromPoint:NSMakePoint(bx1-1, by1) toPoint:NSMakePoint(bx1-1, by2)];
+	[NSBezierPath strokeLineFromPoint:NSMakePoint(bx1, by1-1) toPoint:NSMakePoint(bx2, by2-1)];
+
+	[[NSColor colorWithRed: 0 green:0 blue:0 alpha:initalpha] set];
+
+	// FIXME: loop?
+
+#if OLD
 	col->setRed(0);
 	col->setGreen(0);
 	col->setBlue(0);
@@ -155,17 +206,12 @@ int re_cur_level;
 
 	delete col;
 	delete pen;
-	}
+#endif
 }
 
 - (void) drawRect:(NSRect) rect
 {
-	QPainter painter(this);
-	if (lvl_pixmap != NULL)
-		{
-		painter.drawPixmap(event->rect(), *lvl_pixmap, event->rect());
-		}
-
+	[lvl_pixmap draw];
 }
 
 @end

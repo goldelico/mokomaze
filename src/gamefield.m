@@ -42,10 +42,7 @@
  ****************************************************************************/
 
 // #import "accelerometers.h"
-#import "paramsloader.h"
-#import "vibro.h"
-#import "types.h"
-#import "form.h"
+#import "gamefield.h"
 
 @implementation GameField
 @end

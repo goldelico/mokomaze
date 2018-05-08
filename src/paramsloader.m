@@ -22,9 +22,6 @@
 
 // #import "accelerometers.h"
 #import "paramsloader.h"
-#import "vibro.h"
-#import "types.h"
-#import "form.h"
 
 @implementation ParamsLoader
 @end

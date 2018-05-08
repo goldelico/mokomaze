@@ -33,11 +33,12 @@
 	NSImage *desk_pixmap;
 	NSImage *wall_pixmap;
 	NSImage *lvl_pixmap;
+	BOOL _antialiased;
 }
 
 // - (NSSize) minimumSizeHint;
 // - (NSSize) sizeHint;
-- (void) setAntialiased:(bool) antialiased;
+- (void) setAntialiased:(BOOL) antialiased;
 - (void) setLevel:(int) lvl_no;
 - (void) drawRect:(NSRect) rect;
 - (void) renderWallShadow:(int) bx1 :(int) by1 :(int) bx2 :(int) by2;

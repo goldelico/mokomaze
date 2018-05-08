@@ -26,7 +26,196 @@
 #import "types.h"
 #import "form.h"
 
+double calcdist(NSPoint p1, NSPoint p2)
+{
+	return sqrt((p2.x-p1.x)*(p2.x-p1.x) + (p2.y-p1.y)*(p2.y-p1.y));
+}
+
+double calclen(NSPoint p)
+{
+	return sqrt(p.x*p.x + p.y*p.y);
+}
+
+NSPoint normalize(NSPoint p)
+{
+	NSPoint r;
+	double len = calclen(p);
+	r.x = p.x/len;
+	r.y = p.y/len;
+	return r;
+}
+
+int inbox(NSPoint p, NSRect box)
+{
+	return NSPointInRect(p, box);
+}
+
+int incircle(NSPoint p, NSPoint c, double cr)
+{
+	return (calcdist(p, c) <= cr);
+}
+
 @implementation Form
+
+- (void) drawRect:(NSRect) rect
+{
+	[lvl_pixmap draw];
+}
+
+- (void) checkLoadedPictures;
+{
+
+}
+
+- (void) disableScreenSaver;
+{
+
+}
+
+- (void) enableScreenSaver;
+{
+
+}
+
+- (void) setMenuVis:(BOOL) x;
+{
+	[self SetLevelNo];
+	[menu setHidden:!x];
+}
+
+- (void) SetLevelNo;
+{
+	// define font color&size on NIB:	<font color=\"#e0bc70\" size=\"" FONT_SIZE "\">
+	[levelno_lbl setStringValue:[NSString stringWithFormat:@"Level %d/%d", cur_level+1, qt_game_levels_count]];
+}
+
+- (void) MoveBall:(double) x :(double) y;
+{
+
+}
+
+- (void) InitState:(BOOL) redraw;
+{
+
+}
+
+// int line(double x0, double y0, double x1, double y1,    double vx0,double vy0, double vx1,double vy1);
+- (void) ZeroAnim;
+{
+
+}
+
+- (void) ProcessGameState;
+{
+
+}
+
+- (int) testbump:(NSPoint) pnt :(NSPoint) mm_v;
+{
+
+}
+
+- (int) edgebump:(NSPoint) t :(NSPoint) pnt :(NSPoint) mm_v;
+{
+
+}
+
+- (void) tout:(NSPoint) pnt;
+{
+
+}
+
+- (void) apply_temp_phys_res;
+{
+	[self post_phys_res:NSMakePoint(tmp_px, tmp_py) :NSMakePoint(tmp_vx, tmp_vy)];
+}
+
+- (void) post_temp_phys_res:(NSPoint) pnt :(NSPoint) mm_v;
+{
+#if OLD
+	if (x<qt_game_config.ball_r)
+		{
+		BumpVibrate(mm_vx); //VIB_HOR
+		x = qt_game_config.ball_r;
+		mm_vx = -mm_vx * BUMP_COEF;
+		}
+	if (x>qt_game_config.wnd_w - qt_game_config.ball_r)
+		{
+		BumpVibrate(mm_vx);
+		x = qt_game_config.wnd_w - qt_game_config.ball_r;
+		mm_vx = -mm_vx * BUMP_COEF;
+		}
+	if (y<qt_game_config.ball_r)
+		{
+		BumpVibrate(mm_vy);
+		y = qt_game_config.ball_r;
+		mm_vy = -mm_vy * BUMP_COEF;
+		}
+	if (y>qt_game_config.wnd_h - qt_game_config.ball_r)
+		{
+		BumpVibrate(mm_vy);
+		y = qt_game_config.wnd_h - qt_game_config.ball_r;
+		mm_vy = -mm_vy * BUMP_COEF;
+		}
+
+	tmp_px = x; tmp_py = y;
+	tmp_vx = mm_vx; tmp_vy = mm_vy;
+#endif
+}
+
+- (void) post_phys_res:(NSPoint) pnt :(NSPoint) mm_v;
+{
+	px = pnt.x; py = pnt.y;
+	[self MoveBall:px :py];
+
+	vx = mm_v.x; vy = mm_v.y;
+	pr_px = px; pr_py = py;
+	pr_vx = vx; pr_vy = vy;
+}
+
+- (void) BumpVibrate:(double) speed;
+{
+#define MAX_BUMP_SPEED 160.0
+#define MIN_BUMP_SPEED 45
+	//#define MAX_BUMP_SPEED 160.0
+	//#define VIB_TRESHHOLD 0.30
+	double v = fabs(speed);
+	double k = v/MAX_BUMP_SPEED;
+	if (k>1) k=1;
+	//if (k>VIB_TRESHHOLD)
+	if (v>MIN_BUMP_SPEED)
+		{
+		BYTE vlevel = (BYTE)(k*63);
+		[Vibro set_vibro:vlevel];
+		}
+}
+
+- (void) setButtonsPics;
+{
+	// loaded from NIB
+}
+
+- (void) acc_timerAction:(double) acx :(double) acy;
+{
+
+}
+
+// FIXME: + (void) accel_callback(void *closure, double acx, double acy, double acz);
+- (void) timerAction;
+{
+
+}
+
+- (IBAction) ScreenTouchedPause;
+{
+
+}
+
+- (IBAction) ScreenTouchedContinue;
+{
+
+}
+
 @end
 
 #if OLD
@@ -168,8 +357,6 @@ void Form::post_phys_res(double x, double y, double mm_vx, double mm_vy)
 	pr_vx = vx; pr_vy = vy;
 }
 
-double tmp_px, tmp_py;
-double tmp_vx, tmp_vy;
 void Form::post_temp_phys_res(double x, double y, double mm_vx, double mm_vy)
 {
 	if (x<qt_game_config.ball_r)

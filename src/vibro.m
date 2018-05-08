@@ -20,10 +20,6 @@
  *  along with QtMaze.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// #import "accelerometers.h"
-#import "paramsloader.h"
-#import "vibro.h"
-#import "types.h"
 #import "form.h"
 
 @implementation Vibro
