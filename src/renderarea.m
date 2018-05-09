@@ -48,7 +48,7 @@
 		setAutoFillBackground(true);
 #endif
 
-		_antialiased = false;
+		_antialiased = NO;
 
 		// überarbeiten...
 
@@ -90,13 +90,15 @@
 
 	int bcount = lvl->boxes_count;
 	Box *boxes = lvl->boxes;
-	for (int i=0; i<bcount; i++)
+	int i;
+
+	for (i=0; i<bcount; i++)
 		{
 		Box *box = &boxes[i];
 		[self renderWallShadow:box->x1 :box->y1 :box->x2 :box->y2];
 		}
 
-	for (int i=0; i<bcount; i++)
+	for (i=0; i<bcount; i++)
 		{
 		Box *box = &boxes[i];
 		NSRect rect=NSMakeRect(box->x1, box->y1,
@@ -104,7 +106,7 @@
 		[wall_pixmap drawInRect:rect];
 		}
 
-	for (int i=0; i<lvl->holes_count; i++)
+	for (i=0; i<lvl->holes_count; i++)
 		{
 		Point *hole = &lvl->holes[i];
 		NSPoint point=NSMakePoint(hole->x - re_game_config.hole_r,

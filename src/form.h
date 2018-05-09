@@ -64,7 +64,7 @@
 	int fall_hole_x, fall_hole_y;
 	int anim_stage, anim_timer;
 
-	bool fullscreen;
+	BOOL fullscreen;
 
 #define ANIM_MAX 9
 

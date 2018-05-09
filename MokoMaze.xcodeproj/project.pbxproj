@@ -50,7 +50,7 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* MokoMaze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MokoMaze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEA3D30E208B2567004CB227 /* MokoMaze.qcodeproj */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = MokoMaze.qcodeproj; sourceTree = "<group>"; };
-		EEA3D310208B25A9004CB227 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = COPYING; path = src/COPYING; sourceTree = "<group>"; };
+		EEA3D310208B25A9004CB227 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
 		EEA3D313208B25A9004CB227 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		EEA3D314208B25A9004CB227 /* main.levelpack.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = main.levelpack.json; sourceTree = "<group>"; };
 		EEA3D315208B25A9004CB227 /* form.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = form.m; path = src/form.m; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 		EEA3D335208B25A9004CB227 /* qbuild.pro */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = qbuild.pro; path = src/qbuild.pro; sourceTree = "<group>"; };
 		EEA3D336208B25A9004CB227 /* qtmaze.desktop */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = qtmaze.desktop; path = src/qtmaze.desktop; sourceTree = "<group>"; };
 		EEA3D337208B25A9004CB227 /* qtmaze.pro */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = qtmaze.pro; path = src/qtmaze.pro; sourceTree = "<group>"; };
-		EEA3D338208B25A9004CB227 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README; path = src/README; sourceTree = "<group>"; };
+		EEA3D338208B25A9004CB227 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		EEA3D339208B25A9004CB227 /* renderarea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = renderarea.m; path = src/renderarea.m; sourceTree = "<group>"; };
 		EEA3D33A208B25A9004CB227 /* renderarea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = renderarea.h; path = src/renderarea.h; sourceTree = "<group>"; };
 		EEA3D33B208B25A9004CB227 /* resources.qrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = resources.qrc; path = src/resources.qrc; sourceTree = "<group>"; };
