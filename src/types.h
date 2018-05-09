@@ -57,6 +57,7 @@ typedef struct {
 
 } Box;
 
+#if OLD
 typedef struct {
 
 	int		wnd_w;
@@ -100,5 +101,6 @@ typedef struct {
 	Point	init;
 
 } Level;
+#endif
 
 #endif /* TYPES_H */
