@@ -26,14 +26,21 @@
 #import <Cocoa/Cocoa.h>
 #import "types.h"
 
-@interface RenderArea : NSView
+@interface RenderArea : NSControl
 {
-	NSImage *hole_pixmap;
-	NSImage *fin_pixmap;
-	NSImage *desk_pixmap;
-	NSImage *wall_pixmap;
+	IBOutlet NSImage *hole_pixmap;
+	IBOutlet NSImage *fin_pixmap;
+	IBOutlet NSImage *desk_pixmap;
+	IBOutlet NSImage *wall_pixmap;
 	NSImage *lvl_pixmap;
 	BOOL _antialiased;
+	Config re_game_config;
+	Level* re_game_levels;
+	int re_game_levels_count;
+	int re_cur_level;
+
+	// target + action for screen tap
+	// connect to Forms ScreenTouchedPause action
 }
 
 // - (NSSize) minimumSizeHint;

@@ -26,17 +26,16 @@
 #import "paramsloader.h"
 #import "renderarea.h"
 
-Config re_game_config;
-Level* re_game_levels;
-int re_game_levels_count;
-int re_cur_level;
-
 @implementation RenderArea
 
 - (id) initWithFrame:(NSRect) frame
 {
 	if((self=[super initWithFrame:frame]))
 		{
+		hole_pixmap=[[NSImage imageNamed:@"hole.png"] retain];
+		fin_pixmap=[[NSImage imageNamed:@"fin.png"] retain];
+		desk_pixmap=[[NSImage imageNamed:@"desk.png"] retain];
+		wall_pixmap=[[NSImage imageNamed:@"wall.png"] retain];
 #if 0
 		lvl_pixmap = new QPixmap(QSize(w,h));
 
@@ -51,9 +50,13 @@ int re_cur_level;
 
 		_antialiased = false;
 
+		// überarbeiten...
+
 		re_game_config = [(ParamsLoader *) NSApp GetGameConfig];
 		re_game_levels = [(ParamsLoader *) NSApp GetGameLevels];
 		re_game_levels_count = [(ParamsLoader *) NSApp GetGameLevelsCount];
+
+		// NSUserDefaults nehmen
 		re_cur_level = [(ParamsLoader *) NSApp GetUserSettings].level - 1;
 		}
 	return self;
@@ -212,6 +215,12 @@ int re_cur_level;
 - (void) drawRect:(NSRect) rect
 {
 	[lvl_pixmap draw];
+}
+
+- (void) mouseDown:(NSEvent *) event
+{
+	// loop until released (?)
+	[self sendAction:[self action] to:[self target]];
 }
 
 @end

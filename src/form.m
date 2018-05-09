@@ -85,8 +85,8 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (void) SetLevelNo;
 {
-	// define font color&size on NIB:	<font color=\"#e0bc70\" size=\"" FONT_SIZE "\">
-	[levelno_lbl setStringValue:[NSString stringWithFormat:@"Level %d/%d", cur_level+1, qt_game_levels_count]];
+	NSString *str=[NSString stringWithFormat:@"Level %d/%d", cur_level+1, qt_game_levels_count];
+	[levelno_lbl setStringValue:str];
 }
 
 - (void) MoveBall:(double) x :(double) y;
@@ -96,18 +96,49 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (void) InitState:(BOOL) redraw;
 {
+	[self ZeroAnim];
 
+	if(redraw)
+		[self setNeedsDisplay:YES];
+
+	px=qt_game_levels[cur_level].init.x; py=qt_game_levels[cur_level].init.y;
+	vx=0; vy=0;
+
+	pr_px=px; pr_py=py;
+	pr_vx=0; pr_vy=0;
+
+	prev_px=px; prev_py=py;
+	[self MoveBall:px :py];
 }
 
 // int line(double x0, double y0, double x1, double y1,    double vx0,double vy0, double vx1,double vy1);
 - (void) ZeroAnim;
 {
-
+	anim_stage = 0;
+	anim_timer = 0;
 }
 
 - (void) ProcessGameState;
 {
+	if (game_state == GAME_STATE_FAILED)
+		{
+		[self InitState:NO];
+		game_state = GAME_STATE_NORMAL;
+		}
 
+	if (game_state == GAME_STATE_WIN)
+		{
+		if (cur_level == qt_game_levels_count - 1)
+			{
+			cur_level = 0;
+			}
+		else
+			{
+			cur_level++;
+			}
+		[self InitState:YES];
+		game_state = GAME_STATE_NORMAL;
+		}
 }
 
 - (int) testbump:(NSPoint) pnt :(NSPoint) mm_v;
@@ -122,7 +153,59 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (void) tout:(NSPoint) pnt;
 {
+	double ax=pnt.x, ay=pnt.y;
 
+	new_game_state = GAME_STATE_NORMAL;
+
+	double mid_px=px, mid_py=py;
+	double mid_vx=vx, mid_vy=vy;
+
+	double v = sqrt(mid_vx*mid_vx+mid_vy*mid_vy);
+	double a = sqrt(ax*ax+ay*ay);
+	if ((v > 0) || (a > FORCE_TREASURE))
+		{
+		mid_vx += ax*GRAV_CONST * TIME_QUANT;
+		mid_vy += ay*GRAV_CONST * TIME_QUANT;
+		}
+	if (fabs(mid_vx) > 0)
+		{
+		double dvx = fabs( FRICT_COEF * GRAV_CONST*cos(asin(ax)) );
+		if (mid_vx>0)
+			{
+			mid_vx-=dvx;
+			if (mid_vx<0) mid_vx=0;
+			}
+		else
+			{
+			mid_vx+=dvx;
+			if (mid_vx>0) mid_vx=0;
+			}
+		}
+	if (fabs(mid_vy) > 0)
+		{
+		double dvy = fabs( FRICT_COEF * GRAV_CONST*cos(asin(ay)) );
+		if (mid_vy>0)
+			{
+			mid_vy-=dvy;
+			if (mid_vy<0) mid_vy=0;
+			}
+		else
+			{
+			mid_vy+=dvy;
+			if (mid_vy>0) mid_vy=0;
+			}
+		}
+
+	mid_px +=  (mid_vx * SPEED_TO_PIXELS);
+	mid_py += -(mid_vy * SPEED_TO_PIXELS);
+
+#if FIXME
+	if (!line(pr_px,pr_py, mid_px,mid_py,    pr_vx,pr_vy, mid_vx,mid_vy))
+		{
+		post_temp_phys_res(mid_px,mid_py, mid_vx,mid_vy);
+		apply_temp_phys_res();
+		}
+#endif
 }
 
 - (void) apply_temp_phys_res;
@@ -132,7 +215,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (void) post_temp_phys_res:(NSPoint) pnt :(NSPoint) mm_v;
 {
-#if OLD
+#if FIXME
 	if (x<qt_game_config.ball_r)
 		{
 		BumpVibrate(mm_vx); //VIB_HOR
@@ -193,6 +276,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 - (void) setButtonsPics;
 {
 	// loaded from NIB
+	// but we should enable/disable e.g. Next and Prev buttons depending on cur_level
 }
 
 - (void) acc_timerAction:(double) acx :(double) acy;
@@ -206,6 +290,8 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 }
 
+// actions
+
 - (IBAction) ScreenTouchedPause;
 {
 
@@ -214,6 +300,47 @@ int incircle(NSPoint p, NSPoint c, double cr)
 - (IBAction) ScreenTouchedContinue;
 {
 
+}
+
+- (IBAction) nextLevel;
+{
+	if (cur_level < qt_game_levels_count-1)
+		{
+		cur_level++;
+		[self InitState:YES];
+		game_state = GAME_STATE_NORMAL;
+		[self SetLevelNo];
+
+		fastchange_step = +10;
+#if OLD
+		if (timer->isActive())
+			timer->stop();
+		timer->start(FASTCHANGE_INTERVAL);
+#endif
+
+		[self setButtonsPics];
+		}
+}
+
+- (IBAction) prevLevel;
+{
+	if(cur_level > 0)
+		{
+		cur_level--;
+		[self InitState:YES];
+		game_state = GAME_STATE_NORMAL;
+		[self SetLevelNo];
+		[self setButtonsPics];
+		}
+}
+
+- (IBAction) restart;
+{
+	cur_level=0;
+	[self InitState:YES];
+	game_state = GAME_STATE_NORMAL;
+	[self SetLevelNo];
+	[self setButtonsPics];
 }
 
 @end

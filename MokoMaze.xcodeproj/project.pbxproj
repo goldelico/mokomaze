@@ -15,7 +15,6 @@
 		EEA3D340208B25A9004CB227 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D313208B25A9004CB227 /* config.json */; };
 		EEA3D341208B25A9004CB227 /* main.levelpack.json in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D314208B25A9004CB227 /* main.levelpack.json */; };
 		EEA3D342208B25A9004CB227 /* form.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D315208B25A9004CB227 /* form.m */; };
-		EEA3D343208B25A9004CB227 /* formbase.ui in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D317208B25A9004CB227 /* formbase.ui */; };
 		EEA3D344208B25A9004CB227 /* gamefield.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D318208B25A9004CB227 /* gamefield.m */; };
 		EEA3D345208B25A9004CB227 /* qtmaze.html in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D31C208B25A9004CB227 /* qtmaze.html */; };
 		EEA3D347208B25A9004CB227 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D31F208B25A9004CB227 /* main.m */; };
@@ -37,12 +36,8 @@
 		EEA3D357208B25A9004CB227 /* reset-p.png in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D332208B25A9004CB227 /* reset-p.png */; };
 		EEA3D358208B25A9004CB227 /* reset.png in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D333208B25A9004CB227 /* reset.png */; };
 		EEA3D359208B25A9004CB227 /* wall.png in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D334208B25A9004CB227 /* wall.png */; };
-		EEA3D35A208B25A9004CB227 /* qbuild.pro in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D335208B25A9004CB227 /* qbuild.pro */; };
-		EEA3D35B208B25A9004CB227 /* qtmaze.desktop in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D336208B25A9004CB227 /* qtmaze.desktop */; };
-		EEA3D35C208B25AA004CB227 /* qtmaze.pro in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D337208B25A9004CB227 /* qtmaze.pro */; };
 		EEA3D35D208B25AA004CB227 /* README in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D338208B25A9004CB227 /* README */; };
 		EEA3D35E208B25AA004CB227 /* renderarea.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D339208B25A9004CB227 /* renderarea.m */; };
-		EEA3D35F208B25AA004CB227 /* resources.qrc in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D33B208B25A9004CB227 /* resources.qrc */; };
 		EEA3D360208B25AA004CB227 /* vibro.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D33D208B25A9004CB227 /* vibro.m */; };
 /* End PBXBuildFile section */
 
@@ -302,9 +297,6 @@
 				EEA3D34C208B25A9004CB227 /* desk.png in Resources */,
 				EEA3D34E208B25A9004CB227 /* hole.png in Resources */,
 				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
-				EEA3D343208B25A9004CB227 /* formbase.ui in Resources */,
-				EEA3D35A208B25A9004CB227 /* qbuild.pro in Resources */,
-				EEA3D35C208B25AA004CB227 /* qtmaze.pro in Resources */,
 				EEA3D359208B25A9004CB227 /* wall.png in Resources */,
 				EEA3D352208B25A9004CB227 /* prev-i.png in Resources */,
 				EEA3D358208B25A9004CB227 /* reset.png in Resources */,
@@ -317,12 +309,10 @@
 				EEA3D34F208B25A9004CB227 /* next-i.png in Resources */,
 				EEA3D357208B25A9004CB227 /* reset-p.png in Resources */,
 				EEA3D34A208B25A9004CB227 /* ball.png in Resources */,
-				EEA3D35F208B25AA004CB227 /* resources.qrc in Resources */,
 				EEA3D34D208B25A9004CB227 /* fin.png in Resources */,
 				EEA3D351208B25A9004CB227 /* next.png in Resources */,
 				EEA3D35D208B25AA004CB227 /* README in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
-				EEA3D35B208B25A9004CB227 /* qtmaze.desktop in Resources */,
 				EEA3D354208B25A9004CB227 /* prev.png in Resources */,
 				834B13D30795DE5200E4BF6C /* MyDocument.nib in Resources */,
 				EEA3D353208B25A9004CB227 /* prev-p.png in Resources */,

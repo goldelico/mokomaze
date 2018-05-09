@@ -27,9 +27,57 @@
                     <customView misplaced="YES" id="478" customClass="RenderArea">
                         <rect key="frame" x="0.0" y="0.0" width="240" height="256"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView hidden="YES" misplaced="YES" id="Yqe-U3-hSd">
+                                <rect key="frame" x="0.0" y="142" width="240" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="b3m-VA-xuM">
+                                        <rect key="frame" x="7" y="49" width="224" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Level" id="r8e-hy-BiP">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" red="0.8784313725490196" green="0.73725490196078436" blue="0.4392156862745098" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" misplaced="YES" id="wky-QB-CcM">
+                                        <rect key="frame" x="121" y="7" width="49" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="reset" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7L7-BQ-nhk">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" id="E5P-5b-Jic">
+                                        <rect key="frame" x="180" y="7" width="49" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="close" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3oB-Fo-RsI">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" id="pdJ-qv-ftZ">
+                                        <rect key="frame" x="9" y="7" width="47" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="prev" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="q0t-WZ-xCg">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" misplaced="YES" id="FfP-Ca-Reh">
+                                        <rect key="frame" x="66" y="7" width="47" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="next" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ehp-Xl-ZAW">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                </subviews>
+                            </customView>
+                        </subviews>
                         <connections>
                             <outlet property="delegate" destination="-2" id="576"/>
-                            <outlet property="editMenu" destination="491" id="555"/>
                         </connections>
                     </customView>
                 </subviews>
@@ -38,80 +86,11 @@
                 <outlet property="initialFirstResponder" destination="478" id="603"/>
             </connections>
         </window>
-        <menu title="Menu" id="491" userLabel="EditPiecesMenu">
-            <items>
-                <menuItem title="Add White" id="495">
-                    <menu key="submenu" title="Add White" id="496">
-                        <items>
-                            <menuItem title="Pawn" id="497"/>
-                            <menuItem title="Knight" id="501"/>
-                            <menuItem title="Bishop" id="502"/>
-                            <menuItem title="Rook" id="503"/>
-                            <menuItem title="Queen" id="504"/>
-                            <menuItem title="King" id="505"/>
-                        </items>
-                    </menu>
-                </menuItem>
-                <menuItem title="Add Black" id="506">
-                    <menu key="submenu" title="Add Black" id="507">
-                        <items>
-                            <menuItem title="Pawn" id="513"/>
-                            <menuItem title="Knight" id="511"/>
-                            <menuItem title="Bishop" id="509"/>
-                            <menuItem title="Rook" id="510"/>
-                            <menuItem title="Queen" id="508"/>
-                            <menuItem title="King" id="512"/>
-                        </items>
-                    </menu>
-                </menuItem>
-                <menuItem title="Clear" id="493"/>
-            </items>
-        </menu>
-        <customView misplaced="YES" id="7zx-si-tRD">
-            <rect key="frame" x="0.0" y="0.0" width="390" height="236"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <subviews>
-                <customView misplaced="YES" id="cbg-0T-s2j">
-                    <rect key="frame" x="20" y="78" width="337" height="96"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <subviews>
-                        <button verticalHuggingPriority="750" misplaced="YES" id="dcS-g6-bL2">
-                            <rect key="frame" x="37" y="30" width="49" height="32"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WA8-U1-GBk">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </button>
-                        <button verticalHuggingPriority="750" misplaced="YES" id="7Ej-Jr-F4c">
-                            <rect key="frame" x="94" y="30" width="47" height="32"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="push" title="-" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hp4-gF-ihG">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </button>
-                        <button verticalHuggingPriority="750" misplaced="YES" id="PUh-kp-mni">
-                            <rect key="frame" x="198" y="30" width="49" height="32"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <buttonCell key="cell" type="push" title="X" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="84Q-87-9vA">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </button>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="iQz-nL-SiW">
-                            <rect key="frame" x="41" y="72" width="215" height="17"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Level" id="afK-le-xMq">
-                                <font key="font" metaFont="system"/>
-                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                        </textField>
-                    </subviews>
-                </customView>
-            </subviews>
-            <point key="canvasLocation" x="136" y="518"/>
-        </customView>
     </objects>
+    <resources>
+        <image name="close" width="96" height="96"/>
+        <image name="next" width="96" height="96"/>
+        <image name="prev" width="96" height="96"/>
+        <image name="reset" width="96" height="96"/>
+    </resources>
 </document>

@@ -23,7 +23,7 @@
 #import <Cocoa/Cocoa.h>
 #import "types.h"
 
-@interface ParamsLoader : NSApplication
+@interface ParamsLoader : NSObject
 
 - (int) load_params;
 - (Config) GetGameConfig;
