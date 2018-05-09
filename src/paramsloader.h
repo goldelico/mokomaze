@@ -24,17 +24,25 @@
 #import "types.h"
 
 @interface ParamsLoader : NSObject
+{
+	NSArray *game_levels;
+	NSString *level_pack;
+	int userlevel;
+	int vibro_enabled;
+}
 
-- (int) load_params;
-- (Config) GetGameConfig;
-- (Level*) GetGameLevels;
-- (User) GetUserSettings;
-- (int) GetGameLevelsCount;
+- (int) load_params:(NSString *) levelpack;
+- (NSArray *) GetGameLevels;
+- (NSDictionary *) GetGameLevel:(int) level;
+// each record is an NSDictionary
+//   boxes = array(dict with x1, x2, y1, y2)
+//   checkpoints = array(dict with x, y)
+//   comment = string
+//   holes = array(dict with x, y)
+//   init = dict(x, y)
+- (NSString *) levelpack;
+- (int) userlevel;
 - (int) GetVibroEnabled;
-- (Prompt) GetArguments;
-- (char*) GetExecInit;
-- (char*) GetExecFinal;
-
 - (void) SaveLevel:(int) n;
 
 @end

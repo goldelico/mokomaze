@@ -25,35 +25,71 @@
 
 @implementation ParamsLoader
 
-- (int) load_params;
+- (void) dealloc
 {
-	// load NSUserDefaults
-
-	// load "main.levelpack.json" and translate into game levels
-
-	NSString *path=[[NSBundle mainBundle] pathForResource:@"main.levelpack" ofType:@"json"];
-	NSData *data=[NSData dataWithContentsOfFile:path];
-	// add error handling!
-	NSError *error=nil;
-	NSDictionary *root=[NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-	// add error handling!
-	NSLog(@"author=%@", [root objectForKey:@"author"]);
-	NSEnumerator *e=[[root objectForKey:@"levels"] objectEnumerator];
-	NSDictionary *level;
-	while(level=[e nextObject])
-		{
-		NSLog(@"level = %@", level);
-		// boxes = array(dict with x1, x2, y1, y2)
-		// checkpoints = array(dict with x, y)
-		// comment
-		// holes = array(dict with x, y)
-		// init = dict(x, y)
-		}
+	[game_levels release];
+	[super dealloc];
 }
 
 - (void) awakeFromNib
 {
-	[self load_params];
+	[self load_params:@"main.levelpack"];
+}
+
+- (int) load_params:(NSString *) levelpack;
+{
+	// load things from NSUserDefaults
+
+	NSDictionary *dict=[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"MokoMaze"];
+
+	[levelpack release];
+	levelpack=nil;
+	if([dict objectForKey:@"levelpack"])
+		levelpack=[[dict objectForKey:@"levelpack"] retain];
+	if([dict objectForKey:@"level"])
+		userlevel=[[dict objectForKey:@"level"] intValue];
+	vibro_enabled=YES;
+	NSString *path=[[NSBundle mainBundle] pathForResource:levelpack ofType:@"json"];
+	NSData *data=[NSData dataWithContentsOfFile:path];
+	if(!data)
+		return -1;
+	NSError *error=nil;
+	NSDictionary *root=[NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+	if(!root)
+		return -1;
+	NSLog(@"author=%@", [root objectForKey:@"author"]);
+	[game_levels release];
+	game_levels = [[root objectForKey:@"levels"] retain];
+	if(!game_levels)
+		return -1;
+
+	return 0;
+}
+
+- (NSArray *) GetGameLevels;
+{
+	return game_levels;
+}
+
+- (NSDictionary *) GetGameLevel:(int) level;
+{
+	return [game_levels objectAtIndex:level];
+}
+
+- (int) GetVibroEnabled;
+{
+	return vibro_enabled;
+}
+
+- (void) SaveLevel:(int) n;
+{
+	NSString *domain=@"MokoMaze";
+	NSUserDefaults *ud=[NSUserDefaults standardUserDefaults];
+	NSMutableDictionary *dict=[[ud persistentDomainForName:domain] mutableCopy];
+	// store n and levelpack in NSUserDefaults
+	[ud setPersistentDomain:dict forName:domain];
+	[ud synchronize];
+	[dict release];
 }
 
 @end
