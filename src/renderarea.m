@@ -52,12 +52,10 @@
 
 		// überarbeiten...
 
-		re_game_config = [(ParamsLoader *) NSApp GetGameConfig];
-		re_game_levels = [(ParamsLoader *) NSApp GetGameLevels];
-		re_game_levels_count = [(ParamsLoader *) NSApp GetGameLevelsCount];
+		re_game_levels = [[(ParamsLoader *) NSApp GetGameLevels] retain];
 
 		// NSUserDefaults nehmen
-		re_cur_level = [(ParamsLoader *) NSApp GetUserSettings].level - 1;
+		re_cur_level = [(ParamsLoader *) NSApp userlevel];
 		}
 	return self;
 }
@@ -78,6 +76,9 @@
 	_antialiased=antialiased;
 }
 
+#define HOLE_R	28
+#define BALL_R	23
+
 - (void) setLevel:(int) lvl_no;
 { // prepare background pixmap for given game level
 	re_cur_level = lvl_no;
@@ -86,85 +87,49 @@
 
 	[desk_pixmap draw];
 
-	Level *lvl = &re_game_levels[re_cur_level];
+	NSDictionary *level=[re_game_levels objectAtIndex:re_cur_level];
 
-	int bcount = lvl->boxes_count;
-	Box *boxes = lvl->boxes;
+	NSArray *valList=[level objectForKey:@"boxes"];
+
 	int i;
 
-	for (i=0; i<bcount; i++)
+	for (i=0; i<[valList count]; i++)
 		{
-		Box *box = &boxes[i];
-		[self renderWallShadow:box->x1 :box->y1 :box->x2 :box->y2];
+		NSDictionary *val=[valList objectAtIndex:i];
+		NSPoint p1=NSMakePoint([[val objectForKey:@"x1"] doubleValue], [[val objectForKey:@"y1"] doubleValue]);
+		NSPoint p2=NSMakePoint([[val objectForKey:@"x2"] doubleValue], [[val objectForKey:@"y2"] doubleValue]);
+		[self renderWallShadow:p1.x :p1.y :p2.x :p2.y];
 		}
 
-	for (i=0; i<bcount; i++)
+	for (i=0; i<[valList count]; i++)
 		{
-		Box *box = &boxes[i];
+		NSDictionary *val=[valList objectAtIndex:i];
+		NSPoint p1=NSMakePoint([[val objectForKey:@"x1"] doubleValue], [[val objectForKey:@"y1"] doubleValue]);
+		NSPoint p2=NSMakePoint([[val objectForKey:@"x2"] doubleValue], [[val objectForKey:@"y2"] doubleValue]);
+		Box *box;
 		NSRect rect=NSMakeRect(box->x1, box->y1,
 				   box->x2 - box->x1, box->y2 - box->y1);
 		[wall_pixmap drawInRect:rect];
 		}
 
-	for (i=0; i<lvl->holes_count; i++)
-		{
-		Point *hole = &lvl->holes[i];
-		NSPoint point=NSMakePoint(hole->x - re_game_config.hole_r,
-							   hole->y - re_game_config.hole_r);
+	valList=[level objectForKey:@"holes"];
 
+	for (i=0; i<[valList count]; i++)
+		{
+		NSDictionary *val=[valList objectAtIndex:i];
+		NSPoint point=NSMakePoint([[val objectForKey:@"x"] doubleValue], [[val objectForKey:@"y"] doubleValue]);
+		point.x -= HOLE_R;
+		point.y -= HOLE_R;
 		[hole_pixmap drawAtPoint:point];
 		}
 
-	Point *fin = &lvl->fins[0];
-	NSPoint point=NSMakePoint(fin->x - re_game_config.hole_r,
-						   fin->y - re_game_config.hole_r);
+	NSDictionary *val=[level objectForKey:@"fin"];
+	NSPoint point=NSMakePoint([[val objectForKey:@"x"] doubleValue], [[val objectForKey:@"y"] doubleValue]);
+	point.x -= HOLE_R;
+	point.y -= HOLE_R;
 	[fin_pixmap drawAtPoint:point];
 
 	[lvl_pixmap unlockFocus];
-
-#if OLD
-	QPainter painter(lvl_pixmap);
-
-	if (antialiased)
-		{
-		painter.setRenderHint(QPainter::Antialiasing, true);
-		painter.translate(+0.5, +0.5);
-		}
-
-	painter.drawPixmap(0,0, desk_pixmap);
-
-	Level *lvl = &re_game_levels[re_cur_level];
-	int bcount = lvl->boxes_count;
-	Box *boxes = lvl->boxes;
-	for (int i=0; i<bcount; i++)
-		{
-		Box *box = &boxes[i];
-		RenderWallShadow(&painter, box->x1,box->y1, box->x2,box->y2);
-		}
-	for (int i=0; i<bcount; i++)
-		{
-		Box *box = &boxes[i];
-		QRect rect(
-				   box->x1, box->y1,
-				   box->x2 - box->x1, box->y2 - box->y1
-				   );
-		painter.drawPixmap(rect, wall_pixmap, rect);
-		}
-
-	for (int i=0; i<lvl->holes_count; i++)
-		{
-		Point *hole = &lvl->holes[i];
-		painter.drawPixmap( hole->x - re_game_config.hole_r,
-						   hole->y - re_game_config.hole_r,
-						   hole_pixmap);
-		}
-
-	Point *fin = &lvl->fins[0];
-	painter.drawPixmap( fin->x - re_game_config.hole_r,
-					   fin->y - re_game_config.hole_r,
-					   fin_pixmap);
-#endif
-
 }
 
 - (void) renderWallShadow:(int) bx1 :(int) by1 :(int) bx2 :(int) by2;
@@ -183,7 +148,7 @@
 
 	// FIXME: loop?
 
-#if OLD
+#if FIXME
 	col->setRed(0);
 	col->setGreen(0);
 	col->setBlue(0);

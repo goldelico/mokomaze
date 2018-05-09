@@ -34,9 +34,7 @@
 	IBOutlet NSImage *wall_pixmap;
 	NSImage *lvl_pixmap;
 	BOOL _antialiased;
-	Config re_game_config;
-	Level* re_game_levels;
-	int re_game_levels_count;
+	NSArray *re_game_levels;
 	int re_cur_level;
 
 	// target + action for screen tap

@@ -85,7 +85,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (void) SetLevelNo;
 {
-	NSString *str=[NSString stringWithFormat:@"Level %d/%d", cur_level+1, qt_game_levels_count];
+	NSString *str=[NSString stringWithFormat:@"Level %d/%d", cur_level+1, [qt_game_levels count]];
 	[levelno_lbl setStringValue:str];
 }
 
@@ -101,7 +101,9 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	if(redraw)
 		[self setNeedsDisplay:YES];
 
-	px=qt_game_levels[cur_level].init.x; py=qt_game_levels[cur_level].init.y;
+	[[qt_game_levels objectAtIndex:cur_level] objectForKey:@"init"];
+	// get px, py
+	//	px=qt_game_levels[cur_level].init.x; py=qt_game_levels[cur_level].init.y;
 	vx=0; vy=0;
 
 	pr_px=px; pr_py=py;
@@ -128,8 +130,8 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 	if (game_state == GAME_STATE_WIN)
 		{
-		if (cur_level == qt_game_levels_count - 1)
-			{
+		if (cur_level == [qt_game_levels count] - 1)
+			 { // last level
 			cur_level = 0;
 			}
 		else
@@ -304,7 +306,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (IBAction) nextLevel;
 {
-	if (cur_level < qt_game_levels_count-1)
+	if (cur_level < [qt_game_levels count]-1)
 		{
 		cur_level++;
 		[self InitState:YES];

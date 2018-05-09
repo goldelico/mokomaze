@@ -72,9 +72,7 @@
 #define FULLSCREEN_TOGGLE 1
 #define FULLSCREEN_ALWAYS 2
 
-	Config qt_game_config;
-	Level *qt_game_levels;
-	int qt_game_levels_count;
+	NSArray *qt_game_levels;
 	int cur_level;
 
 #define GAME_STATE_NORMAL   1
