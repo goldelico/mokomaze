@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		834B13D30795DE5200E4BF6C /* MyDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 834B13D20795DE5200E4BF6C /* MyDocument.nib */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -44,7 +43,6 @@
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
-		834B12580795DCCD00E4BF6C /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MyDocument.nib; sourceTree = "<group>"; };
 		834B13810795DD1F00E4BF6C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* MokoMaze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MokoMaze.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,7 +144,6 @@
 				EEA3D31A208B25A9004CB227 /* help */,
 				EEA3D323208B25A9004CB227 /* pics */,
 				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
-				834B13D20795DE5200E4BF6C /* MyDocument.nib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 			);
@@ -288,7 +285,6 @@
 				EEA3D35D208B25AA004CB227 /* README in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				EEA3D354208B25A9004CB227 /* prev.png in Resources */,
-				834B13D30795DE5200E4BF6C /* MyDocument.nib in Resources */,
 				EEA3D353208B25A9004CB227 /* prev-p.png in Resources */,
 				EEA3D341208B25A9004CB227 /* main.levelpack.json in Resources */,
 			);
@@ -343,14 +339,6 @@
 				29B97319FDCFA39411CA2CEA /* English */,
 			);
 			name = MainMenu.nib;
-			sourceTree = "<group>";
-		};
-		834B13D20795DE5200E4BF6C /* MyDocument.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				834B12580795DCCD00E4BF6C /* English */,
-			);
-			name = MyDocument.nib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

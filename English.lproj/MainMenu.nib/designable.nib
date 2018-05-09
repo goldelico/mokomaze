@@ -12,7 +12,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application">
+        <customObject id="-3" userLabel="Application" customClass="NSObject">
             <connections>
                 <outlet property="delegate" destination="264" id="PWx-LZ-IYh"/>
             </connections>
@@ -217,8 +217,16 @@
                 <menuItem title="Level" id="525">
                     <menu key="submenu" title="Level" id="526">
                         <items>
-                            <menuItem title="Next" id="527"/>
-                            <menuItem title="Previous" id="528"/>
+                            <menuItem title="Next" id="527">
+                                <connections>
+                                    <action selector="nextLevel:" target="-1" id="3Db-pX-W2d"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Previous" id="528">
+                                <connections>
+                                    <action selector="prevLevel:" target="-1" id="VvY-lj-kuI"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
@@ -342,5 +350,84 @@
                 </subviews>
             </view>
         </window>
+        <window title="MokoMaze" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="xuT-x2-x8K" userLabel="Window">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="301" y="358" width="240" height="256"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <value key="minSize" type="size" width="131" height="107"/>
+            <view key="contentView" id="CFs-F1-izN">
+                <rect key="frame" x="0.0" y="0.0" width="240" height="256"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <customView id="9xc-Ea-6Wd" customClass="RenderArea">
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="256"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView id="1me-2v-Qz5" customClass="Form">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="256"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
+                            <customView hidden="YES" id="nl2-tf-bT1" userLabel="Buttons">
+                                <rect key="frame" x="0.0" y="142" width="240" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="dXz-hI-eXl">
+                                        <rect key="frame" x="7" y="49" width="224" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Level" id="zYS-1B-Oht">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" red="0.87843137250000003" green="0.73725490199999999" blue="0.43921568630000002" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" id="5QU-Ag-hjJ">
+                                        <rect key="frame" x="121" y="7" width="49" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="reset" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nBU-re-BZF">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" id="J1u-R3-92c">
+                                        <rect key="frame" x="180" y="7" width="49" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="close" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7kg-i4-Fme">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" id="1jn-cm-QOI">
+                                        <rect key="frame" x="9" y="7" width="47" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="prev" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4gz-UC-cS1">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" id="md5-wf-yVz">
+                                        <rect key="frame" x="66" y="7" width="47" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="next" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bpF-tu-UgF">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                </subviews>
+                            </customView>
+                        </subviews>
+                    </customView>
+                </subviews>
+            </view>
+            <connections>
+                <outlet property="initialFirstResponder" destination="9xc-Ea-6Wd" id="uqO-mN-VaN"/>
+            </connections>
+        </window>
     </objects>
+    <resources>
+        <image name="close" width="96" height="96"/>
+        <image name="next" width="96" height="96"/>
+        <image name="prev" width="96" height="96"/>
+        <image name="reset" width="96" height="96"/>
+    </resources>
 </document>
