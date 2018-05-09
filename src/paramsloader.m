@@ -24,6 +24,38 @@
 #import "paramsloader.h"
 
 @implementation ParamsLoader
+
+- (int) load_params;
+{
+	// load NSUserDefaults
+
+	// load "main.levelpack.json" and translate into game levels
+
+	NSString *path=[[NSBundle mainBundle] pathForResource:@"main.levelpack" ofType:@"json"];
+	NSData *data=[NSData dataWithContentsOfFile:path];
+	// add error handling!
+	NSError *error=nil;
+	NSDictionary *root=[NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+	// add error handling!
+	NSLog(@"author=%@", [root objectForKey:@"author"]);
+	NSEnumerator *e=[[root objectForKey:@"levels"] objectEnumerator];
+	NSDictionary *level;
+	while(level=[e nextObject])
+		{
+		NSLog(@"level = %@", level);
+		// boxes = array(dict with x1, x2, y1, y2)
+		// checkpoints = array(dict with x, y)
+		// comment
+		// holes = array(dict with x, y)
+		// init = dict(x, y)
+		}
+}
+
+- (void) awakeFromNib
+{
+	[self load_params];
+}
+
 @end
 
 
