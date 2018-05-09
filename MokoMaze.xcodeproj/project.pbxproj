@@ -12,7 +12,6 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		EEA3D33F208B25A9004CB227 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D310208B25A9004CB227 /* COPYING */; };
-		EEA3D340208B25A9004CB227 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D313208B25A9004CB227 /* config.json */; };
 		EEA3D341208B25A9004CB227 /* main.levelpack.json in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D314208B25A9004CB227 /* main.levelpack.json */; };
 		EEA3D342208B25A9004CB227 /* form.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D315208B25A9004CB227 /* form.m */; };
 		EEA3D344208B25A9004CB227 /* gamefield.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D318208B25A9004CB227 /* gamefield.m */; };
@@ -51,16 +50,12 @@
 		8D1107320486CEB800E47090 /* MokoMaze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MokoMaze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEA3D30E208B2567004CB227 /* MokoMaze.qcodeproj */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = MokoMaze.qcodeproj; sourceTree = "<group>"; };
 		EEA3D310208B25A9004CB227 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
-		EEA3D313208B25A9004CB227 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		EEA3D314208B25A9004CB227 /* main.levelpack.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = main.levelpack.json; sourceTree = "<group>"; };
 		EEA3D315208B25A9004CB227 /* form.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = form.m; path = src/form.m; sourceTree = "<group>"; };
 		EEA3D316208B25A9004CB227 /* form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = form.h; path = src/form.h; sourceTree = "<group>"; };
-		EEA3D317208B25A9004CB227 /* formbase.ui */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = formbase.ui; path = src/formbase.ui; sourceTree = "<group>"; };
 		EEA3D318208B25A9004CB227 /* gamefield.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = gamefield.m; path = src/gamefield.m; sourceTree = "<group>"; };
 		EEA3D319208B25A9004CB227 /* gamefield.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gamefield.h; path = src/gamefield.h; sourceTree = "<group>"; };
 		EEA3D31C208B25A9004CB227 /* qtmaze.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = qtmaze.html; sourceTree = "<group>"; };
-		EEA3D31D208B25A9004CB227 /* json.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = json.c; path = src/json.c; sourceTree = "<group>"; };
-		EEA3D31E208B25A9004CB227 /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = json.h; path = src/json.h; sourceTree = "<group>"; };
 		EEA3D31F208B25A9004CB227 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = src/main.m; sourceTree = "<group>"; };
 		EEA3D320208B25A9004CB227 /* paramsloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = paramsloader.m; path = src/paramsloader.m; sourceTree = "<group>"; };
 		EEA3D321208B25A9004CB227 /* paramsloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = paramsloader.h; path = src/paramsloader.h; sourceTree = "<group>"; };
@@ -81,13 +76,9 @@
 		EEA3D332208B25A9004CB227 /* reset-p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reset-p.png"; sourceTree = "<group>"; };
 		EEA3D333208B25A9004CB227 /* reset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reset.png; sourceTree = "<group>"; };
 		EEA3D334208B25A9004CB227 /* wall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wall.png; sourceTree = "<group>"; };
-		EEA3D335208B25A9004CB227 /* qbuild.pro */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = qbuild.pro; path = src/qbuild.pro; sourceTree = "<group>"; };
-		EEA3D336208B25A9004CB227 /* qtmaze.desktop */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = qtmaze.desktop; path = src/qtmaze.desktop; sourceTree = "<group>"; };
-		EEA3D337208B25A9004CB227 /* qtmaze.pro */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = qtmaze.pro; path = src/qtmaze.pro; sourceTree = "<group>"; };
 		EEA3D338208B25A9004CB227 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		EEA3D339208B25A9004CB227 /* renderarea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = renderarea.m; path = src/renderarea.m; sourceTree = "<group>"; };
 		EEA3D33A208B25A9004CB227 /* renderarea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = renderarea.h; path = src/renderarea.h; sourceTree = "<group>"; };
-		EEA3D33B208B25A9004CB227 /* resources.qrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = resources.qrc; path = src/resources.qrc; sourceTree = "<group>"; };
 		EEA3D33C208B25A9004CB227 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = types.h; path = src/types.h; sourceTree = "<group>"; };
 		EEA3D33D208B25A9004CB227 /* vibro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = vibro.m; path = src/vibro.m; sourceTree = "<group>"; };
 		EEA3D33E208B25A9004CB227 /* vibro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vibro.h; path = src/vibro.h; sourceTree = "<group>"; };
@@ -142,7 +133,6 @@
 				EEA3D30E208B2567004CB227 /* MokoMaze.qcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
-				EEA3D361208B26E1004CB227 /* Unused */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -153,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				EEA3D312208B25A9004CB227 /* etc */,
+				EEA3D31A208B25A9004CB227 /* help */,
 				EEA3D323208B25A9004CB227 /* pics */,
 				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
 				834B13D20795DE5200E4BF6C /* MyDocument.nib */,
@@ -174,7 +165,6 @@
 		EEA3D312208B25A9004CB227 /* etc */ = {
 			isa = PBXGroup;
 			children = (
-				EEA3D313208B25A9004CB227 /* config.json */,
 				EEA3D314208B25A9004CB227 /* main.levelpack.json */,
 			);
 			name = etc;
@@ -221,21 +211,6 @@
 			);
 			name = pics;
 			path = src/pics/qtmaze;
-			sourceTree = "<group>";
-		};
-		EEA3D361208B26E1004CB227 /* Unused */ = {
-			isa = PBXGroup;
-			children = (
-				EEA3D317208B25A9004CB227 /* formbase.ui */,
-				EEA3D33B208B25A9004CB227 /* resources.qrc */,
-				EEA3D335208B25A9004CB227 /* qbuild.pro */,
-				EEA3D336208B25A9004CB227 /* qtmaze.desktop */,
-				EEA3D337208B25A9004CB227 /* qtmaze.pro */,
-				EEA3D31D208B25A9004CB227 /* json.c */,
-				EEA3D31E208B25A9004CB227 /* json.h */,
-				EEA3D31A208B25A9004CB227 /* help */,
-			);
-			name = Unused;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,7 +279,6 @@
 				EEA3D355208B25A9004CB227 /* qtmaze.png in Resources */,
 				EEA3D349208B25A9004CB227 /* ball-shadow.png in Resources */,
 				EEA3D34B208B25A9004CB227 /* close.png in Resources */,
-				EEA3D340208B25A9004CB227 /* config.json in Resources */,
 				EEA3D350208B25A9004CB227 /* next-p.png in Resources */,
 				EEA3D34F208B25A9004CB227 /* next-i.png in Resources */,
 				EEA3D357208B25A9004CB227 /* reset-p.png in Resources */,
