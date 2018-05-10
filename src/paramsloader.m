@@ -33,22 +33,12 @@
 
 - (void) awakeFromNib
 {
-	[self load_params:@"main.levelpack"];
+	// [self load_params:@"main.levelpack"];
+	vibro_enabled=YES;
 }
 
 - (int) load_params:(NSString *) levelpack;
 {
-	// load things from NSUserDefaults
-
-	NSDictionary *dict=[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"MokoMaze"];
-
-	[levelpack release];
-	levelpack=nil;
-	if([dict objectForKey:@"levelpack"])
-		levelpack=[[dict objectForKey:@"levelpack"] retain];
-	if([dict objectForKey:@"level"])
-		userlevel=[[dict objectForKey:@"level"] intValue];
-	vibro_enabled=YES;
 	NSString *path=[[NSBundle mainBundle] pathForResource:levelpack ofType:@"json"];
 	NSData *data=[NSData dataWithContentsOfFile:path];
 	if(!data)
@@ -74,6 +64,27 @@
 - (NSDictionary *) GetGameLevel:(int) level;
 {
 	return [game_levels objectAtIndex:level];
+}
+
+- (NSString *) levelpack;
+{
+	NSDictionary *dict=[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"MokoMaze"];
+	[level_pack release];
+	level_pack=nil;
+	if([dict objectForKey:@"levelpack"])
+		level_pack=[[dict objectForKey:@"levelpack"] retain];
+	else
+		level_pack=@"main.levelpack";
+	if([dict objectForKey:@"level"])
+		userlevel=[[dict objectForKey:@"level"] intValue];
+	else
+		userlevel=0;
+	return level_pack;
+}
+
+- (int) userlevel;
+{
+	return userlevel;
 }
 
 - (int) GetVibroEnabled;
