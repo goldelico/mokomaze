@@ -52,9 +52,8 @@
 	NSDictionary *root=[NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
 	if(!root)
 		return -1;
-	NSLog(@"author=%@", [root objectForKey:@"author"]);
 	[game_levels release];
-	game_levels = [[root objectForKey:@"levels"] retain];
+	game_levels = [root retain];
 	if(!game_levels)
 		return -1;
 
@@ -63,12 +62,37 @@
 
 - (NSArray *) GetGameLevels;
 {
-	return game_levels;
+	return [game_levels objectForKey:@"levels"];
+}
+
+- (NSString *) levelPackAuthor;
+{
+	return [game_levels objectForKey:@"author"];
+}
+
+- (NSString *) levelPackName;
+{
+	return [game_levels objectForKey:@"name"];
+}
+
+- (NSPoint) gameSize;		// coordinate range in levelpack
+{
+
+}
+
+- (double) ballRadius;
+{
+	return [[[[game_levels objectForKey:@"requirements"] objectForKey:@"ball"] objectForKey:@"radius"] doubleValue];
+}
+
+- (double) holeRadius;
+{
+	return [[[[game_levels objectForKey:@"requirements"] objectForKey:@"hole"] objectForKey:@"radius"] doubleValue];
 }
 
 - (NSDictionary *) GetGameLevel:(int) level;
 {
-	return [game_levels objectAtIndex:level];
+	return [[self GetGameLevels] objectAtIndex:level];
 }
 
 - (NSString *) levelpack;

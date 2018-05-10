@@ -25,7 +25,7 @@
 
 @interface ParamsLoader : NSObject
 {
-	NSArray *game_levels;
+	NSDictionary *game_levels;
 	NSString *level_pack;
 	int userlevel;
 	int vibro_enabled;
@@ -40,10 +40,15 @@
 //   comment = string
 //   holes = array(dict with x, y)
 //   init = dict(x, y)
-- (NSString *) levelpack;
-- (int) userlevel;
+- (NSPoint) gameSize;		// coordinate range in levelpack
+- (NSString *) levelPackName;
+- (NSString *) levelPackAuthor;
+- (double) ballRadius;
+- (double) holeRadius;
+- (NSString *) levelpack;	// name of the levelpack stored in UserDefaults
+- (int) userlevel;			// the level stored in UserDefauls
+- (void) SaveLevel:(int) n;	// store level in UserDefaults
 - (int) GetVibroEnabled;
-- (void) SaveLevel:(int) n;
 
 @end
 
