@@ -57,7 +57,6 @@
 	re_game_levels = [[pl GetGameLevels] retain];
 
 	[self setLevel:[pl userlevel]];
-
 }
 
 // fixme: read this from the levelpack!
@@ -180,6 +179,8 @@
 	delete pen;
 #endif
 }
+
+- (BOOL) isOpaque; { return YES; }
 
 - (void) drawRect:(NSRect) rect
 {

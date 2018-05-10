@@ -57,9 +57,21 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 @implementation Form
 
+- (void) awakeFromNib
+{
+	ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
+	qt_game_levels = [[pl GetGameLevels] retain];
+}
+
+- (BOOL) isOpaque; { return NO; }
+
 - (void) drawRect:(NSRect) rect
 {
-	[lvl_pixmap draw];
+	// draw ball
+	// or not?
+	// QtMaze shifts a ball label around by changing the frame origin
+	// this means we would have an NSImageView subview
+	// but we could do differently...
 }
 
 - (void) checkLoadedPictures;
@@ -80,7 +92,8 @@ int incircle(NSPoint p, NSPoint c, double cr)
 - (void) setMenuVis:(BOOL) x;
 {
 	[self SetLevelNo];
-	[menu setHidden:!x];
+	[menubuttons setHidden:!x];
+	[menubuttons setNeedsDisplay:YES];
 }
 
 - (void) SetLevelNo;
@@ -91,7 +104,12 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (void) MoveBall:(double) x :(double) y;
 {
+	// QtMaze shifts a ball label around by changing the frame origin
+	// this means we would have an NSImageView subview
+	// but we could do differently...
 
+	// i.e. just store the coordinate
+	// and register a setNeedsDisplayInRect for old and for new locations
 }
 
 - (void) InitState:(BOOL) redraw;
@@ -296,12 +314,14 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (IBAction) ScreenTouchedPause:(id) sender;
 {
-
+	[self setMenuVis:YES];
+	[sender setAction:@selector(ScreenTouchedContinue:)];
 }
 
 - (IBAction) ScreenTouchedContinue:(id) sender;
 {
-
+	[self setMenuVis:NO];
+	[sender setAction:@selector(ScreenTouchedPause:)];
 }
 
 - (IBAction) nextLevel:(id) sender;

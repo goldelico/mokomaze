@@ -43,7 +43,7 @@
 	NSImage *reset_pixmap, *reset_p_pixmap, *reset_i_pixmap;
 	NSImage *close_pixmap;
 	NSImage *lvl_pixmap;
-	IBOutlet NSView *menu;
+	IBOutlet NSView *menubuttons;
 	IBOutlet NSTextField *levelno_lbl;
 	IBOutlet NSButton *info1_lbl;
 	IBOutlet NSButton *prev_lbl;
