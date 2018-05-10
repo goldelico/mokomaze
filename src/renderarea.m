@@ -93,6 +93,7 @@
 	[desk_pixmap drawInRect:NSMakeRect(0, 0, sz.width, sz.height)];
 
 	/* draw boxes, holes, checkpoints */
+	double hole_r=[pl holeRadius];
 	NSDictionary *level=[[pl GetGameLevels] objectAtIndex:re_cur_level];
 
 	NSArray *valList=[level objectForKey:@"boxes"];
@@ -120,7 +121,7 @@
 		{
 		NSDictionary *val=[valList objectAtIndex:i];
 		NSPoint point=NSMakePoint([[val objectForKey:@"x"] doubleValue], [[val objectForKey:@"y"] doubleValue]);
-		NSRect rect=NSMakeRect(point.x-HOLE_R, point.y-HOLE_R, 2*HOLE_R, 2*HOLE_R);
+		NSRect rect=NSMakeRect(point.x-hole_r, point.y-hole_r, 2*hole_r, 2*hole_r);
 		[hole_pixmap drawInRect:rect];
 		}
 
@@ -130,7 +131,7 @@
 		{
 		NSDictionary *val=[valList objectAtIndex:i];
 		NSPoint point=NSMakePoint([[val objectForKey:@"x"] doubleValue], [[val objectForKey:@"y"] doubleValue]);
-		NSRect rect=NSMakeRect(point.x-HOLE_R, point.y-HOLE_R, 2*HOLE_R, 2*HOLE_R);
+		NSRect rect=NSMakeRect(point.x-hole_r, point.y-hole_r, 2*hole_r, 2*hole_r);
 		[fin_pixmap drawInRect:rect];
 		}
 
