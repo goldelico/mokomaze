@@ -60,6 +60,7 @@
 	double tmp_px, tmp_py;
 	double tmp_vx, tmp_vy;
 
+	double hole_r, ball_r;
 	int fall_hole_x, fall_hole_y;
 
 #define ANIM_MAX 9
@@ -87,8 +88,10 @@
 // int line(double x0, double y0, double x1, double y1,    double vx0,double vy0, double vx1,double vy1);
 - (void) ZeroAnim;
 - (void) ProcessGameState;
-- (int) testbump:(NSPoint) pnt :(NSPoint) mm_v;
-- (int) edgebump:(NSPoint) t :(NSPoint) pnt :(NSPoint) mm_v;
+- (BOOL) testbump:(NSPoint) pnt :(NSPoint) mm_v;
+- (BOOL) edgebump:(NSPoint) t :(NSPoint) pnt :(NSPoint) mm_v;
+- (BOOL) line:(double) x0 :(double) y0 :(double) x1 :(double) y1
+			 :(double) vx0 :(double) vy0 :(double) vx1 :(double) vy1;
 - (void) tout:(NSPoint) pnt;
 - (void) apply_temp_phys_res;
 - (void) post_temp_phys_res:(NSPoint) pnt :(NSPoint) mm_v;

@@ -26,6 +26,10 @@
 #import "types.h"
 #import "form.h"
 
+#define FRAME_RATE		30.0
+#define MAX_BUMP_SPEED	160.0
+#define MIN_BUMP_SPEED	45
+
 double calcdist(NSPoint p1, NSPoint p2)
 {
 	return sqrt((p2.x-p1.x)*(p2.x-p1.x) + (p2.y-p1.y)*(p2.y-p1.y));
@@ -64,10 +68,25 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	// es sollte sichergestellt werden dass die params geladen sind wenn man GetGameLevels aufruft
 	// und auch nur einmal - jetzt ist es doppelt!
 	[pl load_params:[pl levelpack]];
+
 	qt_game_levels = [[pl GetGameLevels] retain];
+
+	cur_level = [pl userlevel];
+	if (cur_level < 0) cur_level = 0;
+	if (cur_level >= [qt_game_levels count])
+		cur_level = [qt_game_levels count] - 1;
+
+	game_state = GAME_STATE_NORMAL;
+	[self SetLevelNo];
+
+	hole_r=[pl holeRadius];
+	ball_r=[pl ballRadius];
+
 	ball_pixmap=[[NSImage imageNamed:@"ball.png"] retain];
 	shadow_pixmap=[[NSImage imageNamed:@"ball-shadow.png"] retain];
+
 	[self InitState:YES];
+	[NSTimer scheduledTimerWithTimeInterval:1.0/FRAME_RATE target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
 }
 
 - (BOOL) isOpaque; { return NO; }
@@ -93,6 +112,11 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	[menubuttons setNeedsDisplay:YES];
 }
 
+- (BOOL) menuVis;
+{
+	return ![menubuttons isHidden];
+}
+
 - (void) SetLevelNo;
 {
 	NSString *str=[NSString stringWithFormat:@"Level %d/%d", cur_level+1, [qt_game_levels count]];
@@ -110,6 +134,54 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 	// i.e. just store the coordinate
 	// and register a setNeedsDisplayInRect for old and for new locations
+}
+
+#define MAX_PHYS_ITERATIONS 10
+- (BOOL) line:(double) x0 :(double) y0 :(double) x1 :(double) y1
+			 :(double) vx0 :(double) vy0 :(double) vx1 :(double) vy1;
+{
+	double x=x0, y=y0;
+	double mm_vx=vx1, mm_vy=vy1; //
+
+	NSPoint vec;
+	vec.x = x1-x0;
+	vec.y = y1-y0;
+	NSPoint norm_vec;
+	double len = calclen(vec);
+
+	norm_vec.x = vec.x/len;
+	norm_vec.y = vec.y/len;
+	double k=0;
+	BOOL muststop=NO;
+	while (!muststop)
+		{
+		k += 1;
+		if (k>=len)
+			{
+			k=len;
+			muststop=YES;
+			}
+		x = x0 + norm_vec.x*k;
+		y = y0 + norm_vec.y*k;
+		if ([self testbump:NSMakePoint(x, y) :NSMakePoint(mm_vx, mm_vy)])
+			{
+			int ko=0;
+			while (new_game_state == GAME_STATE_NORMAL)
+				{
+				ko++;
+				//TODO: lite testbump version
+				int bump = [self testbump:NSMakePoint(tmp_px, tmp_py) :NSMakePoint(tmp_vx, tmp_vy)];
+				if ( (!bump) || (ko >= MAX_PHYS_ITERATIONS) )
+					break;
+				}
+			[self apply_temp_phys_res];
+			game_state = new_game_state;
+			//ProcessGameState();
+			return YES;
+			}
+		}
+
+	return NO;
 }
 
 - (void) InitState:(BOOL) redraw;
@@ -161,18 +233,18 @@ int incircle(NSPoint p, NSPoint c, double cr)
 		}
 }
 
-- (int) testbump:(NSPoint) pnt :(NSPoint) mm_v;
+- (BOOL) testbump:(NSPoint) pnt :(NSPoint) mm_v;
 {
-
+	return NO;
 }
 
-- (int) edgebump:(NSPoint) t :(NSPoint) pnt :(NSPoint) mm_v;
+- (BOOL) edgebump:(NSPoint) t :(NSPoint) pnt :(NSPoint) mm_v;
 {
-
+	return NO;
 }
 
 - (void) tout:(NSPoint) pnt;
-{
+{ // apply accelerometer value
 	double ax=pnt.x, ay=pnt.y;
 
 	new_game_state = GAME_STATE_NORMAL;
@@ -219,13 +291,11 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	mid_px +=  (mid_vx * SPEED_TO_PIXELS);
 	mid_py += -(mid_vy * SPEED_TO_PIXELS);
 
-#if FIXME
-	if (!line(pr_px,pr_py, mid_px,mid_py,    pr_vx,pr_vy, mid_vx,mid_vy))
+	if (![self line:pr_px :pr_py :mid_px :mid_py :pr_vx :pr_vy :mid_vx :mid_vy])
 		{
-		post_temp_phys_res(mid_px,mid_py, mid_vx,mid_vy);
-		apply_temp_phys_res();
+		[self post_temp_phys_res:NSMakePoint(mid_px, mid_py) :NSMakePoint(mid_vx, mid_vy)];
+		[self apply_temp_phys_res];
 		}
-#endif
 }
 
 - (void) apply_temp_phys_res;
@@ -261,9 +331,9 @@ int incircle(NSPoint p, NSPoint c, double cr)
 		mm_vy = -mm_vy * BUMP_COEF;
 		}
 
-	tmp_px = x; tmp_py = y;
-	tmp_vx = mm_vx; tmp_vy = mm_vy;
 #endif
+	tmp_px = pnt.x; tmp_py = pnt.y;
+	tmp_vx = mm_v.x; tmp_vy = mm_v.y;
 }
 
 - (void) post_phys_res:(NSPoint) pnt :(NSPoint) mm_v;
@@ -278,8 +348,6 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (void) BumpVibrate:(double) speed;
 {
-#define MAX_BUMP_SPEED 160.0
-#define MIN_BUMP_SPEED 45
 	//#define MAX_BUMP_SPEED 160.0
 	//#define VIB_TRESHHOLD 0.30
 	double v = fabs(speed);
@@ -301,13 +369,55 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (void) acc_timerAction:(double) acx :(double) acy;
 {
+	if (game_state == GAME_STATE_NORMAL)
+		{
+		[self tout:NSMakePoint(acx, acy)];
+		if (game_state != GAME_STATE_NORMAL)
+			{
+			int bshift = (hole_r - ball_r) / 3;
+			px = fall_hole_x + bshift;
+			py = fall_hole_y + bshift;
+			}
+		}
 
+	if (game_state != GAME_STATE_NORMAL)
+		{
+		if (anim_stage >= 1)
+			[self ProcessGameState];
+		else
+			{
+			anim_timer += 1;
+			if (anim_timer == ANIM_MAX)
+				anim_stage = 1;
+			}
+		}
+
+	[self MoveBall:px :py];
+	prev_px = px;
+	prev_py = py;
 }
 
-// FIXME: + (void) accel_callback(void *closure, double acx, double acy, double acz);
 - (void) timerAction;
 {
-
+#if 0
+	// what is this fastchange_step good for?
+	int new_cur_level = cur_level + fastchange_step;
+	if (new_cur_level >= [qt_game_levels count]) new_cur_level = [qt_game_levels count]-1;
+	if (new_cur_level < 0) new_cur_level = 0;
+	if (new_cur_level != cur_level)
+		{
+		cur_level = new_cur_level;
+		[self InitState:YES];
+		game_state = GAME_STATE_NORMAL;
+		[self SetLevelNo];
+		[self setButtonsPics];
+		}
+#endif
+	if(![self menuVis])
+		{ // process movements
+		NSPoint acc=[Vibro accel];
+		[self acc_timerAction:acc.x :acc.y];
+		}
 }
 
 // actions
