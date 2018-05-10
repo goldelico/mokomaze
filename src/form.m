@@ -242,6 +242,34 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (BOOL) edgebump:(NSPoint) t :(NSPoint) pnt :(NSPoint) mm_v;
 {
+	NSPoint touch=t;
+	if (incircle(touch, pnt, ball_r))
+		{
+		NSPoint tmp_norm;
+		tmp_norm.x = (pnt.x - touch.x);
+		tmp_norm.y = (pnt.y - touch.y);
+		NSPoint norm = normalize(tmp_norm);
+		mm_v.y = -mm_v.y;
+		double dot_norm_vect = mm_v.x*norm.x + mm_v.y*norm.y;
+		mm_v.x = mm_v.x - 2*norm.x*dot_norm_vect;
+		mm_v.y = mm_v.y - 2*norm.y*dot_norm_vect;
+
+		double vpr_x = -fabs(dot_norm_vect)*norm.x;
+		double vpr_y = -fabs(dot_norm_vect)*norm.y;
+		[self BumpVibrate:calclen(NSMakePoint(vpr_x, vpr_y))];
+
+		double dop_x = (1-BUMP_COEF) * vpr_x;
+		double dop_y = (1-BUMP_COEF) * vpr_y;
+		mm_v.x = mm_v.x + dop_x;
+		mm_v.y = mm_v.y + dop_y;
+		mm_v.y = -mm_v.y;
+
+		pnt.x = touch.x + norm.x*(ball_r+0.10);
+		pnt.y = touch.y + norm.y*(ball_r+0.10);
+
+		[self post_temp_phys_res:pnt :mm_v];
+		return YES;
+		}
 	return NO;
 }
 
