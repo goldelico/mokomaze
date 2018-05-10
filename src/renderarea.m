@@ -36,26 +36,8 @@
 		fin_pixmap=[[NSImage imageNamed:@"fin.png"] retain];
 		desk_pixmap=[[NSImage imageNamed:@"desk.png"] retain];
 		wall_pixmap=[[NSImage imageNamed:@"wall.png"] retain];
-#if 0
-		lvl_pixmap = new QPixmap(QSize(w,h));
-
-		hole_pixmap.load(QCoreApplication::applicationDirPath() + "/pics/qtmaze/hole.png");
-		fin_pixmap.load(QCoreApplication::applicationDirPath() + "/pics/qtmaze/fin.png");
-		desk_pixmap.load(QCoreApplication::applicationDirPath() + "/pics/qtmaze/desk.png");
-		wall_pixmap.load(QCoreApplication::applicationDirPath() + "/pics/qtmaze/wall.png");
-
-		setBackgroundRole(QPalette::Base);
-		setAutoFillBackground(true);
-#endif
-
+		lvl_pixmap=[[NSImage alloc] initWithSize:frame.size];
 		_antialiased = NO;
-
-		// überarbeiten...
-
-		re_game_levels = [[(ParamsLoader *) NSApp GetGameLevels] retain];
-
-		// NSUserDefaults nehmen
-		re_cur_level = [(ParamsLoader *) NSApp userlevel];
 		}
 	return self;
 }
@@ -66,14 +48,16 @@
 	[super dealloc];
 }
 
-- (BOOL) antialiased;
+- (void) awakeFromNib
 {
-	return _antialiased;
-}
+	ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
+	// überarbeiten...
 
-- (void) setAntialiased:(BOOL) antialiased;
-{
-	_antialiased=antialiased;
+	[pl load_params:[pl levelpack]];
+	re_game_levels = [[pl GetGameLevels] retain];
+
+	[self setLevel:[pl userlevel]];
+
 }
 
 #define HOLE_R	28
@@ -85,7 +69,7 @@
 
 	[lvl_pixmap lockFocus];
 
-	[desk_pixmap draw];
+	[desk_pixmap drawInRect:NSMakeRect(0, 0, 640, 480)];
 
 	NSDictionary *level=[re_game_levels objectAtIndex:re_cur_level];
 
@@ -106,9 +90,7 @@
 		NSDictionary *val=[valList objectAtIndex:i];
 		NSPoint p1=NSMakePoint([[val objectForKey:@"x1"] doubleValue], [[val objectForKey:@"y1"] doubleValue]);
 		NSPoint p2=NSMakePoint([[val objectForKey:@"x2"] doubleValue], [[val objectForKey:@"y2"] doubleValue]);
-		Box *box;
-		NSRect rect=NSMakeRect(box->x1, box->y1,
-				   box->x2 - box->x1, box->y2 - box->y1);
+		NSRect rect=NSMakeRect(p1.x, p1.y, p2.x-p1.y, p2.y-p1.y);
 		[wall_pixmap drawInRect:rect];
 		}
 
@@ -118,16 +100,14 @@
 		{
 		NSDictionary *val=[valList objectAtIndex:i];
 		NSPoint point=NSMakePoint([[val objectForKey:@"x"] doubleValue], [[val objectForKey:@"y"] doubleValue]);
-		point.x -= HOLE_R;
-		point.y -= HOLE_R;
-		[hole_pixmap drawAtPoint:point];
+		NSRect rect=NSMakeRect(point.x-HOLE_R, point.y-HOLE_R, 2*HOLE_R, 2*HOLE_R);
+		[hole_pixmap drawInRect:rect];
 		}
 
 	NSDictionary *val=[level objectForKey:@"fin"];
 	NSPoint point=NSMakePoint([[val objectForKey:@"x"] doubleValue], [[val objectForKey:@"y"] doubleValue]);
-	point.x -= HOLE_R;
-	point.y -= HOLE_R;
-	[fin_pixmap drawAtPoint:point];
+	NSRect rect=NSMakeRect(point.x-HOLE_R, point.y-HOLE_R, 2*HOLE_R, 2*HOLE_R);
+	[fin_pixmap drawInRect:rect];
 
 	[lvl_pixmap unlockFocus];
 }
@@ -181,7 +161,7 @@
 
 - (void) drawRect:(NSRect) rect
 {
-	[lvl_pixmap draw];
+	[lvl_pixmap drawInRect:rect];
 }
 
 - (void) mouseDown:(NSEvent *) event

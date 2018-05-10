@@ -41,13 +41,9 @@
 	// connect to Forms ScreenTouchedPause action
 }
 
-// - (NSSize) minimumSizeHint;
-// - (NSSize) sizeHint;
-- (void) setAntialiased:(BOOL) antialiased;
 - (void) setLevel:(int) lvl_no;
 - (void) drawRect:(NSRect) rect;
 - (void) renderWallShadow:(int) bx1 :(int) by1 :(int) bx2 :(int) by2;
-- (BOOL) antialiased;
 
 @end
 
