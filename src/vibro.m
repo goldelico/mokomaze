@@ -52,7 +52,7 @@
 	return 0;
 }
 
-+ (int) set_vibro:(BYTE) level;
++ (int) set_vibro:(uint8_t) level;
 {
 #ifdef __APPLE__
 	NSBeep();

@@ -356,7 +356,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	//if (k>VIB_TRESHHOLD)
 	if (v>MIN_BUMP_SPEED)
 		{
-		BYTE vlevel = (BYTE)(k*63);
+		uint8_t vlevel = (uint8_t)(k*63);
 		[Vibro set_vibro:vlevel];
 		}
 }

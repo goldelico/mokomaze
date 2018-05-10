@@ -26,7 +26,7 @@
 @interface Vibro : NSObject
 
 + (int) init_vibro;
-+ (int) set_vibro:(BYTE) level;
++ (int) set_vibro:(uint8_t) level;
 + (int) close_vibro;
 
 + (NSPoint) accel;	// accelerometer values in g for x and y

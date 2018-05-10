@@ -20,12 +20,15 @@
  *  along with QtMaze.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#if OLD
+
 #ifndef TYPES_H
 #define TYPES_H
 
 #define Point MacPoint	// includes some Mac header which typedefs "Point"
 
 #import <Cocoa/Cocoa.h>
+
 
 #define BYTE unsigned char
 
@@ -57,7 +60,6 @@ typedef struct {
 
 } Box;
 
-#if OLD
 typedef struct {
 
 	int		wnd_w;
@@ -101,6 +103,7 @@ typedef struct {
 	Point	init;
 
 } Level;
-#endif
 
 #endif /* TYPES_H */
+
+#endif
