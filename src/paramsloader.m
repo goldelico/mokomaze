@@ -31,6 +31,11 @@
 	[super dealloc];
 }
 
+- (BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *) sender;
+{
+	return YES;
+}
+
 - (void) awakeFromNib
 {
 	// [self load_params:@"main.levelpack"];
