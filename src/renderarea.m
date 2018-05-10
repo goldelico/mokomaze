@@ -60,6 +60,23 @@
 
 }
 
+// fixme: read this from the levelpack!
+// and scale to our real screen size
+/*
+ "window": {
+ "width":  480,
+ "height": 640
+ },
+
+ "ball": {
+ "radius": 23
+ },
+
+ "hole": {
+ "radius": 28
+ }
+*/
+
 #define HOLE_R	28
 #define BALL_R	23
 
@@ -104,10 +121,15 @@
 		[hole_pixmap drawInRect:rect];
 		}
 
-	NSDictionary *val=[level objectForKey:@"fin"];
-	NSPoint point=NSMakePoint([[val objectForKey:@"x"] doubleValue], [[val objectForKey:@"y"] doubleValue]);
-	NSRect rect=NSMakeRect(point.x-HOLE_R, point.y-HOLE_R, 2*HOLE_R, 2*HOLE_R);
-	[fin_pixmap drawInRect:rect];
+	valList=[level objectForKey:@"checkpoints"];
+
+	for (i=0; i<[valList count]; i++)
+		{
+		NSDictionary *val=[valList objectAtIndex:i];
+		NSPoint point=NSMakePoint([[val objectForKey:@"x"] doubleValue], [[val objectForKey:@"y"] doubleValue]);
+		NSRect rect=NSMakeRect(point.x-HOLE_R, point.y-HOLE_R, 2*HOLE_R, 2*HOLE_R);
+		[fin_pixmap drawInRect:rect];
+		}
 
 	[lvl_pixmap unlockFocus];
 }
