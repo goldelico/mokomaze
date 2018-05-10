@@ -100,9 +100,11 @@ int incircle(NSPoint p, NSPoint c, double cr)
 		br *= 1 - 0.40 * anim_timer / ANIM_MAX;
 		}
 	NSRect ball=NSMakeRect(ballpos.x-br, ballpos.y-br, 2*br, 2*br);
+	NSRect shadow=ball;
+	shadow.origin.x += br/5.0;	// shadow shift
+	shadow.origin.y -= br/5.0;
+	[shadow_pixmap drawInRect:shadow fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 	[ball_pixmap drawInRect:ball fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
-	ball.origin.x += br/5.0;	// shadow shift
-	[shadow_pixmap drawInRect:ball fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 }
 
 - (void) setMenuVis:(BOOL) x;
