@@ -56,8 +56,6 @@
 
 	[pl load_params:[pl levelpack]];
 	re_game_levels = [[pl GetGameLevels] retain];
-
-	[self setLevel:[pl userlevel]];
 }
 
 // fixme: read this from the levelpack!
