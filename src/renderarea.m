@@ -90,7 +90,7 @@
 	[lvl_pixmap lockFocus];
 	/* draw background image */
 	NSSize sz=[lvl_pixmap size];
-	[desk_pixmap drawInRect:NSMakeRect(0, 0, sz.width, sz.height)];
+	[desk_pixmap drawInRect:NSMakeRect(0, 0, sz.width, sz.height) fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
 
 	/* draw boxes, holes, checkpoints */
 	double hole_r=[pl holeRadius];
@@ -112,7 +112,7 @@
 		NSPoint p1=NSMakePoint([[val objectForKey:@"x1"] doubleValue], [[val objectForKey:@"y1"] doubleValue]);
 		NSPoint p2=NSMakePoint([[val objectForKey:@"x2"] doubleValue], [[val objectForKey:@"y2"] doubleValue]);
 		NSRect rect=NSMakeRect(p1.x, p1.y, p2.x-p1.x, p2.y-p1.y);
-		[wall_pixmap drawInRect:rect];
+		[wall_pixmap drawInRect:rect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 		}
 
 	valList=[level objectForKey:@"holes"];
@@ -122,7 +122,7 @@
 		NSDictionary *val=[valList objectAtIndex:i];
 		NSPoint point=NSMakePoint([[val objectForKey:@"x"] doubleValue], [[val objectForKey:@"y"] doubleValue]);
 		NSRect rect=NSMakeRect(point.x-hole_r, point.y-hole_r, 2*hole_r, 2*hole_r);
-		[hole_pixmap drawInRect:rect];
+		[hole_pixmap drawInRect:rect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 		}
 
 	valList=[level objectForKey:@"checkpoints"];
@@ -132,7 +132,7 @@
 		NSDictionary *val=[valList objectAtIndex:i];
 		NSPoint point=NSMakePoint([[val objectForKey:@"x"] doubleValue], [[val objectForKey:@"y"] doubleValue]);
 		NSRect rect=NSMakeRect(point.x-hole_r, point.y-hole_r, 2*hole_r, 2*hole_r);
-		[fin_pixmap drawInRect:rect];
+		[fin_pixmap drawInRect:rect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 		}
 
 	[lvl_pixmap unlockFocus];
@@ -189,7 +189,7 @@
 
 - (void) drawRect:(NSRect) rect
 {
-	[lvl_pixmap drawInRect:rect];
+	[lvl_pixmap drawInRect:rect fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
 }
 
 - (void) mouseDown:(NSEvent *) event
