@@ -32,7 +32,8 @@
 { // accelerometer values in g for x and y
 #ifdef __APPLE__
 	// random walk for demo purposes
-	return NSMakePoint((float)rand()/((float)3*RAND_MAX)-0.5, (float)rand()/((float)3*RAND_MAX)-0.5);
+#define K 0.6
+	return NSMakePoint(K*((float)rand()/((float)RAND_MAX)-0.5), K*((float)rand()/((float)RAND_MAX)-0.5));
 #else	// QuantumSTEP
 	static CMMotionManager *mm;
 	if(!mm)
