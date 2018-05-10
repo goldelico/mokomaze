@@ -89,7 +89,8 @@
 
 	[lvl_pixmap lockFocus];
 	/* draw background image */
-	[desk_pixmap drawInRect:NSMakeRect(0, 0, 640, 480)];
+	NSSize sz=[lvl_pixmap size];
+	[desk_pixmap drawInRect:NSMakeRect(0, 0, sz.width, sz.height)];
 
 	/* draw boxes, holes, checkpoints */
 	NSDictionary *level=[[pl GetGameLevels] objectAtIndex:re_cur_level];

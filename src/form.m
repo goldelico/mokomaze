@@ -104,6 +104,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 {
 	NSString *str=[NSString stringWithFormat:@"Level %d/%d", cur_level+1, [qt_game_levels count]];
 	[levelno_lbl setStringValue:str];
+	[(RenderArea *) [self superview] setLevel:cur_level];	// update background image
 }
 
 - (void) MoveBall:(double) x :(double) y;

@@ -41,7 +41,10 @@
  **
  ****************************************************************************/
 
+
 #import <Cocoa/Cocoa.h>
+
+// FIXME: what is this class good for?
 
 @interface GameField : NSView
 {

@@ -378,20 +378,20 @@
                                 </connections>
                             </customView>
                             <customView hidden="YES" misplaced="YES" id="nl2-tf-bT1" userLabel="Buttons">
-                                <rect key="frame" x="0.0" y="400" width="480" height="73"/>
+                                <rect key="frame" x="0.0" y="400" width="480" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="dXz-hI-eXl">
-                                        <rect key="frame" x="7" y="49" width="224" height="17"/>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="dXz-hI-eXl">
+                                        <rect key="frame" x="-2" y="38" width="484" height="42"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Level" id="zYS-1B-Oht">
-                                            <font key="font" metaFont="system"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Level" id="zYS-1B-Oht">
+                                            <font key="font" metaFont="system" size="27"/>
                                             <color key="textColor" red="0.87843137250000003" green="0.73725490199999999" blue="0.43921568630000002" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" misplaced="YES" id="5QU-Ag-hjJ">
-                                        <rect key="frame" x="234" y="7" width="49" height="32"/>
+                                        <rect key="frame" x="234" y="8" width="49" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="reset" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nBU-re-BZF">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -402,7 +402,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" misplaced="YES" id="J1u-R3-92c">
-                                        <rect key="frame" x="404" y="7" width="49" height="32"/>
+                                        <rect key="frame" x="404" y="8" width="49" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="close" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7kg-i4-Fme">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -413,7 +413,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" misplaced="YES" id="md5-wf-yVz">
-                                        <rect key="frame" x="144" y="7" width="47" height="32"/>
+                                        <rect key="frame" x="144" y="8" width="47" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="next" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bpF-tu-UgF">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -424,7 +424,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" misplaced="YES" id="1jn-cm-QOI">
-                                        <rect key="frame" x="87" y="7" width="47" height="32"/>
+                                        <rect key="frame" x="87" y="8" width="47" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="prev" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4gz-UC-cS1">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
