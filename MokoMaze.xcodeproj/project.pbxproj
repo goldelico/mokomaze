@@ -74,7 +74,6 @@
 		EEA3D338208B25A9004CB227 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		EEA3D339208B25A9004CB227 /* renderarea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = renderarea.m; path = src/renderarea.m; sourceTree = "<group>"; };
 		EEA3D33A208B25A9004CB227 /* renderarea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = renderarea.h; path = src/renderarea.h; sourceTree = "<group>"; };
-		EEA3D33C208B25A9004CB227 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = types.h; path = src/types.h; sourceTree = "<group>"; };
 		EEA3D33D208B25A9004CB227 /* vibro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = vibro.m; path = src/vibro.m; sourceTree = "<group>"; };
 		EEA3D33E208B25A9004CB227 /* vibro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vibro.h; path = src/vibro.h; sourceTree = "<group>"; };
 		EEA6A096174BDE7900F4FBFA /* mySTEP.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mySTEP.make; path = ../../../Frameworks/mySTEP.make; sourceTree = SOURCE_ROOT; };
@@ -104,7 +103,6 @@
 				EEA3D320208B25A9004CB227 /* paramsloader.m */,
 				EEA3D33A208B25A9004CB227 /* renderarea.h */,
 				EEA3D339208B25A9004CB227 /* renderarea.m */,
-				EEA3D33C208B25A9004CB227 /* types.h */,
 				EEA3D33E208B25A9004CB227 /* vibro.h */,
 				EEA3D33D208B25A9004CB227 /* vibro.m */,
 			);

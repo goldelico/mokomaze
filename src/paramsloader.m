@@ -20,7 +20,6 @@
  *  along with QtMaze.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// #import "accelerometers.h"
 #import "paramsloader.h"
 
 @implementation ParamsLoader

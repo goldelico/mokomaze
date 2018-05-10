@@ -24,7 +24,6 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "types.h"
 
 @interface RenderArea : NSControl
 {

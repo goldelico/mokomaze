@@ -21,7 +21,6 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "types.h"
 
 @interface ParamsLoader : NSObject
 {
