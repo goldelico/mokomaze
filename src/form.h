@@ -3,6 +3,7 @@
  *  Main game routines
  *
  *  (c) 2009-2010 Anton Olkhovik <ant007h@gmail.com>
+ *  (c) 2018 Nikolaus Schaller <hns@goldelico.com> -- converted to Obj-C
  *
  *  This file is part of QtMaze (port of Mokomaze) - labyrinth game.
  *

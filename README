@@ -2,6 +2,9 @@
 
                 Copyright (C) 2009-2010 Anton Olkhovik
                          <ant007h@gmail.com>
+
+*  (c) 2018 Nikolaus Schaller <hns@goldelico.com> -- converted to Obj-C
+
 ======================================================================
 
 QtMaze is a Qt port of Mokomaze 0.2.

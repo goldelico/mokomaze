@@ -3,6 +3,7 @@
  *  Game field renderer
  *
  *  (c) 2009-2010 Anton Olkhovik <ant007h@gmail.com>
+ *  (c) 2018 Nikolaus Schaller <hns@goldelico.com> -- converted to Obj-C
  *
  *  Based on original renderarea.h from Qt Basic Drawing Example
  *  Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
