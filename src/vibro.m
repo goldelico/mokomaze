@@ -20,9 +20,50 @@
  *  along with QtMaze.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "form.h"
+#import "vibro.h"
+
+#ifndef __APPLE__	// QuantumSTEP (or iOS) only
+#import <CoreMotion/CoreMotion.h>
+#endif
 
 @implementation Vibro
+
++ (NSPoint) accel;
+{ // accelerometer values in g for x and y
+#ifdef __APPLE__
+	// random walk for demo purposes
+	return NSMakePoint((float)rand()/((float)3*RAND_MAX)-0.5, (float)rand()/((float)3*RAND_MAX)-0.5);
+#else	// QuantumSTEP
+	static CMMotionManager *mm;
+	if(!mm)
+		{
+		mm=[CMMotionManager new];
+		[mm startDeviceMotionUpdates];
+		}
+	CMDeviceMotion *m=[mm deviceMotion];
+	CMAcceleration g=[m gravity];
+	return NSMakePoint(g.x, g.y);
+#endif
+}
+
++ (int) init_vibro;
+{
+	return 0;
+}
+
++ (int) set_vibro:(BYTE) level;
+{
+#ifdef __APPLE__
+	NSBeep();
+#endif
+	return 0;
+}
+
++ (int) close_vibro;
+{
+	return 0;
+}
+
 @end
 
 #if OLD

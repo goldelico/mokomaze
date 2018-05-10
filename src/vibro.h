@@ -29,6 +29,8 @@
 + (int) set_vibro:(BYTE) level;
 + (int) close_vibro;
 
++ (NSPoint) accel;	// accelerometer values in g for x and y
+
 @end
 
 #define VIBRO_H
