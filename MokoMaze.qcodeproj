@@ -37,6 +37,7 @@ export SOURCES+=" src/pics/qtmaze/wall.png"
 export SOURCES+=" src/renderarea.m"
 export SOURCES+=" src/vibro.m"
 export SOURCES+=" src/main.m"
+export SOURCES+=" English.lproj/MainMenu.nib"
 export WRAPPER_EXTENSION="app"
 
 [ "$QuantumSTEP" ] || export QuantumSTEP="/usr/local/QuantumSTEP"
