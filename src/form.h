@@ -50,6 +50,8 @@
 	IBOutlet NSButton *reset_lbl;
 	IBOutlet NSButton *exit_lbl;
 
+	double wnd_w, wnd_h;
+
 	double px,py;	// current position
 	double vx,vy;	// current velocity
 

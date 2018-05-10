@@ -81,6 +81,10 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	hole_r=[pl holeRadius];
 	ball_r=[pl ballRadius];
 
+	NSSize wnd=[pl gameSize];
+	wnd_w=wnd.width;
+	wnd_h=wnd.height;
+
 	ball_pixmap=[[NSImage imageNamed:@"ball.png"] retain];
 	shadow_pixmap=[[NSImage imageNamed:@"ball-shadow.png"] retain];
 
@@ -130,12 +134,6 @@ int incircle(NSPoint p, NSPoint c, double cr)
 {
 	ballpos=NSMakePoint(x, y);
 	[self setNeedsDisplay:YES];
-	// QtMaze shifts a ball label around by changing the frame origin
-	// this means we would have an NSImageView subview
-	// but we could do differently...
-
-	// i.e. just store the coordinate
-	// and register a setNeedsDisplayInRect for old and for new locations
 }
 
 #define MAX_PHYS_ITERATIONS 10
@@ -205,7 +203,6 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	[self MoveBall:px :py];
 }
 
-// int line(double x0, double y0, double x1, double y1,    double vx0,double vy0, double vx1,double vy1);
 - (void) ZeroAnim;
 {
 	anim_stage = 0;
@@ -237,7 +234,106 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (BOOL) testbump:(NSPoint) pnt :(NSPoint) mm_v;
 {
-	return NO;
+	int i;
+
+	// Loop over all finals
+
+	NSDictionary *level=[qt_game_levels objectAtIndex:cur_level];
+
+	NSArray *valList=[level objectForKey:@"checkpoints"];
+
+	for (i=0; i<[valList count]; i++)
+		{ // check finis
+		NSDictionary *val=[valList objectAtIndex:i];
+		NSPoint final_hole=NSMakePoint([[val objectForKey:@"x"] doubleValue], [[val objectForKey:@"y"] doubleValue]);
+		double dist = calcdist(pnt, final_hole);
+		if (dist <= hole_r)
+			{
+			fall_hole_x = final_hole.x;
+			fall_hole_y = final_hole.y;
+			new_game_state = GAME_STATE_WIN;
+			[self post_temp_phys_res:pnt :mm_v];
+			return YES;
+			}
+		}
+
+	valList=[level objectForKey:@"holes"];
+
+	for (i=0; i<[valList count]; i++)
+		{ // check holes
+		NSDictionary *val=[valList objectAtIndex:i];
+		NSPoint hole=NSMakePoint([[val objectForKey:@"x"] doubleValue], [[val objectForKey:@"y"] doubleValue]);
+		NSRect boundbox=NSMakeRect(hole.x - hole_r, hole.y - hole_r, 2*hole_r, 2*hole_r);
+		if (inbox(pnt, boundbox))
+			{
+			double dist = calcdist(pnt, hole);
+			if (dist <= hole_r)
+				{
+				fall_hole_x = hole.x;
+				fall_hole_y = hole.y;
+				new_game_state = GAME_STATE_FAILED;
+				[self post_temp_phys_res:pnt :mm_v];
+				return YES;
+				}
+			}
+		}
+
+	BOOL retval = NO;
+
+	valList=[level objectForKey:@"boxes"];
+
+	for (i=0; i<[valList count]; i++)
+		{
+		NSDictionary *val=[valList objectAtIndex:i];
+		NSPoint p1=NSMakePoint([[val objectForKey:@"x1"] doubleValue], [[val objectForKey:@"y1"] doubleValue]);
+		NSPoint p2=NSMakePoint([[val objectForKey:@"x2"] doubleValue], [[val objectForKey:@"y2"] doubleValue]);
+		NSRect box=NSMakeRect(p1.x, p1.y, p2.x-p1.x, p2.y-p1.y);
+		NSRect boundbox=NSInsetRect(box, -ball_r, -ball_r);
+		if (inbox(pnt, boundbox))
+			{
+			if (inbox(NSMakePoint(pnt.x, pnt.y-ball_r), box))
+				{
+				[self BumpVibrate:mm_v.y];
+				pnt.y = p2.y+ball_r + 0.2;
+				mm_v.y = -mm_v.y * BUMP_COEF;
+				retval = YES;
+				}
+			if (inbox(NSMakePoint(pnt.x, pnt.y+ball_r), box))
+				{
+				[self BumpVibrate:mm_v.y];
+				pnt.y = p1.y-ball_r - 1.00;
+				mm_v.y = -mm_v.y * BUMP_COEF;
+				retval = YES;
+				}
+			if (inbox(NSMakePoint(pnt.x-ball_r, pnt.y), box))
+				{
+				[self BumpVibrate:mm_v.x];
+				pnt.x = p2.x+ball_r + 0.2;
+				mm_v.x = -mm_v.x * BUMP_COEF;
+				retval = YES;
+				}
+			if (inbox(NSMakePoint(pnt.x+ball_r, pnt.y), box))
+				{
+				[self BumpVibrate:mm_v.x];
+				pnt.x = p1.x-ball_r - 1.00;
+				mm_v.x = -mm_v.x * BUMP_COEF;
+				retval = YES;
+				}
+
+			if ([self edgebump:NSMakePoint(p1.x, p1.y) :pnt :mm_v]) return YES;
+			if ([self edgebump:NSMakePoint(p2.x, p1.y) :pnt :mm_v]) return YES;
+			if ([self edgebump:NSMakePoint(p2.x, p2.y) :pnt :mm_v]) return YES;
+			if ([self edgebump:NSMakePoint(p1.x, p2.y) :pnt :mm_v]) return YES;
+			}
+
+		}
+
+	if (retval)
+		{
+		[self post_temp_phys_res:pnt :mm_v];
+		}
+
+	return retval;
 }
 
 - (BOOL) edgebump:(NSPoint) t :(NSPoint) pnt :(NSPoint) mm_v;
@@ -335,33 +431,31 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (void) post_temp_phys_res:(NSPoint) pnt :(NSPoint) mm_v;
 {
-#if FIXME
-	if (x<qt_game_config.ball_r)
+	if (pnt.x<ball_r)
 		{
-		BumpVibrate(mm_vx); //VIB_HOR
-		x = qt_game_config.ball_r;
-		mm_vx = -mm_vx * BUMP_COEF;
+		[self BumpVibrate:mm_v.x]; //VIB_HOR
+		pnt.x = ball_r;
+		mm_v.x = -mm_v.x * BUMP_COEF;
 		}
-	if (x>qt_game_config.wnd_w - qt_game_config.ball_r)
+	if (pnt.x>wnd_w - ball_r)
 		{
-		BumpVibrate(mm_vx);
-		x = qt_game_config.wnd_w - qt_game_config.ball_r;
-		mm_vx = -mm_vx * BUMP_COEF;
+		[self BumpVibrate:mm_v.x];
+		pnt.x = wnd_w - ball_r;
+		mm_v.x = -mm_v.x * BUMP_COEF;
 		}
-	if (y<qt_game_config.ball_r)
+	if (pnt.y<ball_r)
 		{
-		BumpVibrate(mm_vy);
-		y = qt_game_config.ball_r;
-		mm_vy = -mm_vy * BUMP_COEF;
+		[self BumpVibrate:mm_v.y];
+		pnt.y = ball_r;
+		mm_v.y = -mm_v.y * BUMP_COEF;
 		}
-	if (y>qt_game_config.wnd_h - qt_game_config.ball_r)
+	if (pnt.y>wnd_h - ball_r)
 		{
-		BumpVibrate(mm_vy);
-		y = qt_game_config.wnd_h - qt_game_config.ball_r;
-		mm_vy = -mm_vy * BUMP_COEF;
+		[self BumpVibrate:mm_v.y];
+		pnt.y = wnd_h - ball_r;
+		mm_v.y = -mm_v.y * BUMP_COEF;
 		}
 
-#endif
 	tmp_px = pnt.x; tmp_py = pnt.y;
 	tmp_vx = mm_v.x; tmp_vy = mm_v.y;
 }
