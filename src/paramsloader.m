@@ -75,9 +75,10 @@
 	return [game_levels objectForKey:@"name"];
 }
 
-- (NSPoint) gameSize;		// coordinate range in levelpack
+- (NSSize) gameSize;		// coordinate range in levelpack
 {
-
+	NSDictionary *val=[[game_levels objectForKey:@"requirements"] objectForKey:@"window"];
+	return NSMakeSize([[val objectForKey:@"width"] doubleValue], [[val objectForKey:@"height"] doubleValue]);
 }
 
 - (double) ballRadius;

@@ -40,7 +40,7 @@
 //   comment = string
 //   holes = array(dict with x, y)
 //   init = dict(x, y)
-- (NSPoint) gameSize;		// coordinate range in levelpack
+- (NSSize) gameSize;		// coordinate range in levelpack
 - (NSString *) levelPackName;
 - (NSString *) levelPackAuthor;
 - (double) ballRadius;
