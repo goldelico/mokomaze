@@ -89,6 +89,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 }
 
 - (BOOL) isOpaque; { return NO; }
+- (BOOL) isFlipped; { return YES; }
 
 - (void) drawRect:(NSRect) rect
 {

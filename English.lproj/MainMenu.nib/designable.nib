@@ -378,7 +378,7 @@
                                 </connections>
                             </customView>
                             <customView hidden="YES" misplaced="YES" id="nl2-tf-bT1" userLabel="Buttons">
-                                <rect key="frame" x="0.0" y="400" width="480" height="86"/>
+                                <rect key="frame" x="0.0" y="140" width="480" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="dXz-hI-eXl">

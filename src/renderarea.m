@@ -185,6 +185,7 @@
 }
 
 - (BOOL) isOpaque; { return YES; }
+- (BOOL) isFlipped; { return YES; }
 
 - (void) drawRect:(NSRect) rect
 {
