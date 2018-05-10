@@ -142,13 +142,13 @@
 	by2--;
 
 	int initalpha = 90;
-	[[NSColor colorWithRed: 0 green:0 blue:0 alpha:initalpha] set];
+	[[NSColor colorWithCalibratedRed: 0 green:0 blue:0 alpha:initalpha/100.0] set];
 
 	[NSBezierPath setDefaultLineWidth:1.0];
 	[NSBezierPath strokeLineFromPoint:NSMakePoint(bx1-1, by1) toPoint:NSMakePoint(bx1-1, by2)];
 	[NSBezierPath strokeLineFromPoint:NSMakePoint(bx1, by1-1) toPoint:NSMakePoint(bx2, by2-1)];
 
-	[[NSColor colorWithRed: 0 green:0 blue:0 alpha:initalpha] set];
+	[[NSColor colorWithCalibratedRed: 0 green:0 blue:0 alpha:initalpha/100.0] set];
 
 	// FIXME: loop?
 
