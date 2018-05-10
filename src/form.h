@@ -108,8 +108,11 @@
 - (void) acc_timerAction:(double) acx :(double) acy;
 // FIXME: + (void) accel_callback(void *closure, double acx, double acy, double acz);
 - (void) timerAction;
-- (IBAction) ScreenTouchedPause;
-- (IBAction) ScreenTouchedContinue;
+- (IBAction) ScreenTouchedPause:(id) sender;
+- (IBAction) ScreenTouchedContinue:(id) sender;
+- (IBAction) nextLevel:(id) sender;
+- (IBAction) prevLevel:(id) sender;
+- (IBAction) restart:(id) sender;
 
 @end
 

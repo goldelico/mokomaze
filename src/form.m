@@ -294,17 +294,17 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 // actions
 
-- (IBAction) ScreenTouchedPause;
+- (IBAction) ScreenTouchedPause:(id) sender;
 {
 
 }
 
-- (IBAction) ScreenTouchedContinue;
+- (IBAction) ScreenTouchedContinue:(id) sender;
 {
 
 }
 
-- (IBAction) nextLevel;
+- (IBAction) nextLevel:(id) sender;
 {
 	if (cur_level < [qt_game_levels count]-1)
 		{
@@ -324,7 +324,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 		}
 }
 
-- (IBAction) prevLevel;
+- (IBAction) prevLevel:(id) sender;
 {
 	if(cur_level > 0)
 		{
@@ -336,13 +336,23 @@ int incircle(NSPoint p, NSPoint c, double cr)
 		}
 }
 
-- (IBAction) restart;
+- (IBAction) restart:(id) sender;
 {
 	cur_level=0;
 	[self InitState:YES];
 	game_state = GAME_STATE_NORMAL;
 	[self SetLevelNo];
 	[self setButtonsPics];
+}
+
+- (BOOL) validateMenuItem:(NSMenuItem *)menuItem;
+{
+	NSString *action=NSStringFromSelector([menuItem action]);
+	if([action isEqualToString:@"nextLevel:"])
+		return cur_level < [qt_game_levels count]-1;
+	if([action isEqualToString:@"prevLevel:"])
+		return cur_level > 0;
+	return YES;
 }
 
 @end
