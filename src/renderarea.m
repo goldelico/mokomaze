@@ -52,6 +52,7 @@
 {
 	ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
 	// überarbeiten...
+	// es sollte sichergestellt werden dass die params geladen sind wenn man GetGameLevels aufruft
 
 	[pl load_params:[pl levelpack]];
 	re_game_levels = [[pl GetGameLevels] retain];
@@ -81,17 +82,19 @@
 
 - (void) setLevel:(int) lvl_no;
 { // prepare background pixmap for given game level
+	ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
+	int i;
+
 	re_cur_level = lvl_no;
 
 	[lvl_pixmap lockFocus];
-
+	/* draw background image */
 	[desk_pixmap drawInRect:NSMakeRect(0, 0, 640, 480)];
 
-	NSDictionary *level=[re_game_levels objectAtIndex:re_cur_level];
+	/* draw boxes, holes, checkpoints */
+	NSDictionary *level=[[pl GetGameLevels] objectAtIndex:re_cur_level];
 
 	NSArray *valList=[level objectForKey:@"boxes"];
-
-	int i;
 
 	for (i=0; i<[valList count]; i++)
 		{

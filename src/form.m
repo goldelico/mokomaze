@@ -60,6 +60,10 @@ int incircle(NSPoint p, NSPoint c, double cr)
 - (void) awakeFromNib
 {
 	ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
+	// überarbeiten...
+	// es sollte sichergestellt werden dass die params geladen sind wenn man GetGameLevels aufruft
+	// und auch nur einmal - jetzt ist es doppelt!
+	[pl load_params:[pl levelpack]];
 	qt_game_levels = [[pl GetGameLevels] retain];
 }
 
