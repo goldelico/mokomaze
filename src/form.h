@@ -38,11 +38,9 @@
 {
 	NSTimer *timer;
 	RenderArea *renderArea;
-	NSImage *prev_pixmap, *prev_p_pixmap, *prev_i_pixmap;
-	NSImage *next_pixmap, *next_p_pixmap, *next_i_pixmap;
-	NSImage *reset_pixmap, *reset_p_pixmap, *reset_i_pixmap;
-	NSImage *close_pixmap;
-	NSImage *lvl_pixmap;
+	NSImage *ball_pixmap;
+	NSImage *shadow_pixmap;
+	NSPoint ballpos;
 	IBOutlet NSView *menubuttons;
 	IBOutlet NSTextField *levelno_lbl;
 	IBOutlet NSButton *info1_lbl;
@@ -51,8 +49,9 @@
 	IBOutlet NSButton *reset_lbl;
 	IBOutlet NSButton *exit_lbl;
 
-	double px,py;
-	double vx,vy;
+	double px,py;	// current position
+	double vx,vy;	// current velocity
+
 	double pr_px, pr_py;
 	double pr_vx, pr_vy;
 
@@ -62,15 +61,9 @@
 	double tmp_vx, tmp_vy;
 
 	int fall_hole_x, fall_hole_y;
-	int anim_stage, anim_timer;
-
-	BOOL fullscreen;
 
 #define ANIM_MAX 9
-
-#define FULLSCREEN_NONE   0
-#define FULLSCREEN_TOGGLE 1
-#define FULLSCREEN_ALWAYS 2
+	int anim_stage, anim_timer;
 
 	NSArray *qt_game_levels;
 	int cur_level;
@@ -87,9 +80,6 @@
 }
 
 - (void) drawRect:(NSRect) rect;
-- (void) checkLoadedPictures;
-- (void) disableScreenSaver;
-- (void) enableScreenSaver;
 - (void) setMenuVis:(BOOL) x;
 - (void) SetLevelNo;
 - (void) MoveBall:(double) x :(double) y;

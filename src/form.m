@@ -65,32 +65,25 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	// und auch nur einmal - jetzt ist es doppelt!
 	[pl load_params:[pl levelpack]];
 	qt_game_levels = [[pl GetGameLevels] retain];
+	ball_pixmap=[[NSImage imageNamed:@"ball.png"] retain];
+	shadow_pixmap=[[NSImage imageNamed:@"ball-shadow.png"] retain];
+	[self InitState:YES];
 }
 
 - (BOOL) isOpaque; { return NO; }
 
 - (void) drawRect:(NSRect) rect
 {
-	// draw ball
-	// or not?
-	// QtMaze shifts a ball label around by changing the frame origin
-	// this means we would have an NSImageView subview
-	// but we could do differently...
-}
-
-- (void) checkLoadedPictures;
-{
-
-}
-
-- (void) disableScreenSaver;
-{
-
-}
-
-- (void) enableScreenSaver;
-{
-
+	ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
+	double br=[pl ballRadius];	// FIXME: not every time!
+	if (game_state != GAME_STATE_NORMAL)
+		{ // make ball become smaller over time
+		br *= 1 - 0.40 * anim_timer / ANIM_MAX;
+		}
+	NSRect ball=NSMakeRect(ballpos.x-br, ballpos.y-br, 2*br, 2*br);
+	[ball_pixmap drawInRect:ball fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+	ball.origin.x += br/5.0;	// shadow shift
+	[shadow_pixmap drawInRect:ball fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 }
 
 - (void) setMenuVis:(BOOL) x;
@@ -109,6 +102,8 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (void) MoveBall:(double) x :(double) y;
 {
+	ballpos=NSMakePoint(x, y);
+	[self setNeedsDisplay:YES];
 	// QtMaze shifts a ball label around by changing the frame origin
 	// this means we would have an NSImageView subview
 	// but we could do differently...
@@ -124,9 +119,9 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	if(redraw)
 		[self setNeedsDisplay:YES];
 
-	[[qt_game_levels objectAtIndex:cur_level] objectForKey:@"init"];
-	// get px, py
-	//	px=qt_game_levels[cur_level].init.x; py=qt_game_levels[cur_level].init.y;
+	NSDictionary *val=[[qt_game_levels objectAtIndex:cur_level] objectForKey:@"init"];
+	NSPoint point=NSMakePoint([[val objectForKey:@"x"] doubleValue], [[val objectForKey:@"y"] doubleValue]);
+	px=point.x, py=point.y;
 	vx=0; vy=0;
 
 	pr_px=px; pr_py=py;
