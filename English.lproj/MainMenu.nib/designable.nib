@@ -368,6 +368,14 @@
                             <customView misplaced="YES" id="1me-2v-Qz5" customClass="Form">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="640"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <outlet property="exit_lbl" destination="J1u-R3-92c" id="fcX-Mb-6Ih"/>
+                                    <outlet property="levelno_lbl" destination="dXz-hI-eXl" id="7T0-hh-73r"/>
+                                    <outlet property="menubuttons" destination="nl2-tf-bT1" id="aYW-4o-7he"/>
+                                    <outlet property="next_lbl" destination="md5-wf-yVz" id="mgZ-lZ-RZq"/>
+                                    <outlet property="prev_lbl" destination="1jn-cm-QOI" id="nxQ-AP-HL8"/>
+                                    <outlet property="reset_lbl" destination="5QU-Ag-hjJ" id="hFu-F2-k6h"/>
+                                </connections>
                             </customView>
                             <customView hidden="YES" misplaced="YES" id="nl2-tf-bT1" userLabel="Buttons">
                                 <rect key="frame" x="0.0" y="400" width="480" height="73"/>
@@ -389,6 +397,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="restart:" target="1me-2v-Qz5" id="sOa-kK-H6n"/>
+                                        </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" misplaced="YES" id="J1u-R3-92c">
                                         <rect key="frame" x="404" y="7" width="49" height="32"/>
@@ -397,6 +408,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="performClose:" target="xuT-x2-x8K" id="JG8-JC-8IP"/>
+                                        </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" misplaced="YES" id="md5-wf-yVz">
                                         <rect key="frame" x="144" y="7" width="47" height="32"/>
@@ -405,6 +419,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="nextLevel:" target="1me-2v-Qz5" id="aKa-Pq-R7d"/>
+                                        </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" misplaced="YES" id="1jn-cm-QOI">
                                         <rect key="frame" x="87" y="7" width="47" height="32"/>
@@ -413,10 +430,16 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="prevLevel:" target="1me-2v-Qz5" id="iDK-AT-Hdn"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </customView>
                         </subviews>
+                        <connections>
+                            <action selector="ScreenTouchedPause:" target="1me-2v-Qz5" id="fYw-FX-xod"/>
+                        </connections>
                     </customView>
                 </subviews>
             </view>
