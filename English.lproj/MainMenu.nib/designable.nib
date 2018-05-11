@@ -219,12 +219,17 @@
                         <items>
                             <menuItem title="Next" id="527">
                                 <connections>
-                                    <action selector="nextLevel:" target="-1" id="3Db-pX-W2d"/>
+                                    <action selector="nextLevel:" target="1me-2v-Qz5" id="9Mp-ie-f0x"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Previous" id="528">
                                 <connections>
-                                    <action selector="prevLevel:" target="-1" id="VvY-lj-kuI"/>
+                                    <action selector="prevLevel:" target="1me-2v-Qz5" id="xMN-LI-hDa"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Reset" id="JPl-zI-ROW">
+                                <connections>
+                                    <action selector="restart:" target="1me-2v-Qz5" id="fbQ-FE-Fj4"/>
                                 </connections>
                             </menuItem>
                         </items>

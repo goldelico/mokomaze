@@ -609,6 +609,8 @@ int incircle(NSPoint p, NSPoint c, double cr)
 		return cur_level < [qt_game_levels count]-1;
 	if([action isEqualToString:@"prevLevel:"])
 		return cur_level > 0;
+	if([action isEqualToString:@"restart:"])
+		return cur_level > 0;
 	return YES;
 }
 
