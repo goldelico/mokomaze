@@ -98,17 +98,12 @@
 
 - (NSString *) levelpack;
 {
-	NSDictionary *dict=[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"MokoMaze"];
+	NSUserDefaults *ud=[NSUserDefaults standardUserDefaults];
 	[level_pack release];
-	level_pack=nil;
-	if([dict objectForKey:@"levelpack"])
-		level_pack=[[dict objectForKey:@"levelpack"] retain];
-	else
+	level_pack=[[ud objectForKey:@"levelpack"] retain];
+	if(!level_pack)
 		level_pack=@"main.levelpack";
-	if([dict objectForKey:@"level"])
-		userlevel=[[dict objectForKey:@"level"] intValue];
-	else
-		userlevel=0;
+	userlevel=[[ud objectForKey:@"level"] intValue];
 	return level_pack;
 }
 
@@ -124,13 +119,10 @@
 
 - (void) SaveLevel:(int) n;
 {
-	NSString *domain=@"MokoMaze";
 	NSUserDefaults *ud=[NSUserDefaults standardUserDefaults];
-	NSMutableDictionary *dict=[[ud persistentDomainForName:domain] mutableCopy];
-	// store n and levelpack in NSUserDefaults
-	[ud setPersistentDomain:dict forName:domain];
+	[ud setObject:level_pack forKey:@"levelpack"];
+	[ud setObject:[NSNumber numberWithInt:n] forKey:@"level"];
 	[ud synchronize];
-	[dict release];
 }
 
 @end
