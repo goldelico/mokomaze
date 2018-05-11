@@ -116,6 +116,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 {
 	[self SetLevelNo];
 	[menubuttons setHidden:!x];
+	[self setButtonsPics];
 	[menubuttons setNeedsDisplay:YES];
 }
 
@@ -488,8 +489,9 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (void) setButtonsPics;
 {
-	// loaded from NIB
-	// but we should enable/disable e.g. Next and Prev buttons depending on cur_level
+	[prev_lbl setEnabled:cur_level > 0];
+	[next_lbl setEnabled:cur_level < [qt_game_levels count]-1];
+	[reset_lbl setEnabled:cur_level > 0];
 }
 
 - (void) acc_timerAction:(double) acx :(double) acy;
