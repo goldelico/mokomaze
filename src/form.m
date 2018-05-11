@@ -27,7 +27,7 @@
 
 #define FRAME_RATE		30.0
 #define MAX_BUMP_SPEED	160.0
-#define MIN_BUMP_SPEED	45
+#define MIN_BUMP_SPEED	10
 
 double calcdist(NSPoint p1, NSPoint p2)
 {
