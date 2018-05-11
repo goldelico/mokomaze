@@ -34,7 +34,9 @@
 	if((self=[super initWithFrame:frame]))
 		{
 		hole_pixmap=[[NSImage imageNamed:@"hole.png"] retain];
+		[hole_pixmap setFlipped:YES];
 		fin_pixmap=[[NSImage imageNamed:@"fin.png"] retain];
+		[fin_pixmap setFlipped:YES];
 		desk_pixmap=[[NSImage imageNamed:@"desk.png"] retain];
 		wall_pixmap=[[NSImage imageNamed:@"wall.png"] retain];
 		lvl_pixmap=[[NSImage alloc] initWithSize:frame.size];

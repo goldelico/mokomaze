@@ -86,6 +86,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	wnd_h=wnd.height;
 
 	ball_pixmap=[[NSImage imageNamed:@"ball.png"] retain];
+	[ball_pixmap setFlipped:YES];
 	shadow_pixmap=[[NSImage imageNamed:@"ball-shadow.png"] retain];
 
 	[self InitState:YES];
@@ -106,7 +107,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	NSRect ball=NSMakeRect(ballpos.x-br, ballpos.y-br, 2*br, 2*br);
 	NSRect shadow=ball;
 	shadow.origin.x += br/5.0;	// shadow shift
-	shadow.origin.y -= br/5.0;
+	shadow.origin.y += br/5.0;
 	[shadow_pixmap drawInRect:shadow fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 	[ball_pixmap drawInRect:ball fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 }
