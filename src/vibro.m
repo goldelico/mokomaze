@@ -23,8 +23,11 @@
 
 #import "vibro.h"
 
-#ifndef __APPLE__	// QuantumSTEP (or iOS) only
+#ifdef __APPLE__
+#import <AudioToolbox/AudioToolbox.h>
+#else
 #import <CoreMotion/CoreMotion.h>
+#import <CoreDevice/CoreDevice.h>	// we have AudioServicesPlaySystemSoundWithVibration() defined here
 #endif
 
 @implementation Vibro
@@ -57,6 +60,25 @@
 {
 #ifdef __APPLE__
 	NSBeep();
+#else
+	AudioServicesStopSystemSound(kSystemSoundID_Vibrate);
+
+	int64_t vibrationLength = level;
+
+	NSArray *pattern=
+			[NSArray arrayWithObjects:
+				[NSNumber numberWithBool:YES],
+				[NSNumber numberWithFloat:vibrationLength],
+				[NSNumber numberWithBool:NO],
+				[NSNumber numberWithFloat:0],
+				nil];
+
+	NSMutableDictionary *dict=
+			[NSMutableDictionary dictionaryWithObjectsAndKeys:pattern, @"VibePattern",
+						[NSNumber numberWithDouble:1.0],
+						nil];
+
+	AudioServicesPlaySystemSoundWithVibration(kSystemSoundID_Vibrate, nil, dict);
 #endif
 	return 0;
 }
