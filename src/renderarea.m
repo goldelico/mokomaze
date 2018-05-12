@@ -54,32 +54,9 @@
 - (void) awakeFromNib
 {
 	ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
-	// überarbeiten...
-	// es sollte sichergestellt werden dass die params geladen sind wenn man GetGameLevels aufruft
-
 	[pl load_params:[pl levelpack]];
 	re_game_levels = [[pl GetGameLevels] retain];
 }
-
-// fixme: read this from the levelpack!
-// and scale to our real screen size
-/*
- "window": {
- "width":  480,
- "height": 640
- },
-
- "ball": {
- "radius": 23
- },
-
- "hole": {
- "radius": 28
- }
-*/
-
-#define HOLE_R	28
-#define BALL_R	23
 
 - (void) setLevel:(int) lvl_no;
 { // prepare background pixmap for given game level
