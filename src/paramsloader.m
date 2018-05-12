@@ -50,20 +50,18 @@
 		{
 		NSString *path=[[NSBundle mainBundle] pathForResource:levelpack ofType:@"json"];
 		NSData *data=[NSData dataWithContentsOfFile:path];
-		if(!data)
-			{
-			levelpack=@"main.levelpack";	// try again with default
-			if(game_levels && [levelpack isEqualToString:loaded_pack])
-				return 0;	// already loaded
-			path=[[NSBundle mainBundle] pathForResource:levelpack ofType:@"json"];
-			data=[NSData dataWithContentsOfFile:path];
-			if(!data)
-				return -1;
-			}
 		NSError *error=nil;
 		NSDictionary *root=data?[NSJSONSerialization JSONObjectWithData:data options:0 error:&error]:nil;
 		if(!root)
-			return -1;
+			{
+			NSString *defaultpack=@"main.levelpack";
+			if([levelpack isEqualToString:defaultpack])
+				{
+				NSLog(@"failed to load and parse JSON %@: %@", levelpack, error);
+				return -1;
+				}
+			return [self load_params:defaultpack];	// try default
+			}
 		[game_levels release];
 		game_levels = [root retain];
 		[loaded_pack release];
