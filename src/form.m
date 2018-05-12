@@ -63,10 +63,8 @@ int incircle(NSPoint p, NSPoint c, double cr)
 - (void) awakeFromNib
 {
 	ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
-	// überarbeiten...
-	// es sollte sichergestellt werden dass die params geladen sind wenn man GetGameLevels aufruft
-	// und auch nur einmal - jetzt ist es doppelt!
-	[pl load_params:[pl levelpack]];
+	if([pl load_params:[pl levelpack]])
+		[NSApp terminate:nil];
 
 	qt_game_levels = [[pl GetGameLevels] retain];
 
@@ -127,6 +125,10 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (void) SetLevelNo;
 {
+	NSDictionary *level=[qt_game_levels objectAtIndex:cur_level];
+	NSString *name=[level objectForKey:@"comment"];
+	if(name)
+		;
 	NSString *str=[NSString stringWithFormat:@"Level %d/%d", cur_level+1, [qt_game_levels count]];
 	[levelno_lbl setStringValue:str];
 	[(RenderArea *) [self superview] setLevel:cur_level];	// update background image
