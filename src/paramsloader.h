@@ -25,6 +25,7 @@
 
 @interface ParamsLoader : NSObject
 {
+	NSString *loaded_pack;	//file name
 	NSDictionary *game_levels;
 	NSString *level_pack;
 	int userlevel;

@@ -28,6 +28,8 @@
 - (void) dealloc
 {
 	[game_levels release];
+	[level_pack release];
+	[loaded_pack release];
 	[super dealloc];
 }
 
@@ -44,19 +46,29 @@
 
 - (int) load_params:(NSString *) levelpack;
 {
-	NSString *path=[[NSBundle mainBundle] pathForResource:levelpack ofType:@"json"];
-	NSData *data=[NSData dataWithContentsOfFile:path];
-	if(!data)
-		return -1;
-	NSError *error=nil;
-	NSDictionary *root=[NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-	if(!root)
-		return -1;
-	[game_levels release];
-	game_levels = [root retain];
-	if(!game_levels)
-		return -1;
-
+	if(!game_levels || !loaded_pack || ![levelpack isEqualToString:loaded_pack])
+		{
+		NSString *path=[[NSBundle mainBundle] pathForResource:levelpack ofType:@"json"];
+		NSData *data=[NSData dataWithContentsOfFile:path];
+		if(!data)
+			{
+			levelpack=@"main.levelpack";	// try again with default
+			if(game_levels && [levelpack isEqualToString:loaded_pack])
+				return 0;	// already loaded
+			path=[[NSBundle mainBundle] pathForResource:levelpack ofType:@"json"];
+			data=[NSData dataWithContentsOfFile:path];
+			if(!data)
+				return -1;
+			}
+		NSError *error=nil;
+		NSDictionary *root=data?[NSJSONSerialization JSONObjectWithData:data options:0 error:&error]:nil;
+		if(!root)
+			return -1;
+		[game_levels release];
+		game_levels = [root retain];
+		[loaded_pack release];
+		loaded_pack=[levelpack retain];
+		}
 	return 0;
 }
 
@@ -102,7 +114,7 @@
 	[level_pack release];
 	level_pack=[[ud objectForKey:@"levelpack"] retain];
 	if(!level_pack)
-		level_pack=@"main.levelpack";
+		level_pack=@"//undefined//";
 	userlevel=[[ud objectForKey:@"level"] intValue];
 	return level_pack;
 }
@@ -120,7 +132,7 @@
 - (void) SaveLevel:(int) n;
 {
 	NSUserDefaults *ud=[NSUserDefaults standardUserDefaults];
-	[ud setObject:level_pack forKey:@"levelpack"];
+	[ud setObject:loaded_pack forKey:@"levelpack"];
 	[ud setObject:[NSNumber numberWithInt:n] forKey:@"level"];
 	[ud synchronize];
 }
