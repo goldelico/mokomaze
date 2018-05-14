@@ -38,7 +38,9 @@
 		fin_pixmap=[[NSImage imageNamed:@"fin.png"] retain];
 		[fin_pixmap setFlipped:YES];
 		desk_pixmap=[[NSImage imageNamed:@"desk.png"] retain];
+		[desk_pixmap setFlipped:YES];
 		wall_pixmap=[[NSImage imageNamed:@"wall.png"] retain];
+		[wall_pixmap setFlipped:YES];
 		lvl_pixmap=[[NSImage alloc] initWithSize:frame.size];
 		_antialiased = NO;
 		}
