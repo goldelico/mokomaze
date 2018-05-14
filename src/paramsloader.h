@@ -35,12 +35,6 @@
 - (int) load_params:(NSString *) levelpack;
 - (NSArray *) GetGameLevels;
 - (NSDictionary *) GetGameLevel:(int) level;
-// each record is an NSDictionary
-//   boxes = array(dict with x1, x2, y1, y2)
-//   checkpoints = array(dict with x, y)
-//   comment = string
-//   holes = array(dict with x, y)
-//   init = dict(x, y)
 - (NSSize) gameSize;		// coordinate range in levelpack
 - (NSString *) levelPackName;
 - (NSString *) levelPackAuthor;
@@ -52,26 +46,3 @@
 - (int) GetVibroEnabled;
 
 @end
-
-#define PARAMSLOADER_H
-
-#ifndef PARAMSLOADER_H
-#define PARAMSLOADER_H
-
-#include "types.h"
-
-void parse_command_line(int argc, char *argv[]);
-int load_params();
-Config GetGameConfig();
-Level* GetGameLevels();
-User GetUserSettings();
-int GetGameLevelsCount();
-int GetVibroEnabled();
-Prompt GetArguments();
-char* GetExecInit();
-char* GetExecFinal();
-
-void SaveLevel(int n);
-
-#endif
-
