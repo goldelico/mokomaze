@@ -90,7 +90,7 @@
 		NSPoint p1=NSMakePoint([[val objectForKey:@"x1"] doubleValue], [[val objectForKey:@"y1"] doubleValue]);
 		NSPoint p2=NSMakePoint([[val objectForKey:@"x2"] doubleValue], [[val objectForKey:@"y2"] doubleValue]);
 		NSRect rect=NSMakeRect(p1.x, p1.y, p2.x-p1.x, p2.y-p1.y);
-		[wall_pixmap drawInRect:rect fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+		[wall_pixmap drawInRect:rect fromRect:rect operation:NSCompositeSourceOver fraction:1.0];
 		}
 
 	valList=[level objectForKey:@"holes"];
