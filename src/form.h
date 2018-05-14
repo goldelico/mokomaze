@@ -32,8 +32,6 @@
 #define FORCE_TREASURE 0.030
 #define BUMP_COEF 0.3
 
-#define PROC_ACC_DATA_INTERVAL 16
-
 
 @interface Form : NSView
 {
