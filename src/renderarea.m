@@ -81,7 +81,7 @@
 		NSDictionary *val=[valList objectAtIndex:i];
 		NSPoint p1=NSMakePoint([[val objectForKey:@"x1"] doubleValue], [[val objectForKey:@"y1"] doubleValue]);
 		NSPoint p2=NSMakePoint([[val objectForKey:@"x2"] doubleValue], [[val objectForKey:@"y2"] doubleValue]);
-		[self renderWallShadow:p1.x :p1.y :p2.x :p2.y];
+		[self renderWallShadow:p1 :p2];
 		}
 
 	for (i=0; i<[valList count]; i++)
@@ -116,8 +116,11 @@
 	[lvl_pixmap unlockFocus];
 }
 
-- (void) renderWallShadow:(int) bx1 :(int) by1 :(int) bx2 :(int) by2;
+- (void) renderWallShadow:(NSPoint) p1 :(NSPoint) p2;
 {
+	int bx1=p1.x, by1=p1.y;
+	int bx2=p2.x, by2=p2.y;
+
 	bx2--;
 	by2--;
 

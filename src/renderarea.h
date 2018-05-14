@@ -40,6 +40,6 @@
 
 - (void) setLevel:(int) lvl_no;
 - (void) drawRect:(NSRect) rect;
-- (void) renderWallShadow:(int) bx1 :(int) by1 :(int) bx2 :(int) by2;
+- (void) renderWallShadow:(NSPoint) p1 :(NSPoint) p2;
 
 @end
