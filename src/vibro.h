@@ -31,16 +31,3 @@
 
 @end
 
-#define VIBRO_H
-
-#ifndef VIBRO_H
-#define VIBRO_H
-
-#include "types.h"
-
-int init_vibro();
-int set_vibro(BYTE level);
-int close_vibro();
-
-#endif /* VIBRO_H */
-
