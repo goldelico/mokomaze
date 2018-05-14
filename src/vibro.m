@@ -75,7 +75,7 @@
 
 	NSMutableDictionary *dict=
 			[NSMutableDictionary dictionaryWithObjectsAndKeys:pattern, @"VibePattern",
-						[NSNumber numberWithDouble:1.0],
+						[NSNumber numberWithDouble:1.0], @"Intensity",
 						nil];
 
 	AudioServicesPlaySystemSoundWithVibration(kSystemSoundID_Vibrate, nil, dict);
