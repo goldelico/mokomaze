@@ -25,7 +25,11 @@
 #import "vibro.h"
 #import "form.h"
 
+#ifdef __APPLE__
 #define FRAME_RATE		30.0
+#else
+#define FRAME_RATE		10.0
+#endif
 #define MAX_BUMP_SPEED	160.0
 #define MIN_BUMP_SPEED	10
 
