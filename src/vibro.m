@@ -51,11 +51,6 @@
 #endif
 }
 
-+ (int) init_vibro;
-{
-	return 0;
-}
-
 + (int) set_vibro:(uint8_t) level;
 {
 #ifdef __APPLE__
@@ -80,11 +75,6 @@
 
 	AudioServicesPlaySystemSoundWithVibration(kSystemSoundID_Vibrate, nil, dict);
 #endif
-	return 0;
-}
-
-+ (int) close_vibro;
-{
 	return 0;
 }
 
