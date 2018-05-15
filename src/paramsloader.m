@@ -40,7 +40,6 @@
 
 - (void) awakeFromNib
 {
-	// [self load_params:@"main.levelpack"];
 	vibro_enabled=YES;
 }
 
@@ -85,8 +84,8 @@
 	return [game_levels objectForKey:@"name"];
 }
 
-- (NSSize) gameSize;		// coordinate range in levelpack
-{
+- (NSSize) gameSize;
+{ // coordinate range used in levelpack
 	NSDictionary *val=[[game_levels objectForKey:@"requirements"] objectForKey:@"window"];
 	return NSMakeSize([[val objectForKey:@"width"] doubleValue], [[val objectForKey:@"height"] doubleValue]);
 }
