@@ -144,4 +144,15 @@
 	[ud synchronize];
 }
 
+- (IBAction) preferences:(id) sender;
+{
+	// update popup and states
+	// [preferencesWindow orderFrontAndMakeKey:nil];
+}
+
+- (IBAction) preferenceChanged:(id) sender;
+{
+
+}
+
 @end

@@ -30,6 +30,8 @@
 	NSString *level_pack;
 	int userlevel;
 	int vibro_enabled;
+	IBOutlet NSWindow *preferencesWindow;
+	IBOutlet NSPopUpButton *stylePreference;
 }
 
 - (int) load_params:(NSString *) levelpack;
@@ -44,5 +46,8 @@
 - (int) userlevel;			// the level stored in UserDefauls
 - (void) SaveLevel:(int) n;	// store level in UserDefaults
 - (int) GetVibroEnabled;
+
+- (IBAction) preferences:(id) sender;
+- (IBAction) preferenceChanged:(id) sender;
 
 @end
