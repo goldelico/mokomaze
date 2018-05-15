@@ -126,46 +126,20 @@
 	bx2--;
 	by2--;
 
-	int initalpha = 90;
-	[[NSColor colorWithCalibratedRed: 0 green:0 blue:0 alpha:initalpha/100.0] set];
+	float initalpha = 90/255.0;
+	[[NSColor colorWithCalibratedRed: 0 green:0 blue:0 alpha:initalpha] set];
 
 	[NSBezierPath setDefaultLineWidth:1.0];
 	[NSBezierPath strokeLineFromPoint:NSMakePoint(bx1-1, by1) toPoint:NSMakePoint(bx1-1, by2)];
-	[NSBezierPath strokeLineFromPoint:NSMakePoint(bx1, by1-1) toPoint:NSMakePoint(bx2, by2-1)];
-
-	[[NSColor colorWithCalibratedRed: 0 green:0 blue:0 alpha:initalpha/100.0] set];
-
-	// FIXME: loop?
-
-#if FIXME
-	col->setRed(0);
-	col->setGreen(0);
-	col->setBlue(0);
-	col->setAlpha(initalpha);
-
-	QPen *pen = new QPen();
-	pen->setStyle(Qt::SolidLine);
-	pen->setColor(*col);
-	painter->setPen(*pen);
-	painter->setBrush(Qt::NoBrush);
-
-	painter->drawLine(bx1-1, by1, bx1-1, by2);
-	painter->drawLine(bx1, by1-1, bx2, by1-1);
+	[NSBezierPath strokeLineFromPoint:NSMakePoint(bx1, by1-1) toPoint:NSMakePoint(bx2, by1-1)];
 
 	int box_shadow_length_scaled = 10;
 	for (int j=0; j<1+box_shadow_length_scaled; j++)
 		{
-		col->setAlpha(initalpha - 60*j/box_shadow_length_scaled);
-		pen->setColor(*col);
-		painter->setPen(*pen);
-
-		painter->drawLine(bx2+j+1, by1+j, bx2+j+1, by2+j+1);
-		painter->drawLine(bx1+j, by2+j+1, bx2+j, by2+j+1);
+		[[NSColor colorWithCalibratedRed: 0 green:0 blue:0 alpha:initalpha - ((60/255.0)*j)/box_shadow_length_scaled] set];
+		[NSBezierPath strokeLineFromPoint:NSMakePoint(bx2+j-1, by1+j) toPoint:NSMakePoint(bx2+j+1, by2+j+1)];
+		[NSBezierPath strokeLineFromPoint:NSMakePoint(bx1+j, by2+j+1) toPoint:NSMakePoint(bx2+j, by2+j+1)];
 		}
-
-	delete col;
-	delete pen;
-#endif
 }
 
 - (BOOL) isOpaque; { return YES; }
