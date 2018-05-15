@@ -267,6 +267,8 @@ int incircle(NSPoint p, NSPoint c, double cr)
 			}
 		}
 
+	// Loop over all holes
+
 	valList=[level objectForKey:@"holes"];
 
 	for (i=0; i<[valList count]; i++)
@@ -289,6 +291,8 @@ int incircle(NSPoint p, NSPoint c, double cr)
 		}
 
 	BOOL retval = NO;
+
+	// Loop over all walls
 
 	valList=[level objectForKey:@"boxes"];
 
@@ -482,12 +486,9 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (void) BumpVibrate:(double) speed;
 {
-	//#define MAX_BUMP_SPEED 160.0
-	//#define VIB_TRESHHOLD 0.30
 	double v = fabs(speed);
 	double k = v/MAX_BUMP_SPEED;
 	if (k>1) k=1;
-	//if (k>VIB_TRESHHOLD)
 	if (v>MIN_BUMP_SPEED)
 		{
 		uint8_t vlevel = (uint8_t)(k*63);
@@ -496,7 +497,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 }
 
 - (void) setButtonsPics;
-{
+{ // enable/disable buttons
 	[prev_lbl setEnabled:cur_level > 0];
 	[next_lbl setEnabled:cur_level < [qt_game_levels count]-1];
 	[reset_lbl setEnabled:cur_level > 0];
@@ -534,8 +535,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (void) timerAction;
 {
-#if 0
-	// what is this fastchange_step good for?
+#if 0 // what is this fastchange_step good for?
 	int new_cur_level = cur_level + fastchange_step;
 	if (new_cur_level >= [qt_game_levels count]) new_cur_level = [qt_game_levels count]-1;
 	if (new_cur_level < 0) new_cur_level = 0;
