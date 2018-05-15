@@ -49,6 +49,10 @@
 
 - (void) dealloc
 {
+	[hole_pixmap release];
+	[fin_pixmap release];
+	[desk_pixmap release];
+	[wall_pixmap release];
 	[lvl_pixmap release];
 	[super dealloc];
 }
