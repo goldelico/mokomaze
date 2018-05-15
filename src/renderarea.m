@@ -125,25 +125,22 @@
 
 - (void) renderWallShadow:(NSPoint) p1 :(NSPoint) p2;
 {
-	int bx1=p1.x, by1=p1.y;
-	int bx2=p2.x, by2=p2.y;
-
-	bx2--;
-	by2--;
+	double bx1=p1.x, by1=p1.y;
+	double bx2=p2.x, by2=p2.y;
 
 	float initalpha = 90/255.0;
 	[[NSColor colorWithCalibratedRed: 0 green:0 blue:0 alpha:initalpha] set];
 
 	[NSBezierPath setDefaultLineWidth:1.0];
-	[NSBezierPath strokeLineFromPoint:NSMakePoint(bx1-1, by1) toPoint:NSMakePoint(bx1-1, by2)];
-	[NSBezierPath strokeLineFromPoint:NSMakePoint(bx1, by1-1) toPoint:NSMakePoint(bx2, by1-1)];
+	[NSBezierPath strokeLineFromPoint:NSMakePoint(bx1-1, by1) toPoint:NSMakePoint(bx1-1, by2-1)];
+	[NSBezierPath strokeLineFromPoint:NSMakePoint(bx1, by1-1) toPoint:NSMakePoint(bx2-1, by1-1)];
 
 	int box_shadow_length_scaled = 10;
 	for (int j=0; j<1+box_shadow_length_scaled; j++)
 		{
 		[[NSColor colorWithCalibratedRed: 0 green:0 blue:0 alpha:initalpha - ((60/255.0)*j)/box_shadow_length_scaled] set];
-		[NSBezierPath strokeLineFromPoint:NSMakePoint(bx2+j-1, by1+j) toPoint:NSMakePoint(bx2+j+1, by2+j+1)];
-		[NSBezierPath strokeLineFromPoint:NSMakePoint(bx1+j, by2+j+1) toPoint:NSMakePoint(bx2+j, by2+j+1)];
+		[NSBezierPath strokeLineFromPoint:NSMakePoint(bx2+(j-1), by1+j) toPoint:NSMakePoint(bx2+j, by2+j)];
+		[NSBezierPath strokeLineFromPoint:NSMakePoint(bx1+j, by2+j) toPoint:NSMakePoint(bx2+(j-1), by2+j)];
 		}
 }
 
