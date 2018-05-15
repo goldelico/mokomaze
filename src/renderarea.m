@@ -72,6 +72,7 @@
 	re_cur_level = lvl_no;
 
 	[lvl_pixmap lockFocus];
+
 	/* draw background image */
 	NSSize sz=[lvl_pixmap size];
 	[desk_pixmap drawInRect:NSMakeRect(0, 0, sz.width, sz.height) fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
@@ -156,7 +157,7 @@
 
 - (void) mouseDown:(NSEvent *) event
 {
-	// loop until released (?)
+	// ? loop until released...
 	[self sendAction:[self action] to:[self target]];
 }
 
