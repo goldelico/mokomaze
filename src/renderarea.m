@@ -140,7 +140,7 @@
 	for (j=0; j<1+box_shadow_length_scaled; j++)
 		{
 		[[NSColor colorWithCalibratedRed: 0 green:0 blue:0 alpha:initalpha - ((60/255.0)*j)/box_shadow_length_scaled] set];
-		[NSBezierPath strokeLineFromPoint:NSMakePoint(bx2+(j-1), by1+j) toPoint:NSMakePoint(bx2+j, by2+j)];
+		[NSBezierPath strokeLineFromPoint:NSMakePoint(bx2+j, by1+j) toPoint:NSMakePoint(bx2+j, by2+(j-1))];
 		[NSBezierPath strokeLineFromPoint:NSMakePoint(bx1+j, by2+j) toPoint:NSMakePoint(bx2+(j-1), by2+j)];
 		}
 }
