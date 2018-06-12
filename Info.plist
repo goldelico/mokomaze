@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>MokoMaze</string>
 	<key>CFBundleIconFile</key>
-	<string>qtmaze.png</string>
+	<string>qtmaze</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.openmoko.MokoMaze</string>
 	<key>CFBundleInfoDictionaryVersion</key>

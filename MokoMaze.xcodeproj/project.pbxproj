@@ -36,6 +36,7 @@
 		EEA3D35D208B25AA004CB227 /* README in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D338208B25A9004CB227 /* README */; };
 		EEA3D35E208B25AA004CB227 /* renderarea.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D339208B25A9004CB227 /* renderarea.m */; };
 		EEA3D360208B25AA004CB227 /* vibro.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D33D208B25A9004CB227 /* vibro.m */; };
+		EEE276AE20C5891800835B4B /* qtmaze.icns in Resources */ = {isa = PBXBuildFile; fileRef = EEE276AD20C5891800835B4B /* qtmaze.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		EEA3D33D208B25A9004CB227 /* vibro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = vibro.m; path = src/vibro.m; sourceTree = "<group>"; };
 		EEA3D33E208B25A9004CB227 /* vibro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vibro.h; path = src/vibro.h; sourceTree = "<group>"; };
 		EEA6A096174BDE7900F4FBFA /* mySTEP.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mySTEP.make; path = ../../../Frameworks/mySTEP.make; sourceTree = SOURCE_ROOT; };
+		EEE276AD20C5891800835B4B /* qtmaze.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = qtmaze.icns; path = ../../../qtmaze.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 				EEA3D32D208B25A9004CB227 /* prev-i.png */,
 				EEA3D32E208B25A9004CB227 /* prev-p.png */,
 				EEA3D32F208B25A9004CB227 /* prev.png */,
+				EEE276AD20C5891800835B4B /* qtmaze.icns */,
 				EEA3D330208B25A9004CB227 /* qtmaze.png */,
 				EEA3D331208B25A9004CB227 /* reset-i.png */,
 				EEA3D332208B25A9004CB227 /* reset-p.png */,
@@ -257,6 +260,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEE276AE20C5891800835B4B /* qtmaze.icns in Resources */,
 				EEA3D345208B25A9004CB227 /* qtmaze.html in Resources */,
 				EEA3D33F208B25A9004CB227 /* COPYING in Resources */,
 				EEA3D34C208B25A9004CB227 /* desk.png in Resources */,
