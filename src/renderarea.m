@@ -62,6 +62,10 @@
 	ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
 	[pl load_params:[pl levelpack]];
 	re_game_levels = [[pl GetGameLevels] retain];
+#ifdef __mySTEP
+	[[self window] _allocateGraphicsContext];	// hasn't been ordered yet
+	[[[self window] graphicsContext] _setScale:1.0];	// disable scaling to screen
+#endif
 }
 
 - (void) setLevel:(int) lvl_no;
@@ -150,6 +154,9 @@
 
 - (void) drawRect:(NSRect) rect
 {
+#if 0
+	NSLog(@"pixmap size %@", NSStringFromSize([lvl_pixmap size]));
+#endif
 	[lvl_pixmap drawInRect:rect fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
 }
 
