@@ -62,10 +62,31 @@
 	ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
 	[pl load_params:[pl levelpack]];
 	re_game_levels = [[pl GetGameLevels] retain];
-#ifdef __mySTEP
-	[[self window] _allocateGraphicsContext];	// hasn't been ordered yet
-	[[[self window] graphicsContext] _setScale:1.0];	// disable scaling to screen
-#endif
+}
+
+- (void) resizeWithOldSuperviewSize:(NSSize) oldSize;
+{
+	NSRect bounds;
+	NSRect frame;
+	NSSize size;
+	[super resizeWithOldSuperviewSize:oldSize];
+	frame=[self frame];
+	size=[desk_pixmap size];
+	bounds.origin=NSZeroPoint;
+	bounds.size.width=size.height*frame.size.width/frame.size.height;
+	bounds.size.height=size.width*frame.size.height/frame.size.width;
+	if(bounds.size.height < size.height)
+		{
+		bounds.size.height=size.height;
+		bounds.origin.x=-0.5*(bounds.size.width-size.width);
+		}
+	else
+		{
+		bounds.size.width=size.width;
+		bounds.origin.y=-0.5*(bounds.size.height-size.height);
+		}
+	[self setBounds:bounds];
+	//	NSLog(@"bounds=%@", NSStringFromRect([self bounds]));
 }
 
 - (void) setLevel:(int) lvl_no;
@@ -157,7 +178,10 @@
 #if 0
 	NSLog(@"pixmap size %@", NSStringFromSize([lvl_pixmap size]));
 #endif
-	[lvl_pixmap drawInRect:rect fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
+	[[NSColor lightGrayColor] set];
+	NSRectFill([self bounds]);	// fill background
+	[lvl_pixmap drawAtPoint:NSZeroPoint fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
+	//	[lvl_pixmap drawInRect:rect fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
 }
 
 - (void) mouseDown:(NSEvent *) event
