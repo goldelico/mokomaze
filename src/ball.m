@@ -23,7 +23,7 @@
 
 #import "paramsloader.h"
 #import "vibro.h"
-#import "form.h"
+#import "ball.h"
 
 #ifdef __APPLE__
 #define FRAME_RATE		30.0
@@ -62,7 +62,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	return (calcdist(p, c) <= cr);
 }
 
-@implementation Form
+@implementation Ball
 
 - (void) awakeFromNib
 {

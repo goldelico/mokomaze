@@ -1,4 +1,4 @@
-/*  form.h
+/*  ball.h
  *
  *  Main game routines
  *
@@ -32,11 +32,9 @@
 #define FORCE_TREASURE 0.030
 #define BUMP_COEF 0.3
 
-
-@interface Form : NSView
+@interface Ball : NSView
 {
 	NSTimer *timer;
-	RenderArea *renderArea;
 	NSImage *ball_pixmap;
 	NSImage *shadow_pixmap;
 	NSPoint ballpos;
@@ -50,8 +48,8 @@
 
 	double wnd_w, wnd_h;
 
-	double px,py;	// current position
-	double vx,vy;	// current velocity
+	double px,py;	// current ball position
+	double vx,vy;	// current ball velocity
 
 	double pr_px, pr_py;
 	double pr_vx, pr_vy;

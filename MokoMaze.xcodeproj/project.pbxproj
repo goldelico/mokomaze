@@ -12,7 +12,7 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		EEA3D33F208B25A9004CB227 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D310208B25A9004CB227 /* COPYING */; };
 		EEA3D341208B25A9004CB227 /* main.levelpack.json in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D314208B25A9004CB227 /* main.levelpack.json */; };
-		EEA3D342208B25A9004CB227 /* form.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D315208B25A9004CB227 /* form.m */; };
+		EEA3D342208B25A9004CB227 /* ball.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D315208B25A9004CB227 /* ball.m */; };
 		EEA3D345208B25A9004CB227 /* qtmaze.html in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D31C208B25A9004CB227 /* qtmaze.html */; };
 		EEA3D347208B25A9004CB227 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D31F208B25A9004CB227 /* main.m */; };
 		EEA3D348208B25A9004CB227 /* paramsloader.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D320208B25A9004CB227 /* paramsloader.m */; };
@@ -49,8 +49,8 @@
 		EEA3D30E208B2567004CB227 /* MokoMaze.qcodeproj */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = MokoMaze.qcodeproj; sourceTree = "<group>"; };
 		EEA3D310208B25A9004CB227 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
 		EEA3D314208B25A9004CB227 /* main.levelpack.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = main.levelpack.json; sourceTree = "<group>"; };
-		EEA3D315208B25A9004CB227 /* form.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = form.m; path = src/form.m; sourceTree = "<group>"; };
-		EEA3D316208B25A9004CB227 /* form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = form.h; path = src/form.h; sourceTree = "<group>"; };
+		EEA3D315208B25A9004CB227 /* ball.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ball.m; path = src/ball.m; sourceTree = "<group>"; };
+		EEA3D316208B25A9004CB227 /* ball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ball.h; path = src/ball.h; sourceTree = "<group>"; };
 		EEA3D31C208B25A9004CB227 /* qtmaze.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = qtmaze.html; sourceTree = "<group>"; };
 		EEA3D31F208B25A9004CB227 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = src/main.m; sourceTree = "<group>"; };
 		EEA3D320208B25A9004CB227 /* paramsloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = paramsloader.m; path = src/paramsloader.m; sourceTree = "<group>"; };
@@ -98,8 +98,8 @@
 			children = (
 				EEA3D310208B25A9004CB227 /* COPYING */,
 				EEA3D338208B25A9004CB227 /* README */,
-				EEA3D316208B25A9004CB227 /* form.h */,
-				EEA3D315208B25A9004CB227 /* form.m */,
+				EEA3D316208B25A9004CB227 /* ball.h */,
+				EEA3D315208B25A9004CB227 /* ball.m */,
 				EEA3D31F208B25A9004CB227 /* main.m */,
 				EEA3D321208B25A9004CB227 /* paramsloader.h */,
 				EEA3D320208B25A9004CB227 /* paramsloader.m */,
@@ -310,7 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EEA3D342208B25A9004CB227 /* form.m in Sources */,
+				EEA3D342208B25A9004CB227 /* ball.m in Sources */,
 				EEA3D347208B25A9004CB227 /* main.m in Sources */,
 				EEA3D348208B25A9004CB227 /* paramsloader.m in Sources */,
 				EEA3D35E208B25AA004CB227 /* renderarea.m in Sources */,
