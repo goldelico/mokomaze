@@ -26,6 +26,7 @@
 
 #import "paramsloader.h"
 #import "renderarea.h"
+#import "ball.h"
 
 @implementation RenderArea
 
@@ -184,8 +185,30 @@
 	//	[lvl_pixmap drawInRect:rect fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
 }
 
+static BOOL debugging=NO;
+
 - (void) mouseDown:(NSEvent *) event
 {
+	if(debugging)
+		{ // set ball position to track mouse pointer
+			while([event type] != NSLeftMouseUp)	// loop outside until mouse goes up
+				{ // loop until mouse goes up
+					NSPoint p = [self convertPoint:[event locationInWindow] fromView:nil];
+#if 0
+					NSLog(@"mouseDown point=%@", NSStringFromPoint(p));
+#endif
+					if(NSMouseInRect(p, _bounds, [self isFlipped]))
+						{
+						Ball *ball=[[self subviews] objectAtIndex:0];
+						[ball moveBall:p];
+						}
+					event = [NSApp nextEventMatchingMask:(NSLeftMouseDownMask|NSLeftMouseUpMask|NSMouseMovedMask|NSLeftMouseDraggedMask|NSPeriodicMask)
+											   untilDate:[NSDate distantFuture]			// get next event
+												  inMode:NSEventTrackingRunLoopMode
+												 dequeue:YES];
+				}
+		return;
+		}
 	// ? loop until released...
 	[self sendAction:[self action] to:[self target]];
 }
