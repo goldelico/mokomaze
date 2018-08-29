@@ -82,7 +82,7 @@
 - (void) drawRect:(NSRect) rect;
 - (void) setMenuVis:(BOOL) x;
 - (void) SetLevelNo;
-- (void) MoveBall:(double) x :(double) y;
+- (void) MoveBall:(NSPoint) pos;
 - (void) InitState:(BOOL) redraw;
 // int line(double x0, double y0, double x1, double y1,    double vx0,double vy0, double vx1,double vy1);
 - (void) ZeroAnim;

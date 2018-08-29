@@ -140,9 +140,9 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	[pl SaveLevel:cur_level];
 }
 
-- (void) MoveBall:(double) x :(double) y;
+- (void) MoveBall:(NSPoint) pos;
 {
-	ballpos=NSMakePoint(x, y);
+	ballpos=pos;
 	[self setNeedsDisplay:YES];
 }
 
@@ -210,7 +210,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	pr_vx=0; pr_vy=0;
 
 	prev_px=px; prev_py=py;
-	[self MoveBall:px :py];
+	[self MoveBall:NSMakePoint(px, py)];
 }
 
 - (void) ZeroAnim;
@@ -477,7 +477,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 - (void) post_phys_res:(NSPoint) pnt :(NSPoint) mm_v;
 {
 	px = pnt.x; py = pnt.y;
-	[self MoveBall:px :py];
+	[self MoveBall:pnt];
 
 	vx = mm_v.x; vy = mm_v.y;
 	pr_px = px; pr_py = py;
@@ -528,7 +528,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 			}
 		}
 
-	[self MoveBall:px :py];
+	[self MoveBall:NSMakePoint(px, py)];
 	prev_px = px;
 	prev_py = py;
 }
