@@ -96,7 +96,7 @@
 - (void) post_phys_res:(NSPoint) pnt :(NSPoint) mm_v;
 - (void) bumpVibrate:(double) speed;
 - (void) setButtonsPics;
-- (void) acc_timerAction:(double) acx :(double) acy;
+- (void) accceleate:(NSPoint) acc;
 - (void) timerAction;
 
 - (IBAction) screenTouchedPause:(id) sender;

@@ -32,11 +32,16 @@
 	int vibro_enabled;
 	IBOutlet NSWindow *preferencesWindow;
 	IBOutlet NSPopUpButton *stylePreference;
+	enum debuggingLevel {
+		debuggingLevelNone=0,
+		debuggingLevelAccel=1,
+		debuggingLevelGraphics=2
+	} debuggingLevel;
 }
 
 - (int) load_params:(NSString *) levelpack;
-- (NSArray *) GetGameLevels;
-- (NSDictionary *) GetGameLevel:(int) level;
+- (NSArray *) getGameLevels;
+- (NSDictionary *) getGameLevel:(int) level;
 - (NSSize) gameSize;		// coordinate range in levelpack
 - (NSString *) levelPackName;
 - (NSString *) levelPackAuthor;
@@ -44,8 +49,9 @@
 - (double) holeRadius;
 - (NSString *) levelpack;	// name of the levelpack stored in UserDefaults
 - (int) userlevel;			// the level stored in UserDefauls
-- (void) SaveLevel:(int) n;	// store level in UserDefaults
-- (int) GetVibroEnabled;
+- (void) saveLevel:(int) n;	// store level in UserDefaults
+- (BOOL) getVibroEnabled;
+- (int) getDebuggingLevel;
 
 - (IBAction) preferences:(id) sender;
 - (IBAction) preferenceChanged:(id) sender;

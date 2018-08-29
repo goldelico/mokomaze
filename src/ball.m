@@ -70,14 +70,13 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	if([pl load_params:[pl levelpack]])
 		[NSApp terminate:nil];
 
-	qt_game_levels = [[pl GetGameLevels] retain];
+	qt_game_levels = [[pl getGameLevels] retain];
 
 	cur_level = [pl userlevel];
 	if (cur_level < 0) cur_level = 0;
 	if (cur_level >= [qt_game_levels count])
 		cur_level = (int) [qt_game_levels count] - 1;
 
-	game_state = GAME_STATE_NORMAL;
 	[self setLevelNo];
 
 	hole_r=[pl holeRadius];
@@ -137,12 +136,22 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	[levelno_lbl setStringValue:str];
 	[(RenderArea *) [self superview] setLevel:cur_level];	// update background image
 	ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
-	[pl SaveLevel:cur_level];
+	[pl saveLevel:cur_level];
 }
 
 - (void) moveBall:(NSPoint) pos;
 {
+	ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
 	ballpos=pos;
+	if([pl getDebuggingLevel] == debuggingLevelGraphics)
+		{ // also move in game
+			px=pos.x;
+			py=pos.y;
+			pr_px = px;
+			pr_py = py;
+			prev_px = px;
+			prev_py = py;
+		}
 	[self setNeedsDisplay:YES];
 }
 
@@ -151,7 +160,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 			 :(double) vx0 :(double) vy0 :(double) vx1 :(double) vy1;
 {
 	double x=x0, y=y0;
-	double mm_vx=vx1, mm_vy=vy1; //
+	double mm_vx=vx1, mm_vy=vy1;
 
 	NSPoint vec;
 	vec.x = x1-x0;
@@ -163,6 +172,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	norm_vec.y = vec.y/len;
 	double k=0;
 	BOOL muststop=NO;
+
 	while (!muststop)
 		{
 		k += 1;
@@ -180,7 +190,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 				{
 				ko++;
 				//TODO: lite testbump version
-				int bump = [self testbump:NSMakePoint(tmp_px, tmp_py) :NSMakePoint(tmp_vx, tmp_vy)];
+				BOOL bump = [self testbump:NSMakePoint(tmp_px, tmp_py) :NSMakePoint(tmp_vx, tmp_vy)];
 				if ( (!bump) || (ko >= MAX_PHYS_ITERATIONS) )
 					break;
 				}
@@ -196,10 +206,6 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (void) initState:(BOOL) redraw;
 {
-	[self zeroAnim];
-
-	if(redraw)
-		[self setNeedsDisplay:YES];
 
 	NSDictionary *val=[[qt_game_levels objectAtIndex:cur_level] objectForKey:@"init"];
 	NSPoint point=NSMakePoint([[val objectForKey:@"x"] doubleValue], [[val objectForKey:@"y"] doubleValue]);
@@ -210,7 +216,17 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	pr_vx=0; pr_vy=0;
 
 	prev_px=px; prev_py=py;
+	game_state = GAME_STATE_NORMAL;
 	[self moveBall:NSMakePoint(px, py)];
+
+	[self zeroAnim];
+
+	if(redraw)
+		{
+		[self setLevelNo];
+		[self setButtonsPics];
+		[self setNeedsDisplay:YES];
+		}
 }
 
 - (void) zeroAnim;
@@ -224,7 +240,6 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	if (game_state == GAME_STATE_FAILED)
 		{
 		[self initState:NO];
-		game_state = GAME_STATE_NORMAL;
 		}
 
 	if (game_state == GAME_STATE_WIN)
@@ -238,7 +253,6 @@ int incircle(NSPoint p, NSPoint c, double cr)
 			cur_level++;
 			}
 		[self initState:YES];
-		game_state = GAME_STATE_NORMAL;
 		}
 }
 
@@ -503,11 +517,11 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	[reset_lbl setEnabled:cur_level > 0];
 }
 
-- (void) acc_timerAction:(double) acx :(double) acy;
+- (void) acccelerate:(NSPoint) acc;
 {
 	if (game_state == GAME_STATE_NORMAL)
 		{
-		[self tout:NSMakePoint(acx, acy)];
+		[self tout:acc];
 		if (game_state != GAME_STATE_NORMAL)
 			{
 			int bshift = (hole_r - ball_r) / 3;
@@ -517,8 +531,8 @@ int incircle(NSPoint p, NSPoint c, double cr)
 		}
 
 	if (game_state != GAME_STATE_NORMAL)
-		{
-		if (anim_stage >= 1)
+		{ // animation is running
+		if (anim_stage >= 1)	// is done
 			[self processGameState];
 		else
 			{
@@ -542,16 +556,20 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	if (new_cur_level != cur_level)
 		{
 		cur_level = new_cur_level;
-		[self InitState:YES];
-		game_state = GAME_STATE_NORMAL;
-		[self SetLevelNo];
-		[self setButtonsPics];
+		[self initState:YES];
 		}
 #endif
 	if(![self menuVis])
 		{ // process movements
-		NSPoint acc=[Vibro accel];
-		[self acc_timerAction:acc.x :acc.y];
+			NSPoint acc;
+			ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
+			if([pl getDebuggingLevel] == debuggingLevelAccel)
+				{
+				acc=[self convertPoint:[_window mouseLocationOutsideOfEventStream] fromView:nil];
+				// center and scale to range...
+				}
+			acc=[Vibro accel];
+			[self acccelerate:acc];
 		}
 }
 
@@ -575,8 +593,6 @@ int incircle(NSPoint p, NSPoint c, double cr)
 		{
 		cur_level++;
 		[self initState:YES];
-		game_state = GAME_STATE_NORMAL;
-		[self setLevelNo];
 
 		fastchange_step = +10;
 #if FIXME // what is fastchange good for?
@@ -595,9 +611,6 @@ int incircle(NSPoint p, NSPoint c, double cr)
 		{
 		cur_level--;
 		[self initState:YES];
-		game_state = GAME_STATE_NORMAL;
-		[self setLevelNo];
-		[self setButtonsPics];
 		}
 }
 
@@ -605,9 +618,6 @@ int incircle(NSPoint p, NSPoint c, double cr)
 {
 	cur_level=0;
 	[self initState:YES];
-	game_state = GAME_STATE_NORMAL;
-	[self setLevelNo];
-	[self setButtonsPics];
 }
 
 - (BOOL) validateMenuItem:(NSMenuItem *)menuItem;

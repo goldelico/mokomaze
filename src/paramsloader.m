@@ -41,6 +41,7 @@
 - (void) awakeFromNib
 {
 	vibro_enabled=YES;
+	debuggingLevel=debuggingLevelGraphics;
 }
 
 - (int) load_params:(NSString *) levelpack;
@@ -69,7 +70,7 @@
 	return 0;
 }
 
-- (NSArray *) GetGameLevels;
+- (NSArray *) getGameLevels;
 {
 	return [game_levels objectForKey:@"levels"];
 }
@@ -109,9 +110,9 @@
  *   init = dict(x, y)
  */
 
-- (NSDictionary *) GetGameLevel:(int) level;
+- (NSDictionary *) getGameLevel:(int) level;
 {
-	return [[self GetGameLevels] objectAtIndex:level];
+	return [[self getGameLevels] objectAtIndex:level];
 }
 
 - (NSString *) levelpack;
@@ -130,12 +131,17 @@
 	return userlevel;
 }
 
-- (int) GetVibroEnabled;
+- (BOOL) getVibroEnabled;
 {
 	return vibro_enabled;
 }
 
-- (void) SaveLevel:(int) n;
+- (int) getDebuggingLevel;
+{
+	return debuggingLevel;
+}
+
+- (void) saveLevel:(int) n;
 {
 	NSUserDefaults *ud=[NSUserDefaults standardUserDefaults];
 	[ud setObject:loaded_pack forKey:@"levelpack"];

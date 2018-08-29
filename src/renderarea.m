@@ -62,7 +62,7 @@
 {
 	ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
 	[pl load_params:[pl levelpack]];
-	re_game_levels = [[pl GetGameLevels] retain];
+	re_game_levels = [[pl getGameLevels] retain];
 }
 
 - (void) resizeWithOldSuperviewSize:(NSSize) oldSize;
@@ -105,7 +105,7 @@
 
 	/* draw boxes, holes, checkpoints */
 	double hole_r=[pl holeRadius];
-	NSDictionary *level=[[pl GetGameLevels] objectAtIndex:re_cur_level];
+	NSDictionary *level=[[pl getGameLevels] objectAtIndex:re_cur_level];
 
 	NSArray *valList=[level objectForKey:@"boxes"];
 
@@ -185,11 +185,10 @@
 	//	[lvl_pixmap drawInRect:rect fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
 }
 
-static BOOL debugging=NO;
-
 - (void) mouseDown:(NSEvent *) event
 {
-	if(debugging)
+	ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
+	if([pl getDebuggingLevel] == debuggingLevelGraphics)
 		{ // set ball position to track mouse pointer
 			while([event type] != NSLeftMouseUp)	// loop outside until mouse goes up
 				{ // loop until mouse goes up
