@@ -450,7 +450,7 @@
                             </customView>
                         </subviews>
                         <connections>
-                            <action selector="ScreenTouchedPause:" target="1me-2v-Qz5" id="fYw-FX-xod"/>
+                            <action selector="screenTouchedPause:" target="1me-2v-Qz5" id="WUf-Su-b5r"/>
                         </connections>
                     </customView>
                 </subviews>
