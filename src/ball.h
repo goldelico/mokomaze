@@ -81,12 +81,11 @@
 
 - (void) drawRect:(NSRect) rect;
 - (void) setMenuVis:(BOOL) x;
-- (void) SetLevelNo;
-- (void) MoveBall:(NSPoint) pos;
-- (void) InitState:(BOOL) redraw;
-// int line(double x0, double y0, double x1, double y1,    double vx0,double vy0, double vx1,double vy1);
-- (void) ZeroAnim;
-- (void) ProcessGameState;
+- (void) setLevelNo;
+- (void) moveBall:(NSPoint) pos;
+- (void) initState:(BOOL) redraw;
+- (void) zeroAnim;
+- (void) processGameState;
 - (BOOL) testbump:(NSPoint) pnt :(NSPoint) mm_v;
 - (BOOL) edgebump:(NSPoint) t :(NSPoint) pnt :(NSPoint) mm_v;
 - (BOOL) line:(double) x0 :(double) y0 :(double) x1 :(double) y1
@@ -95,72 +94,15 @@
 - (void) apply_temp_phys_res;
 - (void) post_temp_phys_res:(NSPoint) pnt :(NSPoint) mm_v;
 - (void) post_phys_res:(NSPoint) pnt :(NSPoint) mm_v;
-- (void) BumpVibrate:(double) speed;
+- (void) bumpVibrate:(double) speed;
 - (void) setButtonsPics;
 - (void) acc_timerAction:(double) acx :(double) acy;
-// FIXME: + (void) accel_callback(void *closure, double acx, double acy, double acz);
 - (void) timerAction;
-- (IBAction) ScreenTouchedPause:(id) sender;
-- (IBAction) ScreenTouchedContinue:(id) sender;
+
+- (IBAction) screenTouchedPause:(id) sender;
+- (IBAction) screenTouchedContinue:(id) sender;
 - (IBAction) nextLevel:(id) sender;
 - (IBAction) prevLevel:(id) sender;
 - (IBAction) restart:(id) sender;
 
 @end
-
-#define EXAMPLE_H
-
-#ifndef EXAMPLE_H
-#define EXAMPLE_H
-#include "ui_formbase.h"
-#include "renderarea.h"
-
-class Form : public QWidget, public Ui_FormBase
-{
-	Q_OBJECT
-
-private:
-	QTimer *timer;
-	RenderArea *renderArea;
-	QPixmap prev_pixmap, prev_p_pixmap, prev_i_pixmap;
-	QPixmap next_pixmap, next_p_pixmap, next_i_pixmap;
-	QPixmap reset_pixmap, reset_p_pixmap, reset_i_pixmap;
-	QPixmap close_pixmap;
-	void CheckLoadedPictures();
-	void DisableScreenSaver();
-	void EnableScreenSaver();
-	void SetMenuVis(bool x);
-	void SetLevelNo();
-	void MoveBall(double x, double y);
-	//--------------------------------
-	void InitState(bool redraw = true);
-	int line(double x0, double y0, double x1, double y1,    double vx0,double vy0, double vx1,double vy1);
-	void ZeroAnim();
-	void ProcessGameState();
-	int testbump(double x,double y,   double mm_vx,double mm_vy);
-	int edgebump(int tx,int ty,   double x,double y,   double mm_vx,double mm_vy);
-	void tout(double ax, double ay);
-	void apply_temp_phys_res();
-	void post_temp_phys_res(double x, double y, double mm_vx, double mm_vy);
-	void post_phys_res(double x, double y, double mm_vx, double mm_vy);
-	void BumpVibrate(double speed);
-	void setButtonsPics();
-	void acc_timerAction(double acx, double acy);
-	static void accel_callback(void *closure, double acx, double acy, double acz);
-
-public:
-	Form( QWidget *parent = 0, Qt::WFlags f = 0 );
-	~Form();
-
-	private slots:
-	void timerAction();
-	bool eventFilter(QObject *target, QEvent *event);
-	void ScreenTouchedPause();
-	void ScreenTouchedContinue();
-
-protected:
-	bool event(QEvent *);
-
-};
-
-#endif

@@ -75,10 +75,10 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	cur_level = [pl userlevel];
 	if (cur_level < 0) cur_level = 0;
 	if (cur_level >= [qt_game_levels count])
-		cur_level = [qt_game_levels count] - 1;
+		cur_level = (int) [qt_game_levels count] - 1;
 
 	game_state = GAME_STATE_NORMAL;
-	[self SetLevelNo];
+	[self setLevelNo];
 
 	hole_r=[pl holeRadius];
 	ball_r=[pl ballRadius];
@@ -91,7 +91,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	[ball_pixmap setFlipped:YES];
 	shadow_pixmap=[[NSImage imageNamed:@"ball-shadow.png"] retain];
 
-	[self InitState:YES];
+	[self initState:YES];
 	[NSTimer scheduledTimerWithTimeInterval:1.0/FRAME_RATE target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
 }
 
@@ -116,7 +116,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (void) setMenuVis:(BOOL) x;
 {
-	[self SetLevelNo];
+	[self setLevelNo];
 	[menubuttons setHidden:!x];
 	[self setButtonsPics];
 	[menubuttons setNeedsDisplay:YES];
@@ -127,20 +127,20 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	return ![menubuttons isHidden];
 }
 
-- (void) SetLevelNo;
+- (void) setLevelNo;
 {
 	NSDictionary *level=[qt_game_levels objectAtIndex:cur_level];
 	NSString *name=[level objectForKey:@"comment"];
 	if(name)
 		;
-	NSString *str=[NSString stringWithFormat:@"Level %d/%d", cur_level+1, [qt_game_levels count]];
+	NSString *str=[NSString stringWithFormat:@"Level %d/%lu", cur_level+1, (unsigned long)[qt_game_levels count]];
 	[levelno_lbl setStringValue:str];
 	[(RenderArea *) [self superview] setLevel:cur_level];	// update background image
 	ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
 	[pl SaveLevel:cur_level];
 }
 
-- (void) MoveBall:(NSPoint) pos;
+- (void) moveBall:(NSPoint) pos;
 {
 	ballpos=pos;
 	[self setNeedsDisplay:YES];
@@ -186,7 +186,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 				}
 			[self apply_temp_phys_res];
 			game_state = new_game_state;
-			//ProcessGameState();
+			//processGameState();
 			return YES;
 			}
 		}
@@ -194,9 +194,9 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	return NO;
 }
 
-- (void) InitState:(BOOL) redraw;
+- (void) initState:(BOOL) redraw;
 {
-	[self ZeroAnim];
+	[self zeroAnim];
 
 	if(redraw)
 		[self setNeedsDisplay:YES];
@@ -210,20 +210,20 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	pr_vx=0; pr_vy=0;
 
 	prev_px=px; prev_py=py;
-	[self MoveBall:NSMakePoint(px, py)];
+	[self moveBall:NSMakePoint(px, py)];
 }
 
-- (void) ZeroAnim;
+- (void) zeroAnim;
 {
 	anim_stage = 0;
 	anim_timer = 0;
 }
 
-- (void) ProcessGameState;
+- (void) processGameState;
 {
 	if (game_state == GAME_STATE_FAILED)
 		{
-		[self InitState:NO];
+		[self initState:NO];
 		game_state = GAME_STATE_NORMAL;
 		}
 
@@ -237,7 +237,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 			{
 			cur_level++;
 			}
-		[self InitState:YES];
+		[self initState:YES];
 		game_state = GAME_STATE_NORMAL;
 		}
 }
@@ -307,28 +307,28 @@ int incircle(NSPoint p, NSPoint c, double cr)
 			{
 			if (inbox(NSMakePoint(pnt.x, pnt.y-ball_r), box))
 				{
-				[self BumpVibrate:mm_v.y];
+				[self bumpVibrate:mm_v.y];
 				pnt.y = p2.y+ball_r + 0.2;
 				mm_v.y = -mm_v.y * BUMP_COEF;
 				retval = YES;
 				}
 			if (inbox(NSMakePoint(pnt.x, pnt.y+ball_r), box))
 				{
-				[self BumpVibrate:mm_v.y];
+				[self bumpVibrate:mm_v.y];
 				pnt.y = p1.y-ball_r - 1.00;
 				mm_v.y = -mm_v.y * BUMP_COEF;
 				retval = YES;
 				}
 			if (inbox(NSMakePoint(pnt.x-ball_r, pnt.y), box))
 				{
-				[self BumpVibrate:mm_v.x];
+				[self bumpVibrate:mm_v.x];
 				pnt.x = p2.x+ball_r + 0.2;
 				mm_v.x = -mm_v.x * BUMP_COEF;
 				retval = YES;
 				}
 			if (inbox(NSMakePoint(pnt.x+ball_r, pnt.y), box))
 				{
-				[self BumpVibrate:mm_v.x];
+				[self bumpVibrate:mm_v.x];
 				pnt.x = p1.x-ball_r - 1.00;
 				mm_v.x = -mm_v.x * BUMP_COEF;
 				retval = YES;
@@ -366,7 +366,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 		double vpr_x = -fabs(dot_norm_vect)*norm.x;
 		double vpr_y = -fabs(dot_norm_vect)*norm.y;
-		[self BumpVibrate:calclen(NSMakePoint(vpr_x, vpr_y))];
+		[self bumpVibrate:calclen(NSMakePoint(vpr_x, vpr_y))];
 
 		double dop_x = (1-BUMP_COEF) * vpr_x;
 		double dop_y = (1-BUMP_COEF) * vpr_y;
@@ -447,25 +447,25 @@ int incircle(NSPoint p, NSPoint c, double cr)
 {
 	if (pnt.x<ball_r)
 		{
-		[self BumpVibrate:mm_v.x]; //VIB_HOR
+		[self bumpVibrate:mm_v.x]; //VIB_HOR
 		pnt.x = ball_r;
 		mm_v.x = -mm_v.x * BUMP_COEF;
 		}
 	if (pnt.x>wnd_w - ball_r)
 		{
-		[self BumpVibrate:mm_v.x];
+		[self bumpVibrate:mm_v.x];
 		pnt.x = wnd_w - ball_r;
 		mm_v.x = -mm_v.x * BUMP_COEF;
 		}
 	if (pnt.y<ball_r)
 		{
-		[self BumpVibrate:mm_v.y];
+		[self bumpVibrate:mm_v.y];
 		pnt.y = ball_r;
 		mm_v.y = -mm_v.y * BUMP_COEF;
 		}
 	if (pnt.y>wnd_h - ball_r)
 		{
-		[self BumpVibrate:mm_v.y];
+		[self bumpVibrate:mm_v.y];
 		pnt.y = wnd_h - ball_r;
 		mm_v.y = -mm_v.y * BUMP_COEF;
 		}
@@ -477,14 +477,14 @@ int incircle(NSPoint p, NSPoint c, double cr)
 - (void) post_phys_res:(NSPoint) pnt :(NSPoint) mm_v;
 {
 	px = pnt.x; py = pnt.y;
-	[self MoveBall:pnt];
+	[self moveBall:pnt];
 
 	vx = mm_v.x; vy = mm_v.y;
 	pr_px = px; pr_py = py;
 	pr_vx = vx; pr_vy = vy;
 }
 
-- (void) BumpVibrate:(double) speed;
+- (void) bumpVibrate:(double) speed;
 {
 	double v = fabs(speed);
 	double k = v/MAX_BUMP_SPEED;
@@ -519,7 +519,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	if (game_state != GAME_STATE_NORMAL)
 		{
 		if (anim_stage >= 1)
-			[self ProcessGameState];
+			[self processGameState];
 		else
 			{
 			anim_timer += 1;
@@ -528,7 +528,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 			}
 		}
 
-	[self MoveBall:NSMakePoint(px, py)];
+	[self moveBall:NSMakePoint(px, py)];
 	prev_px = px;
 	prev_py = py;
 }
@@ -557,16 +557,16 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 // actions
 
-- (IBAction) ScreenTouchedPause:(id) sender;
+- (IBAction) screenTouchedPause:(id) sender;
 {
 	[self setMenuVis:YES];
-	[sender setAction:@selector(ScreenTouchedContinue:)];
+	[sender setAction:@selector(screenTouchedContinue:)];
 }
 
-- (IBAction) ScreenTouchedContinue:(id) sender;
+- (IBAction) screenTouchedContinue:(id) sender;
 {
 	[self setMenuVis:NO];
-	[sender setAction:@selector(ScreenTouchedPause:)];
+	[sender setAction:@selector(screenTouchedPause:)];
 }
 
 - (IBAction) nextLevel:(id) sender;
@@ -574,9 +574,9 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	if (cur_level < [qt_game_levels count]-1)
 		{
 		cur_level++;
-		[self InitState:YES];
+		[self initState:YES];
 		game_state = GAME_STATE_NORMAL;
-		[self SetLevelNo];
+		[self setLevelNo];
 
 		fastchange_step = +10;
 #if FIXME // what is fastchange good for?
@@ -594,9 +594,9 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	if(cur_level > 0)
 		{
 		cur_level--;
-		[self InitState:YES];
+		[self initState:YES];
 		game_state = GAME_STATE_NORMAL;
-		[self SetLevelNo];
+		[self setLevelNo];
 		[self setButtonsPics];
 		}
 }
@@ -604,9 +604,9 @@ int incircle(NSPoint p, NSPoint c, double cr)
 - (IBAction) restart:(id) sender;
 {
 	cur_level=0;
-	[self InitState:YES];
+	[self initState:YES];
 	game_state = GAME_STATE_NORMAL;
-	[self SetLevelNo];
+	[self setLevelNo];
 	[self setButtonsPics];
 }
 
