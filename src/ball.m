@@ -146,15 +146,19 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	if([pl getDebuggingLevel] == debuggingLevelGraphics)
 		{ // also move in game
 			NSPoint v;
-			v.x=px-pr_px;
-			v.y=py-pr_py;
-			px=pos.x;
-			py=pos.y;
-			[self testbump:pos :v];
-			pr_px = px;
-			pr_py = py;
-			prev_px = px;
-			prev_py = py;
+			v.x=pos.x-pr_px;
+			v.y=pos.y-pr_py;
+			new_game_state = GAME_STATE_NORMAL;
+			if([self testbump:pos :v])
+				{
+				px=pos.x;
+				py=pos.y;
+				pr_px = px;
+				pr_py = py;
+				prev_px = px;
+				prev_py = py;
+				}
+			game_state = new_game_state;
 		}
 	[self setNeedsDisplay:YES];
 }
