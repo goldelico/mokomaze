@@ -188,9 +188,10 @@
 - (void) mouseDown:(NSEvent *) event
 {
 	ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
-	if([pl getDebuggingLevel] == debuggingLevelGraphics)
+	Ball *ball=[[self subviews] objectAtIndex:0];
+	if([ball gameState] == GAME_STATE_NORMAL && [pl getDebuggingLevel] == debuggingLevelGraphics)
 		{ // set ball position to track mouse pointer
-			while([event type] != NSLeftMouseUp)	// loop outside until mouse goes up
+			while([ball gameState] == GAME_STATE_NORMAL && [event type] != NSLeftMouseUp)	// loop outside until mouse goes up
 				{ // loop until mouse goes up
 					NSPoint p = [self convertPoint:[event locationInWindow] fromView:nil];
 #if 0
@@ -198,7 +199,6 @@
 #endif
 					if(NSMouseInRect(p, _bounds, [self isFlipped]))
 						{
-						Ball *ball=[[self subviews] objectAtIndex:0];
 						[ball moveBall:p];
 						}
 					event = [NSApp nextEventMatchingMask:(NSLeftMouseDownMask|NSLeftMouseUpMask|NSMouseMovedMask|NSLeftMouseDraggedMask|NSPeriodicMask)
