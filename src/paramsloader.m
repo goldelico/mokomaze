@@ -40,8 +40,10 @@
 
 - (void) awakeFromNib
 {
+	NSUserDefaults *ud=[NSUserDefaults standardUserDefaults];
 	vibro_enabled=YES;
-	debuggingLevel=debuggingLevelGraphics;
+	// to change, use "defaults write org.openmoko.MokoMaze debuggingLevel $level"
+	debuggingLevel=(int) [ud integerForKey:@"debuggingLevel"];
 }
 
 - (int) load_params:(NSString *) levelpack;
