@@ -68,9 +68,9 @@
 	NSArray *qt_game_levels;
 	int cur_level;
 
-#define GAME_STATE_NORMAL   1
-#define GAME_STATE_FAILED   2
-#define GAME_STATE_WIN      3
+#define GAME_STATE_NORMAL   1	// normally running
+#define GAME_STATE_FAILED   2	// fall into black hole
+#define GAME_STATE_WIN      3	// finis reached
 	int game_state;
 	int new_game_state;
 
@@ -98,6 +98,7 @@
 - (void) setButtonsPics;
 - (void) accceleate:(NSPoint) acc;
 - (void) timerAction;
+- (int) gameState;
 
 - (IBAction) screenTouchedPause:(id) sender;
 - (IBAction) screenTouchedContinue:(id) sender;

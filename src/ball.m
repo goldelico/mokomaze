@@ -234,6 +234,11 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	anim_timer = 0;
 }
 
+- (int) gameState;
+{
+	return game_state;
+}
+
 - (void) processGameState;
 {
 	if (game_state == GAME_STATE_FAILED)
