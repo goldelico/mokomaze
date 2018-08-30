@@ -409,6 +409,9 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	return NO;
 }
 
+// FIXME: fabs(ax or ay) must be < π/2
+// isn't cos(asin(x)) == 1-x*x?
+
 - (void) tout:(NSPoint) pnt;
 { // apply accelerometer value
 	double ax=pnt.x, ay=pnt.y;
@@ -577,10 +580,15 @@ int incircle(NSPoint p, NSPoint c, double cr)
 			ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
 			if([pl getDebuggingLevel] == debuggingLevelAccel)
 				{
-				acc=[self convertPoint:[_window mouseLocationOutsideOfEventStream] fromView:nil];
-				// center and scale to range...
+				NSRect bounds=[self bounds];
+				acc = [self convertPoint:[_window mouseLocationOutsideOfEventStream] fromView:nil];
+				acc.x -= NSMidX(bounds);
+				acc.y -= NSMidY(bounds);	// center
+				acc.x /= NSWidth(bounds);
+				acc.y /= -NSHeight(bounds);	// scale to +/- 0.5 g
 				}
-			acc=[Vibro accel];
+			else
+				acc=[Vibro accel];
 			[self acccelerate:acc];
 		}
 }
