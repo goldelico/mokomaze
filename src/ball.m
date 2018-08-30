@@ -145,8 +145,12 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	ballpos=pos;
 	if([pl getDebuggingLevel] == debuggingLevelGraphics)
 		{ // also move in game
+			NSPoint v;
+			v.x=px-pr_px;
+			v.y=py-pr_py;
 			px=pos.x;
 			py=pos.y;
+			[self testbump:pos :v];
 			pr_px = px;
 			pr_py = py;
 			prev_px = px;

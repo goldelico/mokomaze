@@ -56,8 +56,8 @@
 
 	double prev_px, prev_py;
 
-	double tmp_px, tmp_py;
-	double tmp_vx, tmp_vy;
+	NSPoint tmp_p;
+	NSPoint tmp_v;
 
 	double hole_r, ball_r;
 	int fall_hole_x, fall_hole_y;
