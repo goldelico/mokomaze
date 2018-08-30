@@ -190,13 +190,12 @@ int incircle(NSPoint p, NSPoint c, double cr)
 				{
 				ko++;
 				//TODO: lite testbump version
-				BOOL bump = [self testbump:NSMakePoint(tmp_px, tmp_py) :NSMakePoint(tmp_vx, tmp_vy)];
+				BOOL bump = [self testbump:tmp_p :tmp_v];
 				if ( (!bump) || (ko >= MAX_PHYS_ITERATIONS) )
 					break;
 				}
 			[self apply_temp_phys_res];
-			game_state = new_game_state;
-			//processGameState();
+			game_state = new_game_state;	// may have changed to WIN or FAIL
 			return YES;
 			}
 		}
@@ -454,7 +453,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (void) apply_temp_phys_res;
 {
-	[self post_phys_res:NSMakePoint(tmp_px, tmp_py) :NSMakePoint(tmp_vx, tmp_vy)];
+	[self post_phys_res:tmp_p :tmp_v];
 }
 
 - (void) post_temp_phys_res:(NSPoint) pnt :(NSPoint) mm_v;
@@ -484,8 +483,8 @@ int incircle(NSPoint p, NSPoint c, double cr)
 		mm_v.y = -mm_v.y * BUMP_COEF;
 		}
 
-	tmp_px = pnt.x; tmp_py = pnt.y;
-	tmp_vx = mm_v.x; tmp_vy = mm_v.y;
+	tmp_p = pnt;
+	tmp_v.x = mm_v.x; tmp_v.y = mm_v.y;
 }
 
 - (void) post_phys_res:(NSPoint) pnt :(NSPoint) mm_v;
