@@ -193,11 +193,11 @@
 		{ // set ball position to track mouse pointer
 			while([ball gameState] == GAME_STATE_NORMAL && [event type] != NSLeftMouseUp)	// loop outside until mouse goes up
 				{ // loop until mouse goes up
-					NSPoint p = [self convertPoint:[event locationInWindow] fromView:nil];
+					NSPoint p = [ball convertPoint:[event locationInWindow] fromView:nil];
 #if 0
 					NSLog(@"mouseDown point=%@", NSStringFromPoint(p));
 #endif
-					if(NSMouseInRect(p, _bounds, [self isFlipped]))
+					if(NSMouseInRect(p, [ball bounds], [ball isFlipped]))
 						{
 						[ball moveBall:p];
 						}
