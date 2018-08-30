@@ -370,7 +370,7 @@
                         <subviews>
                             <customView misplaced="YES" id="1me-2v-Qz5" customClass="Ball">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="640"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <connections>
                                     <outlet property="exit_lbl" destination="J1u-R3-92c" id="fcX-Mb-6Ih"/>
                                     <outlet property="levelno_lbl" destination="dXz-hI-eXl" id="7T0-hh-73r"/>
@@ -382,11 +382,11 @@
                             </customView>
                             <customView hidden="YES" misplaced="YES" id="nl2-tf-bT1" userLabel="Buttons">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="640"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="dXz-hI-eXl">
                                         <rect key="frame" x="0.0" y="529" width="480" height="42"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" alignment="center" title="Level" id="zYS-1B-Oht">
                                             <font key="font" metaFont="system" size="30"/>
                                             <color key="textColor" red="0.87843137250000003" green="0.73725490199999999" blue="0.43921568630000002" alpha="0.89607158687943256" colorSpace="calibratedRGB"/>
@@ -439,7 +439,7 @@
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" id="HmG-Dn-mu8" userLabel="Message">
                                         <rect key="frame" x="0.0" y="174" width="480" height="42"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" alignment="center" title="Touch the screen to continue" id="R8p-bL-zab">
                                             <font key="font" metaFont="system" size="30"/>
                                             <color key="textColor" red="0.87843137250000003" green="0.73725490199999999" blue="0.43921568630000002" alpha="0.89607158689999999" colorSpace="calibratedRGB"/>
