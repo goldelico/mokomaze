@@ -414,8 +414,13 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	return NO;
 }
 
-// FIXME: fabs(ax or ay) must be < π/2
-// isn't cos(asin(x)) == 1-x*x?
+double cosasin(double x)
+{ // cos(asin(x)) = sqrt(1-x*x) - but returns NaN if x is too large...
+	x = 1.0 - x*x;
+	if(x > 0)
+		return sqrt(x);
+	return 0;
+}
 
 - (void) tout:(NSPoint) pnt;
 { // apply accelerometer value
@@ -435,7 +440,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 		}
 	if (fabs(mid_vx) > 0)
 		{
-		double dvx = fabs( FRICT_COEF * GRAV_CONST*cos(asin(ax)) );
+		double dvx = fabs( FRICT_COEF * GRAV_CONST*cosasin(ax) );
 		if (mid_vx>0)
 			{
 			mid_vx-=dvx;
@@ -449,7 +454,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 		}
 	if (fabs(mid_vy) > 0)
 		{
-		double dvy = fabs( FRICT_COEF * GRAV_CONST*cos(asin(ay)) );
+		double dvy = fabs( FRICT_COEF * GRAV_CONST*cosasin(ay) );
 		if (mid_vy>0)
 			{
 			mid_vy-=dvy;
