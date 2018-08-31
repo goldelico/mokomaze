@@ -198,9 +198,7 @@
 					NSLog(@"mouseDown point=%@", NSStringFromPoint(p));
 #endif
 					if(NSMouseInRect(p, [ball bounds], [ball isFlipped]))
-						{
-						[ball moveBall:p];
-						}
+						[ball debugMoveBall:p];
 					event = [NSApp nextEventMatchingMask:(NSLeftMouseDownMask|NSLeftMouseUpMask|NSMouseMovedMask|NSLeftMouseDraggedMask|NSPeriodicMask)
 											   untilDate:[NSDate distantFuture]			// get next event
 												  inMode:NSEventTrackingRunLoopMode
