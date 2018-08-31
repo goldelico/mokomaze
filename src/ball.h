@@ -83,6 +83,7 @@
 - (void) setMenuVis:(BOOL) x;
 - (void) setLevelNo;
 - (void) moveBall:(NSPoint) pos;
+- (void) debugMoveBall:(NSPoint) pos;
 - (void) initState:(BOOL) redraw;
 - (void) zeroAnim;
 - (void) processGameState;

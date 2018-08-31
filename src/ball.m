@@ -147,25 +147,30 @@ int incircle(NSPoint p, NSPoint c, double cr)
 - (void) moveBall:(NSPoint) pos;
 {
 	ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
+	// fixme: [self setNeedsDisplayInRect:NSMakeRect(ballpos.x-r, ballpos.y-r, 2*r, 2*r)];
 	ballpos=pos;
-	if([pl getDebuggingLevel] == debuggingLevelGraphics)
-		{ // also move in game
-			NSPoint v;
-			v.x=pos.x-pr_px;
-			v.y=pos.y-pr_py;
-			new_game_state = GAME_STATE_NORMAL;
-			if([self testbump:pos :v])
-				{
-				px=pos.x;
-				py=pos.y;
-				pr_px = px;
-				pr_py = py;
-				prev_px = px;
-				prev_py = py;
-				}
-			game_state = new_game_state;
-		}
+	// fixme: [self setNeedsDisplayInRect:NSMakeRect(ballpos.x-r, ballpos.y-r, 2*r, 2*r)];
 	[self setNeedsDisplay:YES];
+}
+
+- (void) debugMoveBall:(NSPoint) pos
+{
+	NSPoint v;
+	v.x=pos.x-pr_px;
+	v.y=pos.y-pr_py;
+	new_game_state = GAME_STATE_NORMAL;
+	if(![self testbump:pos :v])
+		{
+		}
+	[self post_temp_phys_res:pos :v];
+	px=tmp_p.x;
+	py=tmp_p.y;
+	pr_px = px;
+	pr_py = py;
+	prev_px = px;
+	prev_py = py;
+	game_state = new_game_state;
+	[self moveBall:tmp_p];
 }
 
 #define MAX_PHYS_ITERATIONS 10
