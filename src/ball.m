@@ -379,7 +379,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 		}
 
 	if (retval)
-		{
+		{ // renderarea bounds
 		[self post_temp_phys_res:pnt :mm_v];
 		}
 
@@ -597,8 +597,8 @@ double cosasin(double x)
 				{
 				NSRect bounds=[self bounds];
 				acc = [self convertPoint:[_window mouseLocationOutsideOfEventStream] fromView:nil];
-				acc.x -= NSMidX(bounds);
-				acc.y -= NSMidY(bounds);	// center
+				acc.x -= ballpos.x;
+				acc.y -= ballpos.y;	// relative to ball position
 				acc.x /= NSWidth(bounds);
 				acc.y /= -NSHeight(bounds);	// scale to +/- 0.5 g
 				}
