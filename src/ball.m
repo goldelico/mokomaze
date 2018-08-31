@@ -102,18 +102,21 @@ int incircle(NSPoint p, NSPoint c, double cr)
 - (BOOL) isOpaque; { return NO; }
 - (BOOL) isFlipped; { return YES; }
 
+#define SHADOW_SHIFT (1/5)
+
 - (void) drawRect:(NSRect) rect
 {
-	ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
-	double br=[pl ballRadius];	// FIXME: not every time!
+	NSRect ball;
+	NSRect shadow;
+	double br=ball_r;
 	if (game_state != GAME_STATE_NORMAL)
 		{ // make ball become smaller over time
 		br *= 1 - 0.40 * anim_timer / ANIM_MAX;
 		}
-	NSRect ball=NSMakeRect(ballpos.x-br, ballpos.y-br, 2*br, 2*br);
-	NSRect shadow=ball;
-	shadow.origin.x += br/5.0;	// shadow shift
-	shadow.origin.y += br/5.0;
+	ball=NSMakeRect(ballpos.x-br, ballpos.y-br, 2*br, 2*br);
+	shadow=ball;
+	shadow.origin.x += SHADOW_SHIFT*br;	// shadow shift
+	shadow.origin.y += SHADOW_SHIFT*br;
 	[shadow_pixmap drawInRect:shadow fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 	[ball_pixmap drawInRect:ball fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 }
@@ -146,11 +149,13 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (void) moveBall:(NSPoint) pos;
 {
-	ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
-	// fixme: [self setNeedsDisplayInRect:NSMakeRect(ballpos.x-r, ballpos.y-r, 2*r, 2*r)];
-	ballpos=pos;
-	// fixme: [self setNeedsDisplayInRect:NSMakeRect(ballpos.x-r, ballpos.y-r, 2*r, 2*r)];
-	[self setNeedsDisplay:YES];
+	if(!NSEqualPoints(ballpos, pos))
+		{ // has really changed
+			double f=(2+SHADOW_SHIFT);
+			[self setNeedsDisplayInRect:NSMakeRect(ballpos.x-ball_r, ballpos.y-ball_r, f*ball_r, f*ball_r)];	// redraw old position
+			ballpos=pos;
+			[self setNeedsDisplayInRect:NSMakeRect(ballpos.x-ball_r, ballpos.y-ball_r, f*ball_r, f*ball_r)];	// draw new position
+		}
 }
 
 - (void) debugMoveBall:(NSPoint) pos
@@ -250,6 +255,7 @@ int incircle(NSPoint p, NSPoint c, double cr)
 {
 	anim_stage = 0;
 	anim_timer = 0;
+	ballpos = NSZeroPoint;
 }
 
 - (int) gameState;
@@ -569,6 +575,7 @@ double cosasin(double x)
 			anim_timer += 1;
 			if (anim_timer == ANIM_MAX)
 				anim_stage = 1;
+			ballpos=NSZeroPoint;	// enforce redraw
 			}
 		}
 
