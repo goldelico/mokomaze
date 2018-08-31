@@ -94,6 +94,11 @@ int incircle(NSPoint p, NSPoint c, double cr)
 	[NSTimer scheduledTimerWithTimeInterval:1.0/FRAME_RATE target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
 }
 
+- (void) setFrame:(NSRect) frame
+{ // resizing of RenderArea wants to change our frame origin despite having all flags disabled
+	// [super setFrame:frame];
+}
+
 - (BOOL) isOpaque; { return NO; }
 - (BOOL) isFlipped; { return YES; }
 

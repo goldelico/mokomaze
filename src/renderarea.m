@@ -70,8 +70,8 @@
 	NSRect bounds;
 	NSRect frame;
 	NSSize size;
-	[super resizeWithOldSuperviewSize:oldSize];
-	frame=[self frame];
+	frame=[[self superview] frame];	// fit into superview
+	[self setFrame:frame];	// notifies subviews with resizeWithOldSuperviewSize
 	size=[desk_pixmap size];
 	bounds.origin=NSZeroPoint;
 	bounds.size.width=size.height*frame.size.width/frame.size.height;
@@ -87,7 +87,7 @@
 		bounds.origin.y=-0.5*(bounds.size.height-size.height);
 		}
 	[self setBounds:bounds];
-	//	NSLog(@"bounds=%@", NSStringFromRect([self bounds]));
+	[self setNeedsDisplay:YES];
 }
 
 - (void) setLevel:(int) lvl_no;
@@ -180,7 +180,7 @@
 	NSLog(@"pixmap size %@", NSStringFromSize([lvl_pixmap size]));
 #endif
 	[[NSColor lightGrayColor] set];
-	NSRectFill([self bounds]);	// fill background
+	NSRectFill(rect);	// fill background
 	[lvl_pixmap drawAtPoint:NSZeroPoint fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
 	//	[lvl_pixmap drawInRect:rect fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
 }
