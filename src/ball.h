@@ -97,7 +97,7 @@
 - (void) post_phys_res:(NSPoint) pnt :(NSPoint) mm_v;
 - (void) bumpVibrate:(double) speed;
 - (void) setButtonsPics;
-- (void) accceleate:(NSPoint) acc;
+- (void) acccelerate:(NSPoint) acc;
 - (void) timerAction;
 - (int) gameState;
 
