@@ -42,7 +42,7 @@
 		[desk_pixmap setFlipped:YES];
 		wall_pixmap=[[NSImage imageNamed:@"wall.png"] retain];
 		[wall_pixmap setFlipped:YES];
-		lvl_pixmap=[[NSImage alloc] initWithSize:frame.size];
+		lvl_pixmap=[[NSImage alloc] initWithSize:[desk_pixmap size]];	// same as desk
 		_antialiased = NO;
 		}
 	return self;
@@ -72,7 +72,7 @@
 	NSSize size;
 	frame=[[self superview] frame];	// fit into superview
 	[self setFrame:frame];	// notifies subviews with resizeWithOldSuperviewSize
-	size=[desk_pixmap size];
+	size=[lvl_pixmap size];
 	bounds.origin=NSZeroPoint;
 	bounds.size.width=size.height*frame.size.width/frame.size.height;
 	bounds.size.height=size.width*frame.size.height/frame.size.width;
@@ -182,7 +182,6 @@
 	[[NSColor lightGrayColor] set];
 	NSRectFill(rect);	// fill background
 	[lvl_pixmap drawAtPoint:NSZeroPoint fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
-	//	[lvl_pixmap drawInRect:rect fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
 }
 
 - (void) mouseDown:(NSEvent *) event
