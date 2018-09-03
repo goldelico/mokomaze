@@ -70,7 +70,7 @@
 	NSRect bounds;
 	NSRect frame;
 	NSSize size;
-	frame=[[self superview] frame];	// fit into superview
+	frame=[[self superview] bounds];	// 100% fit projection into superview
 	[self setFrame:frame];	// notifies subviews with resizeWithOldSuperviewSize
 	size=[lvl_pixmap size];
 	bounds.origin=NSZeroPoint;
