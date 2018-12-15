@@ -26,12 +26,15 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class Ball;
+
 @interface RenderArea : NSControl
 {
 	IBOutlet NSImage *hole_pixmap;
 	IBOutlet NSImage *fin_pixmap;
 	IBOutlet NSImage *desk_pixmap;
 	IBOutlet NSImage *wall_pixmap;
+	IBOutlet Ball *ball;	// need to know for mouseDown
 	NSImage *lvl_pixmap;
 	BOOL _antialiased;
 	NSArray *re_game_levels;

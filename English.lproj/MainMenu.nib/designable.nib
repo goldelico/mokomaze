@@ -451,6 +451,7 @@
                         </subviews>
                         <connections>
                             <action selector="screenTouchedPause:" target="1me-2v-Qz5" id="WUf-Su-b5r"/>
+                            <outlet property="ball" destination="1me-2v-Qz5" id="da0-Cd-pGY"/>
                         </connections>
                     </customView>
                 </subviews>

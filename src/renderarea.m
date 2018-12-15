@@ -187,7 +187,6 @@
 - (void) mouseDown:(NSEvent *) event
 {
 	ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
-	Ball *ball=[[self subviews] objectAtIndex:0];
 	if([ball gameState] == GAME_STATE_NORMAL && [pl getDebuggingLevel] == debuggingLevelGraphics)
 		{ // set ball position to track mouse pointer
 			while([ball gameState] == GAME_STATE_NORMAL && [event type] != NSLeftMouseUp)	// loop outside until mouse goes up
