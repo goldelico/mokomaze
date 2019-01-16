@@ -1,4 +1,4 @@
-/*  vibro.h
+/*  interaction.h
  *
  *  Vibro feedback routines
  *
@@ -23,7 +23,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface Vibro : NSObject
+@interface Interaction : NSObject
 
 + (int) set_vibro:(uint8_t) level;
 

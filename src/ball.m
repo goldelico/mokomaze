@@ -22,7 +22,7 @@
  */
 
 #import "paramsloader.h"
-#import "vibro.h"
+#import "interaction.h"
 #import "ball.h"
 
 #ifdef __APPLE__
@@ -542,7 +542,7 @@ double cosasin(double x)
 	if (v>MIN_BUMP_SPEED)
 		{
 		uint8_t vlevel = (uint8_t)(k*63);
-		[Vibro set_vibro:vlevel];
+		[Interaction set_vibro:vlevel];
 		}
 }
 
@@ -600,7 +600,7 @@ double cosasin(double x)
 		{ // process movements
 			NSPoint acc;
 			ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
-			if(![Vibro hasAccel] || [pl getDebuggingLevel] == debuggingLevelAccel)
+			if(![Interaction hasAccel] || [pl getDebuggingLevel] == debuggingLevelAccel)
 				{
 				NSRect bounds=[self bounds];
 				acc = [self convertPoint:[_window mouseLocationOutsideOfEventStream] fromView:nil];
@@ -610,7 +610,7 @@ double cosasin(double x)
 				acc.y /= -NSHeight(bounds);	// scale to +/- 0.5 g
 				}
 			else
-				acc=[Vibro accel];
+				acc=[Interaction accel];
 			[self acccelerate:acc];
 		}
 }

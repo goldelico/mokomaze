@@ -1,4 +1,4 @@
-/*  vibro.cpp
+/*  interaction.m
  *
  *  Vibro feedback routines
  *
@@ -21,7 +21,7 @@
  *  along with QtMaze.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#import "vibro.h"
+#import "interaction.h"
 
 #ifdef __APPLE__
 #import <AudioToolbox/AudioToolbox.h>
@@ -31,7 +31,7 @@
 static CMMotionManager *mm;
 #endif
 
-@implementation Vibro
+@implementation Interaction
 
 + (BOOL) hasAccel;
 {

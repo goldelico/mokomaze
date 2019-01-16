@@ -35,7 +35,7 @@
 		EEA3D359208B25A9004CB227 /* wall.png in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D334208B25A9004CB227 /* wall.png */; };
 		EEA3D35D208B25AA004CB227 /* README in Resources */ = {isa = PBXBuildFile; fileRef = EEA3D338208B25A9004CB227 /* README */; };
 		EEA3D35E208B25AA004CB227 /* renderarea.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D339208B25A9004CB227 /* renderarea.m */; };
-		EEA3D360208B25AA004CB227 /* vibro.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D33D208B25A9004CB227 /* vibro.m */; };
+		EEA3D360208B25AA004CB227 /* interaction.m in Sources */ = {isa = PBXBuildFile; fileRef = EEA3D33D208B25A9004CB227 /* interaction.m */; };
 		EEE276AE20C5891800835B4B /* qtmaze.icns in Resources */ = {isa = PBXBuildFile; fileRef = EEE276AD20C5891800835B4B /* qtmaze.icns */; };
 /* End PBXBuildFile section */
 
@@ -75,8 +75,8 @@
 		EEA3D338208B25A9004CB227 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		EEA3D339208B25A9004CB227 /* renderarea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = renderarea.m; path = src/renderarea.m; sourceTree = "<group>"; };
 		EEA3D33A208B25A9004CB227 /* renderarea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = renderarea.h; path = src/renderarea.h; sourceTree = "<group>"; };
-		EEA3D33D208B25A9004CB227 /* vibro.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = vibro.m; path = src/vibro.m; sourceTree = "<group>"; };
-		EEA3D33E208B25A9004CB227 /* vibro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vibro.h; path = src/vibro.h; sourceTree = "<group>"; };
+		EEA3D33D208B25A9004CB227 /* interaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = interaction.m; path = src/interaction.m; sourceTree = "<group>"; };
+		EEA3D33E208B25A9004CB227 /* interaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = interaction.h; path = src/interaction.h; sourceTree = "<group>"; };
 		EEA6A096174BDE7900F4FBFA /* mySTEP.make */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mySTEP.make; path = ../../../Frameworks/mySTEP.make; sourceTree = SOURCE_ROOT; };
 		EEE276AD20C5891800835B4B /* qtmaze.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = qtmaze.icns; path = ../../../qtmaze.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,8 +105,8 @@
 				EEA3D320208B25A9004CB227 /* paramsloader.m */,
 				EEA3D33A208B25A9004CB227 /* renderarea.h */,
 				EEA3D339208B25A9004CB227 /* renderarea.m */,
-				EEA3D33E208B25A9004CB227 /* vibro.h */,
-				EEA3D33D208B25A9004CB227 /* vibro.m */,
+				EEA3D33E208B25A9004CB227 /* interaction.h */,
+				EEA3D33D208B25A9004CB227 /* interaction.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -314,7 +314,7 @@
 				EEA3D347208B25A9004CB227 /* main.m in Sources */,
 				EEA3D348208B25A9004CB227 /* paramsloader.m in Sources */,
 				EEA3D35E208B25AA004CB227 /* renderarea.m in Sources */,
-				EEA3D360208B25AA004CB227 /* vibro.m in Sources */,
+				EEA3D360208B25AA004CB227 /* interaction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
