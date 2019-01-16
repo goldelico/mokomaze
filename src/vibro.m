@@ -28,9 +28,24 @@
 #else
 #import <CoreMotion/CoreMotion.h>
 #import <CoreDevice/CoreDevice.h>	// we have AudioServicesPlaySystemSoundWithVibration() defined here
+static CMMotionManager *mm;
 #endif
 
 @implementation Vibro
+
++ (BOOL) hasAccel;
+{
+#ifdef __APPLE__
+	return NO;
+#else
+	if(!mm)
+		{
+		mm=[CMMotionManager new];
+		[mm startDeviceMotionUpdates];
+		}
+	return [mm hasAccelerometer];
+#endif
+}
 
 + (NSPoint) accel;
 { // accelerometer values in g for x and y
@@ -39,12 +54,8 @@
 #define K 0.6
 	return NSMakePoint(K*((float)rand()/((float)RAND_MAX)-0.5), K*((float)rand()/((float)RAND_MAX)-0.5));
 #else	// QuantumSTEP
-	static CMMotionManager *mm;
 	if(!mm)
-		{
-		mm=[CMMotionManager new];
-		[mm startDeviceMotionUpdates];
-		}
+		[self hasAccel];	// define mm
 	CMDeviceMotion *m=[mm deviceMotion];
 	CMAcceleration g=[m gravity];
 	return NSMakePoint(g.x, g.y);

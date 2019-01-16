@@ -600,7 +600,7 @@ double cosasin(double x)
 		{ // process movements
 			NSPoint acc;
 			ParamsLoader *pl=(ParamsLoader *) [NSApp delegate];
-			if([pl getDebuggingLevel] == debuggingLevelAccel)
+			if(![Vibro hasAccel] || [pl getDebuggingLevel] == debuggingLevelAccel)
 				{
 				NSRect bounds=[self bounds];
 				acc = [self convertPoint:[_window mouseLocationOutsideOfEventStream] fromView:nil];

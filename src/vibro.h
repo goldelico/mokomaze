@@ -27,6 +27,7 @@
 
 + (int) set_vibro:(uint8_t) level;
 
++ (BOOL) hasAccel;
 + (NSPoint) accel;	// accelerometer values in g for x and y
 
 @end
