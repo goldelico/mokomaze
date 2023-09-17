@@ -8,24 +8,24 @@
 	<array/>
 	<key>CFBundleExecutable</key>
 	<string>MokoMaze</string>
+	<key>CFBundleGetInfoString</key>
+	<string>MokoMaze, originally by Anton Olkhovik &lt;ant007h@gmail.com&gt;</string>
 	<key>CFBundleIconFile</key>
 	<string>qtmaze</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.openmoko.MokoMaze</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>MokoMaze</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
-	<key>CFBundleName</key>
-	<string>MokoMaze</string>
-	<key>CFBundleGetInfoString</key>
-	<string>MokoMaze, originally by Anton Olkhovik &lt;ant007h@gmail.com&gt;</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

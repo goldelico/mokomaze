@@ -228,10 +228,10 @@ int incircle(NSPoint p, NSPoint c, double cr)
 
 - (void) initState:(BOOL) redraw;
 {
-
 	NSDictionary *val=[[qt_game_levels objectAtIndex:cur_level] objectForKey:@"init"];
 	NSPoint point=NSMakePoint([[val objectForKey:@"x"] doubleValue], [[val objectForKey:@"y"] doubleValue]);
-	px=point.x, py=point.y;
+	px=point.x;
+	py=point.y;
 	vx=0; vy=0;
 
 	pr_px=px; pr_py=py;
@@ -603,7 +603,7 @@ double cosasin(double x)
 			if(![Interaction hasAccel] || [pl getDebuggingLevel] == debuggingLevelAccel)
 				{
 				NSRect bounds=[self bounds];
-				acc = [self convertPoint:[_window mouseLocationOutsideOfEventStream] fromView:nil];
+				acc = [self convertPoint:[[self window] mouseLocationOutsideOfEventStream] fromView:nil];
 				acc.x -= ballpos.x;
 				acc.y -= ballpos.y;	// relative to ball position
 				acc.x /= NSWidth(bounds);
